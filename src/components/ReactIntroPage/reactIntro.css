@@ -1,0 +1,70 @@
+#introPage {
+  font-family: "Arial", sans-serif;
+  background-color: #e0f7fa; /* 柔和的浅蓝色背景 */
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* 使整个页面的最小高度为视窗高度 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .App {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 500px;
+  }
+
+  .App h1 {
+    font-size: 2.5rem;
+    color: #00796b;
+  }
+
+  .App h2 {
+    font-size: 1.5rem;
+    color: #888;
+    margin-top: 10px;
+  }
+
+  /* 按钮容器样式 */
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 500px; /* 限制按钮容器的宽度，使其更集中 */
+    margin: 0 auto; /* 居中 */
+  }
+
+  /* 按钮样式 */
+  button {
+    background-color: #80cbc4; /* 舒缓的浅青色 */
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #4db6ac;
+  }
+
+  /* 链接样式，去除默认的下划线和颜色 */
+  button a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  button a:hover {
+    color: #ffffff;
+  }
+}

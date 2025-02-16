@@ -1,0 +1,34 @@
+.app-header {
+  background-color: #5cc7ba; /* 深青色，符合现有的颜色方案 */
+  color: #ffffff;
+  padding: 5px 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.app-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  left: 10px;
+  background-color: #4db6ac; /* 与按钮一致的浅青色 */
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #80cbc4;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1rem;
+}

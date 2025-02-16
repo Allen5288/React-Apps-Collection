@@ -62,7 +62,7 @@ function handleTimeout() { ... };
 
 const handleTimeout2 = () => { ... };
 
-setTimout(handleTimeout, 2000); // it acts as value, to excute after 2000ms;
+setTimout(handleTimeout, 2000); // it ac-ts as value, to excute after 2000ms;
 setTimout(handleTimeout2, 2000); // it acts as value, to excute 
 setTimeout(() = > {
     ...;
@@ -3453,82 +3453,6 @@ const scaleText = useTransform(scrollY, [0, 300], [1, 1.5]);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 100. Some commonly used Content
-1. article
-
-When you want a group of content with pic + content + someelse like price, can be group by a article
-
-2. Header
-
-Just like a new like used in page
-
-3. Form
-
-When you submit a form
-
-4. Model - dialog
-
-```javascript
-import { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
-
-export default function Modal({ children, open, onClose, className = '' }) {
-  const dialog = useRef();
-
-  useEffect(() => {
-    const modal = dialog.current;
-
-    if (open) {
-      modal.showModal();
-    }
-
-    return () => modal.close();
-  }, [open]);
-
-  return createPortal(
-    <dialog ref={dialog} className={`modal ${className}`} onClose={onClose}>
-      {children}
-    </dialog>,
-    document.getElementById('modal')
-  );
-}
-```
-
-
-
 # 101 Some tips
 1. When fetch img src from backend
 
@@ -3547,9 +3471,10 @@ export const currencyFormatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
 });
 ```
+3. Nested JSX is that it must return a single element
+4. Comments: `{/* */}` to wrap around the comment text.
 
 
-# 102 Some copooeration
+# 102 MUI Usage
 
-1. Using Firebase as a Backend
 

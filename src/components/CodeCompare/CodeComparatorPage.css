@@ -1,0 +1,13 @@
+.diff-added {
+  background-color: #ccffcc; /* Light green */
+}
+
+.diff-removed {
+  background-color: #ffcccc; /* Light red */
+}
+
+.diff-line {
+  padding: 2px;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
