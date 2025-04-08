@@ -1,39 +1,44 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Box } from "@mui/material";
-import "./lab1-responsiveList.css"; // Import your CSS file
+import "./lab1-responsiveList.css";
+
+const steps = [
+  {
+    title: "Step One: HTML+CSS",
+    description: "Make a responsive list with HTML and CSS."
+  },
+  {
+    title: "Step Two: Javascript",
+    description: "Make a responsive list with Javascript."
+  },
+  {
+    title: "Step Three: framework and libraries",
+    description: "Make a responsive list with framework and libraries."
+  },
+  {
+    title: "Step Four: Front-end Tools",
+    description: "Make a responsive list with Front-end Tools."
+  },
+  {
+    title: "Step Five: Front-end Performance",
+    description: "Make a responsive list with Front-end Performance Optimization / cross-platform development."
+  }
+];
 
 function Lab1ResponsiveList() {
+  const stepsLength = useMemo(() => steps.length, []);
+
   return (
     <Container id="Lab1ResponsiveList" maxWidth="lg" sx={{ mt: 4 }}>
       <Box className="responsive-list-container">
-        <ol style={{ "--length": 5 }}>
-          <li style={{ "--i": 1 }}>
-            <h3>Step One: HTML+CSS</h3>
-            <p>Make a responsive list with HTML and CSS.</p>
-          </li>
-          <li style={{ "--i": 2 }}>
-            <h3>Step Two: Javascript</h3>
-            <p>Make a responsive list with Javascript.</p>
-          </li>
-          <li style={{ "--i": 3 }}>
-            <h3>Step Three: framework and libries</h3>
-            <p>Make a responsive list with framework and libries.</p>
-          </li>
-          <li style={{ "--i": 4 }}>
-            <h3>Step Four: Front-end Tools</h3>
-            <p>Make a responsive list with Front-end Tools.</p>
-          </li>
-          <li style={{ "--i": 5 }}>
-            <h3>
-              Step Five: Front-end Performance Optimization / cross-platform
-              development
-            </h3>
-            <p>
-              Make a responsive list with Front-end Performance Optimization /
-              cross-platform development.
-            </p>
-          </li>
+        <ol style={{ "--length": stepsLength }}>
+          {steps.map((step, index) => (
+            <li key={index} style={{ "--i": index + 1 }}>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </li>
+          ))}
         </ol>
       </Box>
 
@@ -43,7 +48,6 @@ function Lab1ResponsiveList() {
           to="/jiangRenPractice"
           variant="contained"
           color="primary"
-          sx={{ mr: 2 }}
         >
           Back to Practice Home
         </Button>

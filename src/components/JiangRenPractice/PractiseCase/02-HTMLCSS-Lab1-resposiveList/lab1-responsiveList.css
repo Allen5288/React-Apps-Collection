@@ -1,10 +1,9 @@
 #Lab1ResponsiveList {
   .responsive-list-container {
     box-sizing: border-box;
-    --n: 1;
-    --h: 212deg;
-    --l: 43%;
-    --brandColor: hsl(var(--h), 71%, var(--l));
+    --brand-hue: 212deg;
+    --brand-lightness: 43%;
+    --brandColor: hsl(var(--brand-hue), 71%, var(--brand-lightness));
     font-family: sans-serif;
     margin: 0;
     background-color: whitesmoke;
@@ -16,7 +15,7 @@
     display: flex;
     align-items: baseline;
     margin: 0 0 1rem;
-    color: rgb(70,70,70);
+    color: rgb(70, 70, 70);
   }
 
   h3::before {
@@ -27,7 +26,6 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    padding: 1rem;
     background-color: var(--c1);
     color: #fff;
     margin-right: 1rem;
@@ -37,18 +35,21 @@
   p {
     line-height: 1.6;
   }
+  
   ol {
     list-style: none;
     padding: 0 1rem;
     counter-reset: list;
   }
+  
   li {
-    --stop: calc(100% / var(--length) * var(--i));
-    --l: 62%;
-    --l2: 88%;
-    --h: calc((var(--i) - 1) * (180 / var(--length)));
-    --c1: hsl(var(--h), 71%, var(--l));
-    --c2: hsl(var(--h), 71%, var(--l2));
+    --i-adjusted: max(1, var(--i));
+    --stop: calc(100% / var(--length) * var(--i-adjusted));
+    --lightness: 62%;
+    --light-lightness: 88%;
+    --hue: calc((var(--i-adjusted) - 1) * (180 / var(--length)));
+    --c1: hsl(var(--hue), 71%, var(--lightness));
+    --c2: hsl(var(--hue), 71%, var(--light-lightness));
 
     position: relative;
     counter-increment: list;
@@ -79,15 +80,16 @@
   @media (min-width: 40em) {
     li {
       margin: 3rem auto;
-      padding: 3rem 2rem 2rem;;
+      padding: 3rem 2rem 2rem;
     }
+    
     h3 {
-        font-size: 2.25rem;
-        margin: 0 0 2rem;
+      font-size: 2.25rem;
+      margin: 0 0 2rem;
     }
+    
     h3::before {
-        margin-right: 1.5rem;
+      margin-right: 1.5rem;
     }
   }
-
 }
