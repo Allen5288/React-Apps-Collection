@@ -9,7 +9,7 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import SignUpForm from "./PractiseCase/HTML&CSS-Assisgnment1-SignUpForm/HTML&CSS-SignUpForm";
+import SignUpForm from "./PractiseCase/01-HTML&CSS-Assisgnment1-SignUpForm/HTML&CSS-SignUpForm";
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
