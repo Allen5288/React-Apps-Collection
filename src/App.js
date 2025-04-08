@@ -15,6 +15,8 @@ import QuizApp from "./components/QuizApp/QuizApp";
 import CodeComparatorPage from "./components/CodeCompare/CodeComparatorPage";
 import SalaryCalculator from "./components/SalaryCalculateApp/SalaryCalculator";
 import CurrencyExchange from "./components/CurrencyExchange/CurrencyExchange";
+import JiangRenPractice from "./components/JiangRenPractice/JiangRenPractice";
+
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
   return (
@@ -44,6 +46,9 @@ export default function App() {
         <Route path="/compareCode" element={<CodeComparatorPage />} />
         <Route path="/salaryCalculator" element={<SalaryCalculator />} />
         <Route path="/currencyExchange" element={<CurrencyExchange />} />
+        
+        {/* JiangRen Practice route with nested routes handled within the component */}
+        <Route path="/jiangRenPractice/*" element={<JiangRenPractice />} />
       </Routes>
     </Router>
   );
