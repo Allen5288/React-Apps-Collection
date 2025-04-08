@@ -10,11 +10,13 @@ import {
   Container,
 } from "@mui/material";
 import SignUpForm from "./PractiseCase/01-HTML&CSS-Assisgnment1-SignUpForm/HTML&CSS-SignUpForm";
+import Lab1ResponsiveList from "./PractiseCase/02-HTMLCSS-Lab1-resposiveList/lab1-responsiveList";
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
   const practicePages = [
     { path: "SignUpForm", label: "SignUpForm" },
+    { path: "Lab1ResponsiveList", label: "Lab1ResponsiveList" },
     // Add more practice pages as needed
   ];
 
@@ -66,6 +68,7 @@ function JiangRenPractice() {
     <Routes>
       <Route path="/" element={<JiangRenPracticeHome />} />
       <Route path="/SignUpForm" element={<SignUpForm />} />
+      <Route path="/Lab1ResponsiveList" element={<Lab1ResponsiveList />} />
     </Routes>
   );
 }
