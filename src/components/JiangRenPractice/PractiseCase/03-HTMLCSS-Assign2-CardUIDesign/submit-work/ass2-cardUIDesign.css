@@ -1,0 +1,239 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 1rem;
+}
+
+#business-card-ui-design {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: 700;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* Cards container for responsive layout */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.card-wrapper {
+  flex: 1 1 400px;
+  max-width: 500px;
+  min-width: 280px;
+}
+
+/* Common card styles */
+.business-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 2rem;
+}
+
+.business-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature card specific styles */
+.feature-card {
+  height: 300px;
+  background: linear-gradient(
+      45deg,
+      rgba(106, 17, 203, 0.7),
+      rgba(37, 117, 252, 0.7)
+    ),
+    url("https://plus.unsplash.com/premium_photo-1664474834472-6c7d1e3198e2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVvcGxlJTIwd29ya2luZ3xlbnwwfHwwfHx8MA%3D%3D");
+  background-size: cover;
+  background-position: center;
+}
+
+.feature-card .card-title {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.feature-card .card-content {
+  color: #fff;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.feature-card .card-button {
+  color: #fff;
+  border: #fff solid 2px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.feature-card .card-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Testimonial card specific styles */
+.testimonial-card {
+  height: auto;
+  background-color: #fff;
+  padding-bottom: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.personal-info {
+  position: relative;
+  padding-left: 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-info::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-image: url("https://plus.unsplash.com/premium_photo-1664474834472-6c7d1e3198e2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVvcGxlJTIwd29ya2luZ3xlbnwwfHwwfHx8MA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #e0e0e0;
+}
+
+.personal-info-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.personal-info-title {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.star-rating {
+  color: #f39c12;
+  font-size: 1.25rem;
+}
+
+.testimonial-card .card-content {
+  color: #666;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.company-link {
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.company-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Back button styling */
+.back-button {
+  display: inline-block;
+  background-color: #1976d2;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #1565c0;
+}
+
+/* Responsive design for different screen sizes */
+@media screen and (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-wrapper {
+    width: 100%;
+  }
+  
+  .business-card {
+    padding: 1.5rem;
+  }
+  
+  .feature-card {
+    height: 250px;
+  }
+  
+  .personal-info {
+    padding-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .star-rating {
+    margin-top: 1rem;
+    margin-left: 3.5rem;
+  }
+  
+  .feature-card .card-button {
+    padding: 0.5rem 1rem;
+    width: 100%;
+    text-align: center;
+  }
+}
