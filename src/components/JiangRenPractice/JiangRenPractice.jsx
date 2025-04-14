@@ -19,7 +19,10 @@ function JiangRenPracticeHome() {
   const practicePages = [
     { path: "SignUpForm", label: "SignUpForm" },
     { path: "Lab1ResponsiveList", label: "Lab1ResponsiveList" },
-    { path: "HTMLCSS-Assign2-CardUIDesign", label: "HTMLCSS-Assign2-CardUIDesign" },
+    {
+      path: "HTMLCSS-Assign2-CardUIDesign",
+      label: "HTMLCSS-Assign2-CardUIDesign",
+    },
     { path: "Lab2-Grid-Flexcbox-Card", label: "Grid & Flexbox Card Layout" },
     // Add more practice pages as needed
   ];
@@ -40,15 +43,30 @@ function JiangRenPracticeHome() {
       <Container maxWidth="lg">
         <div className="practice-grid">
           {practicePages.map((page) => (
-            <Card
-              key={page.path}
-              className="practice-card"
-            >
-              <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
+            <Card key={page.path} className="practice-card">
+              <CardContent
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  component="div"
+                  gutterBottom
+                  sx={{
+                    height: "60px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    overflow: "hidden",
+                  }}
+                >
                   {page.label}
                 </Typography>
-                <CardActions>
+                <CardActions sx={{ marginTop: "auto" }}>
                   <Button
                     onClick={() => handleOpenPractice(page.path)}
                     variant="contained"
@@ -73,7 +91,10 @@ function JiangRenPractice() {
       <Route path="/" element={<JiangRenPracticeHome />} />
       <Route path="/SignUpForm" element={<SignUpForm />} />
       <Route path="/Lab1ResponsiveList" element={<Lab1ResponsiveList />} />
-      <Route path="/HTMLCSS-Assign2-CardUIDesign" element={<BusinessCardUIDesign />} />
+      <Route
+        path="/HTMLCSS-Assign2-CardUIDesign"
+        element={<BusinessCardUIDesign />}
+      />
       <Route path="/Lab2-Grid-Flexcbox-Card" element={<Lab2GridCard />} />
       {/* Add more routes for other practice components here */}
     </Routes>
