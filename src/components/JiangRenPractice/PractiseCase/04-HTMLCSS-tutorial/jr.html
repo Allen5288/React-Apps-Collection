@@ -2,37 +2,55 @@
 <html
 <head>
     <title>JR</title>
+    
+    <!-- 1. external css -->
+    <link rel="stylesheet" href="jr.css">
+    <!-- 2. internal css -->
+    <!-- <style>
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+    </style> -->
+    <!-- 3. inline css -->
+    <!-- <img 
+        src="https://jracademy.com.au/image/jr-academy-logo.svg" 
+        alt="jr academy logo" 
+        style="width: 100px; height: auto;"
+    /> -->
 </head>
 <body>
     <!-- Header -->
-    <div>
-        <img 
-        src="https://jracademy.com.au/image/jr-academy-logo.svg" 
-        alt="jr academy logo" 
-        width="100px" 
-        height="15px"
-        />
-        <a href="/">Home</a>
-        <a href="/bootcamps">Bootcamps</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a href="/languages">Languages</a>
-        <a href="/search"><img src="https://jracademy.com.au/icon/nav-search-icon.svg"/></a>
-        <button>Sign in</button>
-        <button>Sign up</button>
+    <div class="nav-header">
+        <div class="nav-header-left">
+            <img
+                src="https://jracademy.com.au/image/jr-academy-logo.svg" 
+                alt="jr academy logo" 
+                class="logo"
+            />
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/bootcamps">Bootcamps</a>
+            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" href="/languages">Languages</a>
+        </div>
+        <div class="nav-header-right">
+            <a class="nav-search" ="/search"><img src="https://jracademy.com.au/icon/nav-search-icon.svg"/></a>
+            <button class="sign-in-button">Sign in</button>
+            <button class="sign-up-button">Sign up</button>
+        </div>
     </div>
     <!-- Banner  alt + / -->
     <!-- Banner  -->
-    <div>
-        <div style="display: inline-block; width: 50%;">
-            <h1>JR Academy</h1>
-            <h2>Launch Your First Australian Tech Job</h2>
-            <p>Explore a comprehensive Australian job-seeking solution – learn new skills, secure internship opportunities, optimize your resume, and seamlessly enter the Australian workforce. Simplifying the process, making job hunting in Australia effortless!</p>
-            <button>Explore Courses</button>
+    <div class="banner">
+        <div class="banner-content">
+            <h1 class="banner-content-header">JR Academy</h1>
+            <h2 class="banner-content-subheader">Launch Your First Australian Tech Job</h2>
+            <p class="banner-content-description">Explore a comprehensive Australian job-seeking solution – learn new skills, secure internship opportunities, optimize your resume, and seamlessly enter the Australian workforce. Simplifying the process, making job hunting in Australia effortless!</p>
+            <button class="banner-content-button">Explore Courses</button>
         </div>
-        <div style="display: inline-block; width: 49%;" >
-            <img src="https://jracademy.com.au/_next/static/media/hero-img.dcf25174.webp"
-            style="width: 100px; height: auto;"
+        <div class="banner-img-container">
+            <img  class="banner-img" src="https://jracademy.com.au/_next/static/media/hero-img.dcf25174.webp"
             />
         </div>
     </div>

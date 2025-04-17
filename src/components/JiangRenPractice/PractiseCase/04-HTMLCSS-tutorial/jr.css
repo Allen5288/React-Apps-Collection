@@ -1,0 +1,132 @@
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+
+.nav-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-header .logo{
+    width: 116px;
+    height: auto;
+}
+
+.nav-header .nav-link {
+    margin-left: 8px;
+    text-decoration: none;
+    padding: 6px 15px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: rgb(51, 51, 51);
+    transition: background-color 0.5s ease-in-out
+}
+
+.nav-header .nav-link:hover {
+    color: #fff;
+    background-color: rgb(255, 87, 87);
+}
+
+.nav-header .nav-search {
+    margin-right: 12px;
+}
+
+.nav-header .sign-in-button {
+    color: #000;
+    background-color: rgb(255,241,231);
+    border: 1px solid #000;
+    padding: 6px 18px;
+    margin-left: 8px;
+}
+
+.nav-header .sign-in-button:hover {
+    box-shadow: 2px 2px;
+    transform: translate (-2px, -2px);
+}
+
+.nav-header .sign-up-button {
+    color: #fff;
+    background-color: rgb(255, 87, 87);
+    border: 1px solid rgb(255, 87, 87);
+    padding: 6px 18px;
+    margin-left: 8px;
+}
+
+.nav-header .sign-up-button:hover {
+    box-shadow: 2px 2px #000;
+    transform: translate(-2px, -2px);
+    border: 1px solid #000;
+}
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.banner-content {
+    width: 50%;
+    padding: 0 20px;
+    margin: 0 20px;
+}
+
+.banner-content .banner-content-header {
+    font-weight: 700;
+    color: rgb(255, 87, 87);
+}
+
+.banner-content .banner-content-subheader {
+    font-weight: 700;
+    margin-bottom: 32px;
+}
+
+.banner-content .banner-content-description {
+    font-size: 14px;
+    color: rgb(102, 102, 102);
+    margin-bottom: 40px;
+}
+
+.banner-content .banner-content-button {
+    color: #fff;
+    background-color: rgb(255, 87, 87);
+    border: 1px solid rgb(255, 87, 87);
+    box-shadow: #000 2px 2px;
+    padding: 8px 22px;
+}
+
+.banner-img-container {
+    width: 40%;
+}
+
+.banner-img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+/* SCSS */
+.banner-content {
+    .banner-content-header {
+
+    }
+
+    .banner-content-button {
+        color: #fff;
+        
+        &:hover {
+            box-shadow: 2px 2px #000;
+            transform: translate(-2px, -2px);
+            border: 1px solid #000;
+        }
+    }
+}
