@@ -13,6 +13,7 @@ import SignUpForm from "./PractiseCase/01-HTML&CSS-Assisgnment1-SignUpForm/HTML&
 import Lab1ResponsiveList from "./PractiseCase/02-HTMLCSS-Lab1-resposiveList/lab1-responsiveList";
 import BusinessCardUIDesign from "./PractiseCase/03-HTMLCSS-Assign2-CardUIDesign/HTMLCSS-Assign2-CardUIDesign";
 import Lab2GridCard from "./PractiseCase/05-Lab2-Grid-Flexcbox-Card/Lab2-gridCard";
+import PriceGuideWithSASS from "./PractiseCase/07-Lab3-ResponsivePriceCard/lab3-PriceGuideWithSASS";
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
@@ -24,6 +25,7 @@ function JiangRenPracticeHome() {
       label: "HTMLCSS-Assign2-CardUIDesign",
     },
     { path: "Lab2-Grid-Flexcbox-Card", label: "Grid & Flexbox Card Layout" },
+    { path: "ResponsivePriceCard", label: "Responsive Price Card with SASS" },
     // Add more practice pages as needed
   ];
 
@@ -96,6 +98,10 @@ function JiangRenPractice() {
         element={<BusinessCardUIDesign />}
       />
       <Route path="/Lab2-Grid-Flexcbox-Card" element={<Lab2GridCard />} />
+      <Route
+        path="/ResponsivePriceCard"
+        element={<PriceGuideWithSASS />}
+      />
       {/* Add more routes for other practice components here */}
     </Routes>
   );

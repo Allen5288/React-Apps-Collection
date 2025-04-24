@@ -864,6 +864,15 @@ transform: scale(1.05);
 
 ```
 
+### Eliminate element style
+
+```css
+.deliverable-wrapper {
+  list-style-type: none;
+}
+
+```
+
 ## 2.7 Color
 
 Transition of color:

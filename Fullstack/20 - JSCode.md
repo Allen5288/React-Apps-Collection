@@ -1,7 +1,9 @@
 # 1. Array / String/ Object
 
 ## 1.1 Array Creation
+
 1. Create array with default value
+
 ```javascript
 let prefixXOR = new Array(arr.length + 1).fill(0);
 
@@ -16,6 +18,7 @@ let rows = Array.from({ length: 9 }, () => new Set());
 ```
 
 2. String to Array
+
 ```js
 let str = "12345";
 
@@ -36,10 +39,13 @@ Array.from(
 ```
 
 ## 1.2 Array Operation
+
 ### 1. Cut/change arr(slice splice)
+
 Get previous index arr to a new
 
 - Slice(Array and string)
+
 ```javascript
 /**
  * Slice: can be array or string, original not change
@@ -58,6 +64,7 @@ console.log(slicedStr);  // Output: "world"
 ```
 
 - splice
+
 ```javascript
 /**
  * splice: removing or replacing existing elements and/or adding new elements in place.
@@ -85,6 +92,7 @@ console.log(arr);  // Output: [10, 25, 27, 30]
 The trim() function in JavaScript is used to remove leading and trailing whitespace from a string. It does not affect spaces between words.
 
 split is used to seperate string by content input in the ();
+
 ```js
 string.split(separator, limit)
 
@@ -96,12 +104,15 @@ console.log(fruits);  // Output: ["apple", "banana"]
 ```
 
 ### 3. Insert Value to index of array
+
 ```javascript
 arr.splice(index, 0, num);
 ```
 
 ### 4. Array math - startsWith
+
 starsWith
+
 ```js
 if (words[i].startsWith(searchWord))
 words[i].endsWith(searchWord)
@@ -110,6 +121,7 @@ words[i].endsWith(searchWord)
 ```
 
 ### 5. Find index - indexOf
+
 ```js
 index = nums.indexOf(m)
 ```
@@ -141,8 +153,10 @@ console.log(obj); // 输出: {0: 'apple', 1: 'banana', 2: 'cherry'}
 ```
 
 ### 7. iterate
+
 for ... of to interate array, string, map and set
 for ... in to interte object
+
 ```js
 for (var value of iterable) {
     console.log(value);
@@ -161,7 +175,9 @@ const uniqueArr = [...new Set(arr)];
 res.includes(part);
 res = res.replace(part, "");
 ```
+
 ## 1.3 Sort
+
 ```js
 events.sort((a, b) => a[0] - b[0] || a[2] - b[2]); // sort by arrival time, then by leaving event
 
@@ -176,17 +192,20 @@ items.sort((a, b) => a.name.localeCompare(b.name)) // Sort alphabetically
 ## 1.4 string operate
 
 ### 1. Convert array string, number array, number string
+
 ```javascript
 return result.join(''); // [a,b,c,d,e,f,g] => "abcdefg"
 ```
 
 - Convert string to array
+
 ```javascript
 const words = sentence.split(' ');
 ```
 
 - Convert number to an array of number:
 - Conver array of digits to a number
+
 ```javascript
 let digits = String(num).split('').map(Number);
 
@@ -194,6 +213,7 @@ parseInt(digits.join(''));
 ```
 
 - convert num & string
+
 ```js
 num.toString(2) // 2 to binary, 10 to related decimal, number system
 
@@ -201,6 +221,7 @@ parseInt(preTimeString) // convert string to number
 ```
 
 ### 2. substring
+
 ```js
 const substr = s.substring(left, left + index + 1);
 
@@ -209,12 +230,14 @@ let substr = str.substring(7, 12);  // Extract substring from index 7 to 11
 console.log(substr);  // Output: "world"
 ```
 
-### 3. copy chacter:
+### 3. copy chacter
+
 ```js
 const spaces = ' '.repeat(num);
 ```
 
 - Position:
+
 ```js
 str1.startsWith(str2);
 str1.endsWith(str2);
@@ -226,8 +249,9 @@ Prefix can using in one traverse.
 
 if you need to see prefix and lastfix, using leftSum = totalSum - rightSum, like question 2270;
 
-Another type of prefix 
+Another type of prefix
 Cnt an array which up and down times;  by this way you can get the changes during serveral segement;
+
 ```js
 // Step 1: Apply the shifts to the difference array
 for (let i = 0; i < shifts.length; i++) {
@@ -247,6 +271,7 @@ for (let i = 0; i < shifts.length; i++) {
 ## 1.6 charCode calculate
 
 - Calculate charCode convert and move
+
 ```js
 currentShift += cntShiftInfo[i]; // Update the cumulative shift for this position
 const newChar = (s[i].charCodeAt(0) - 97 + currentShift) % 26;
@@ -258,6 +283,7 @@ result += String.fromCharCode(finalChar);
 ```
 
 - judge is a alphanumeric
+
 ```js
 function isLetter(char) {
     return /^[A-Za-z]$/.test(char);
@@ -269,6 +295,7 @@ s = s.toLowerCase().replace(/[^a-z0-9]/gi,'');
 ```
 
 - convert string to unicode
+
 ```js
 let diff = (str2[j].charCodeAt(0) - str1[i].charCodeAt(0) + 26) % 26;
 
@@ -281,6 +308,7 @@ for (let char of word) {
 ## 1.7 object
 
 Usage of object:
+
 ```js
 const bracketPairs = {
     '(': ')',
@@ -292,6 +320,7 @@ if (Object.values(bracketPairs).includes(char))
 ```
 
 ## 1.8 Spread Operation
+
 ```js
 // Spread Operator in Arrays
 const arr1 = [1, 2, 3];
@@ -328,19 +357,14 @@ greet(...people);  // Hello Alice, Bob, Charlie
 
 # 2. Two Pointers
 
-
-
 # 3. Sliding Window
 
-
-
 # 4. Matrix
-
-
 
 # 5. Hashmap
 
 ## 5.1 Using set
+
 ```javascript
 let nums = [2, 5, 2, 4];
 let set = new Set(nums);
@@ -353,9 +377,12 @@ const allowedSet = new Set(allowed);
 
 if (!allowedSet.has(char))
 allowedSet.add(char)
+
+const totalDistinct = new Set(nums).size;
 ```
 
-## 5.2 using Map 
+## 5.2 using Map
+
 ```js
 let occupiedChairs = new Map();
 if (occupiedChairs.has(person)) {
@@ -386,8 +413,6 @@ let required = Object.keys(countT).length; // Number of unique characters in T
 
 # 6. Intervals
 
-
-
 # 7. Stack
 
 ```js
@@ -397,15 +422,9 @@ stack.push(current);  // Push the current index to the stack
 
 # 8. Linked List
 
-
-
 # 9. Binary Tree
 
-
-
 ## 9.1 Binary Tree General
-
-
 
 ## 9.2 Binary Tree BFS
 
@@ -450,24 +469,16 @@ function binaryTreeMaximumDepth(root) {
 
 ## 9.4 Binary Search Tree
 
-
-
-# 10. Graph 
-
-
+# 10. Graph
 
 ## 10.1 General
 
-
-
 ## 10.2 Graph BFS
-
-
-
 
 # 11. Trie
 
 ## 11.1 Trie Prefix Tree
+
 ```js
 /**
  * @param {string[]} words
@@ -521,18 +532,11 @@ var sumPrefixScores = function(words) {
 };
 ```
 
-
 # 12. Backtracking
-
-
 
 # 13. Divide & Conquer
 
-
-
 # 14. Kadane's Algorithm
-
-
 
 # 15. Binary Search
 
@@ -548,7 +552,6 @@ while (left <= right) {
     }
 }
 ```
-
 
 # 16. Heap
 
@@ -614,7 +617,9 @@ class NumberContainers {
 ```
 
 # 17. Bit Manipulation
+
 1. Prefix Usage
+
 ```javascript
 for (let i = 0; i < arr.length; i++) {
     prefixXOR[i + 1] = prefixXOR[i] ^ arr[i];
@@ -625,16 +630,11 @@ for (let i = 0; i < arr.length; i++) {
 
 ```
 
-
 # 19. DP
-
-
 
 ## 19.1 1D DP
 
-
 ## 19.2 Multidimensional DP
-
 
 # 20. BFS
 
@@ -676,6 +676,7 @@ var kthLargestLevelSum = function(root, k) {
 ## 21.1 DFS Tree
 
 Flip Equivalent Binary Trees
+
 ```javascript
 var flipEquiv = function(root1, root2) {
     // Base case: both nodes are null, they are flip equivalent
@@ -721,6 +722,7 @@ var eventualSafeNodes = function(graph) {
 ```
 
 ## 21.3 DFS Graph with set
+
 ```js
 var checkIfPrerequisite = function(numCourses, prerequisites, queries) {
     // Build the graph from prerequisites
@@ -789,9 +791,10 @@ function canPartition(num:string, target, start) {
 }
 ```
 
-#  22. Math
+# 22. Math
 
 ## 22.1 Math Operation
+
 `math.ceil` - get up of the result. like: 1.2 => 2;
 
 `Math.floor` - get down, 1.2 => 1
@@ -801,7 +804,9 @@ function canPartition(num:string, target, start) {
 `m = Math.min(...nums)`  min from an array of nums
 
 ## 22.2 Value Operation
+
 - judge value type:
+
 ```js
 typeof value === 'boolean' | 'number' | 'string' | 'symbol' | 'undefined' | null // null is a special case since typeof null returns "object"
 Array.isArray(value)
@@ -813,12 +818,14 @@ typeof value === 'object' && (Object.getPrototypeOf(value) === Object.prototype 
 - save decimal places
 
 these methods return string!
+
 ```js
 positiveProportion.toFixed(6) // scaled to six decimal places
 x.toPrecision()
 ```
 
 - Interger
+
 ```js
 Number.MAX_SAFE_INTEGER
 Number.MIN_SAFE_INTEGER
@@ -831,13 +838,13 @@ Number.MIN_VALUE
 # 23. Regex
 
 Using Search tp find:
+
 ```js
 const regex = new RegExp(needle);
 return haystack.search(regex);
 ```
 
-# 24 Greedy 
-
+# 24 Greedy
 
 # 25 Bit operation
 
@@ -861,7 +868,6 @@ for (let i = 31; i >= 0; i--) {
     }
 }
 ```
-
 
 # 30. Public Method
 

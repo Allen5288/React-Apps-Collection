@@ -1,0 +1,91 @@
+// Variables
+$primary-color: #4a90e2;
+$secondary-color: #e74c3c;
+$font-stack: 'Arial', sans-serif;
+$base-spacing: 16px;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-text($size) {
+  font-size: $size;
+  @media (max-width: 768px) {
+    font-size: $size * 0.8;
+  }
+}
+
+// Base styles
+body {
+  font-family: $font-stack;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $base-spacing;
+}
+
+// Button styles
+.btn {
+  padding: $base-spacing * 0.5 $base-spacing;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &-primary {
+    background-color: $primary-color;
+    color: white;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  
+  &-secondary {
+    background-color: $secondary-color;
+    color: white;
+    
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+}
+
+// Card component
+.card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: $base-spacing;
+  overflow: hidden;
+  
+  &__header {
+    @include flex-center;
+    background-color: $primary-color;
+    color: white;
+    padding: $base-spacing;
+    
+    h2 {
+      @include responsive-text(24px);
+      margin: 0;
+    }
+  }
+  
+  &__body {
+    padding: $base-spacing;
+  }
+  
+  &__footer {
+    padding: $base-spacing;
+    background-color: #f5f5f5;
+    border-top: 1px solid #eee;
+  }
+}

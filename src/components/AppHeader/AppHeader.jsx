@@ -15,6 +15,9 @@ function AppHeader() {
           </Link>
         )}
         <h1>Allen's Test Space</h1>
+        <nav className="app-nav">
+          <Link to="/scssDemo" className="nav-link">SCSS Demo</Link>
+        </nav>
       </div>
     </header>
   );
