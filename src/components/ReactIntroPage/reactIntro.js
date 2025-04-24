@@ -39,7 +39,8 @@ function ReactIntro() {
     },
     {
       path: "/salaryCalculator",
-      label: "Go to SalaryCalculator Page" },
+      label: "Go to SalaryCalculator Page",
+    },
     {
       path: "/currencyExchange",
       label: "Go to Currency Exchange Page",
@@ -47,6 +48,10 @@ function ReactIntro() {
     {
       path: "/jiangRenPractice",
       label: "Go to JiangRen Practice Page",
+    },
+    {
+      path: "/ReactLiveCoding",
+      label: "Go to ReactLiveCoding Page",
     },
     // 将来可以在这里添加更多页面
   ];

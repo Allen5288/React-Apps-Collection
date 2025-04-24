@@ -16,6 +16,7 @@ import CodeComparatorPage from "./components/CodeCompare/CodeComparatorPage";
 import SalaryCalculator from "./components/SalaryCalculateApp/SalaryCalculator";
 import CurrencyExchange from "./components/CurrencyExchange/CurrencyExchange";
 import JiangRenPractice from "./components/JiangRenPractice/JiangRenPractice";
+import ReactLiveCoding from "./components/ReactLiveCoding/ReactLiveCoding";
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
@@ -49,6 +50,9 @@ export default function App() {
         
         {/* JiangRen Practice route with nested routes handled within the component */}
         <Route path="/jiangRenPractice/*" element={<JiangRenPractice />} />
+        
+        {/* React Live Coding practice route with nested routes handled within the component */}
+        <Route path="/reactLiveCoding/*" element={<ReactLiveCoding />} />
       </Routes>
     </Router>
   );
