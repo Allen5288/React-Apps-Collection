@@ -14,6 +14,7 @@ import Lab1ResponsiveList from "./PractiseCase/02-HTMLCSS-Lab1-resposiveList/lab
 import BusinessCardUIDesign from "./PractiseCase/03-HTMLCSS-Assign2-CardUIDesign/HTMLCSS-Assign2-CardUIDesign";
 import Lab2GridCard from "./PractiseCase/05-Lab2-Grid-Flexcbox-Card/Lab2-gridCard";
 import PriceGuideWithSASS from "./PractiseCase/07-Lab3-ResponsivePriceCard/lab3-PriceGuideWithSASS";
+import WeatherApp from "./PractiseCase/08-WeatherApplication/WeatherApp"; // Import the WeatherApp component
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
@@ -26,6 +27,8 @@ function JiangRenPracticeHome() {
     },
     { path: "Lab2-Grid-Flexcbox-Card", label: "Grid & Flexbox Card Layout" },
     { path: "ResponsivePriceCard", label: "Responsive Price Card with SASS" },
+    { path: "WeatherApp", label: "Weather Application" },
+    
     // Add more practice pages as needed
   ];
 
@@ -102,6 +105,7 @@ function JiangRenPractice() {
         path="/ResponsivePriceCard"
         element={<PriceGuideWithSASS />}
       />
+      <Route path="/WeatherApp" element={<WeatherApp />} />
       {/* Add more routes for other practice components here */}
     </Routes>
   );

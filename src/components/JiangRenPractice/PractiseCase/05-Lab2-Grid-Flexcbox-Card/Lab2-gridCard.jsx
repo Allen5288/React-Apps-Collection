@@ -56,7 +56,7 @@ function Lab2GridCard() {
         Grid & Flexbox Card Layout
       </Typography>
       
-      <main>
+      <main id='lab2-gridCard'>
         <section className="cards">
           {cardData.map(card => (
             <Card 

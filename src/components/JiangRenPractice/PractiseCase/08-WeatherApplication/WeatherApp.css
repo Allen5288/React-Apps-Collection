@@ -1,0 +1,91 @@
+#weather-app-container {
+  margin: 0;
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+#weather-app-container form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+#weather-app-container form input[type=text] {
+  width: 60%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+#weather-app-container form input[type=submit] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+#weather-app-container form input[type=submit]:hover {
+  background-color: #0056b3;
+}
+#weather-app-container form input[type=submit]:active {
+  background-color: #004085;
+}
+#weather-app-container ul {
+  list-style: none;
+}
+#weather-app-container ul .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#weather-app-container ul .icon img {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: np-repeat;
+  background-position: center center;
+  margin: 0 auto;
+  display: block;
+}
+#weather-app-container ul .temperature {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+#weather-app-container ul .description {
+  font-size: 24px;
+  margin: 20px 0;
+}
+#weather-app-container ul .details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#weather-app-container ul .details > div {
+  padding: 20px 0;
+  background-color: #f1f1f1;
+  margin: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  #weather-app-container form {
+    flex-direction: column;
+  }
+  #weather-app-container form input[type=text] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}/*# sourceMappingURL=WeatherApp.css.map */
