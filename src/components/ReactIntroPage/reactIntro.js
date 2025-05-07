@@ -15,7 +15,7 @@ function ReactIntro() {
   // Projects organized by category
   const projectCategories = [
     {
-      name: "Home",
+      name: "HomePage",
       projects: [{ path: "/home", label: "Home Page" }],
     },
     {
