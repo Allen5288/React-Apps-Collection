@@ -16,6 +16,7 @@ import Lab2GridCard from "./PractiseCase/05-Lab2-Grid-Flexcbox-Card/Lab2-gridCar
 import PriceGuideWithSASS from "./PractiseCase/07-Lab3-ResponsivePriceCard/lab3-PriceGuideWithSASS";
 import WeatherApp from "./PractiseCase/08-Lab4-WeatherApplication/WeatherApp"; // Import the WeatherApp component
 import Lab5ProgressBar from "./PractiseCase/09-Lab5-ProgressBar/Lab5-ProgressBar"; // Import the new ProgressBar component
+import MoocPlatformCourseCard from "./PractiseCase/10-Assign-MoocPlatformCourseCard/MoocPlatformCourseCard";
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
@@ -30,7 +31,8 @@ function JiangRenPracticeHome() {
     { path: "ResponsivePriceCard", label: "Responsive Price Card with SASS" },
     { path: "WeatherApp", label: "Weather Application" },
     { path: "ProgressBar", label: "Progress Bar" },
-    
+    { path: "MoocPlatformCourseCard", label: "Mooc Platform Course Card" },
+
     // Add more practice pages as needed
   ];
 
@@ -103,12 +105,13 @@ function JiangRenPractice() {
         element={<BusinessCardUIDesign />}
       />
       <Route path="/Lab2-Grid-Flexcbox-Card" element={<Lab2GridCard />} />
-      <Route
-        path="/ResponsivePriceCard"
-        element={<PriceGuideWithSASS />}
-      />
+      <Route path="/ResponsivePriceCard" element={<PriceGuideWithSASS />} />
       <Route path="/WeatherApp" element={<WeatherApp />} />
       <Route path="/ProgressBar" element={<Lab5ProgressBar />} />
+      <Route
+        path="/MoocPlatformCourseCard"
+        element={<MoocPlatformCourseCard />}
+      />
       {/* Add more routes for other practice components here */}
     </Routes>
   );

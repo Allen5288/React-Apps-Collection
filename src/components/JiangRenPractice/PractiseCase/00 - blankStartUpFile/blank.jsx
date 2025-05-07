@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Box } from "@mui/material";
+import "./XXXXX.scss"; // Import your CSS file here
 
 function XXXXX() {
   return (

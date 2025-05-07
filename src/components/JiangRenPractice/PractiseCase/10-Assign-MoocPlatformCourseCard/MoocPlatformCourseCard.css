@@ -1,0 +1,93 @@
+#mooc-platform-course-card {
+  font-family: "Roboto", sans-serif;
+  margin-top: 2rem;
+  padding-bottom: 3rem;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+#mooc-platform-course-card .course-card-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+#mooc-platform-course-card .course-card {
+  width: 320px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+#mooc-platform-course-card .course-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+#mooc-platform-course-card .course-card .course-card-image-part {
+  position: relative;
+  width: 100%;
+  height: 180px;
+}
+#mooc-platform-course-card .course-card .course-image {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#mooc-platform-course-card .course-card .new-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  z-index: 10;
+}
+#mooc-platform-course-card .course-card .course-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+#mooc-platform-course-card .course-card .course-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  display: box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#mooc-platform-course-card .course-card .course-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+}
+#mooc-platform-course-card .course-card .course-detail .detail-icon {
+  color: #4a6cf7;
+  font-size: 1.25rem;
+}
+#mooc-platform-course-card .course-card .course-detail p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+#mooc-platform-course-card .course-card .course-price {
+  font-weight: 700;
+  color: #4a6cf7;
+}
+#mooc-platform-course-card .course-card .course-language,
+#mooc-platform-course-card .course-card .course-duration,
+#mooc-platform-course-card .course-card .course-location {
+  color: #555;
+}/*# sourceMappingURL=MoocPlatformCourseCard.css.map */
