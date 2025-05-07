@@ -3,7 +3,8 @@ name: Deploy React App to GitHub Pages
 on:
   push:
     branches:
-      - main  # 当main分支有推送时触发工作流
+      - main # 当main分支有推送时触发工作流
+  workflow_dispatch:
 
 permissions:
   actions: write
@@ -20,17 +21,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20.13.1  # 根据项目需求选择合适的Node.js版本
-          cache: 'npm'  # 缓存npm依赖，加快后续构建速度
+          node-version: 20.13.1 # 根据项目需求选择合适的Node.js版本
+          cache: "npm" # 缓存npm依赖，加快后续构建速度
 
       - name: Install dependencies
         run: npm install
 
       - name: Build React app
-        run: npm run build  # 执行项目的构建命令，生成静态文件
+        run: npm run build # 执行项目的构建命令，生成静态文件
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.MY_GITHUB_TOKEN }}
-          publish_dir: ./build  # 指定构建后的静态文件目录
+          publish_dir: ./build # 指定构建后的静态文件目录
