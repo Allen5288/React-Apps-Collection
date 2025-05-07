@@ -5,6 +5,11 @@ on:
     branches:
       - main  # 当main分支有推送时触发工作流
 
+permissions:
+  actions: write
+  pages: write
+  checks: rite
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
