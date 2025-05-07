@@ -3,7 +3,7 @@
 ## 1.1 Adding  JS to Project
 
 With type="Module" syntax, you can import and export between different js file.
- 
+
 ```html
 <script src="asset/scripts/app.js" type="module"></script>
 ```
@@ -184,7 +184,8 @@ Array is also object, Not store the value, but the memory from computer;
 
 ## 2.1 Components
 
-### 2.1.1 Define and use a component:
+### 2.1.1 Define and use a component
+
 ```javascript
 function Header() {
   return (
@@ -211,18 +212,22 @@ import Header from "./components/Header";
 ```
 
 ### 2.1.2 Dynamic content
+
 ```javascript
 const description = reactDescriptions[genRandomInt(2)];
 <p>{description} React</p> // inside content {}
 ```
 
 ## 2.2 Class-based component
+
 Normally we still use function component.
 
 ### 2.2.1 usage of class based component
+
 1. State should be defined in constructor. state is always an object(in function can be anything).
 2. super() must be called
 3. this is used to call related state or method
+
 ```javascript
 import { Component } from 'react';
 
@@ -267,6 +272,7 @@ class Users extends Component {
 ```
 
 ### 2.2.1 Lifecycle of class based component
+
 1. componentDidMount() -- called once a component mounted, evaluyated & rendered by react; like useEffect(..., [])
 2. componentDidUodate() -- called once a component updated, re-evaluated and re0rendered by React; like useEffect(..., [someValue])
 3. componentWillUnmoint() -- Called right before component is unmounted, right before removed from DOM; like useEffect(()=> {return ()=>{...}}, []);
@@ -318,8 +324,8 @@ class UserFinder extends Component {
 ```
 
 ### 2.1.3 Error Boundaries
-Error Boundaries are a React feature that allows you to catch JavaScript errors anywhere in your component tree, log those errors, and display a fallback UI instead of crashing the entire application. They were introduced in React 16 as a way to handle errors gracefully in React applications.
 
+Error Boundaries are a React feature that allows you to catch JavaScript errors anywhere in your component tree, log those errors, and display a fallback UI instead of crashing the entire application. They were introduced in React 16 as a way to handle errors gracefully in React applications.
 
 1. Component-Level Error Handling:
 
@@ -386,8 +392,8 @@ function BuggyComponent() {
 }
 ```
 
-
 ## 2.3 Props
+
 pass data to components via a concept called "Props"
 
 ```javascript
@@ -431,11 +437,13 @@ export default function TabButton(props) {
 ```
 
 The id prop, which is used to mark specially section or content, can not go through the component the outside used, like:
+
 ```javascript
 <Section id="example"> // the id just can use outside, the css style can be apllied putside content. can not be used inside Section
 ```
 
 If we want to transport many prop, but notnto write it one by one, we can use ...props;
+
 ```javascript
 <Section id="example" className="xxx" mmmm> // the id just can use outside, the css style can be apllied putside content. can not be used inside Section
 
@@ -444,12 +452,12 @@ export default function Section({title, ...props}) {
 }
 ```
 
-
 ### 2.3.1 Fragment
 
 When we use component in react, we need return a whole body, rather than multiple, sometime we use <div>, but it will add a div into the content
 
 Methods:
+
 1. ```<div>```
 2. ```<>```
 3. ```<Fragment>```so we introduce fragment, without show anything on screen
@@ -465,10 +473,10 @@ Using arrow functions: When you **need to pass parameters or ensure the function
 
 ```
 
-
 ## 2.5 conditional
 
 If Condition
+
 ```javascript
 // method 1
 {!selectedTopic ? (
@@ -498,6 +506,7 @@ if (selectedTopic) {
 ```
 
 iteral through each content
+
 ```javascript
 <ul>
   {CORE_CONCEPTS.map((conceptItem) => (
@@ -509,6 +518,7 @@ iteral through each content
 ## 2.6 class
 
 className is used to select class to apply here
+
 ```javascript
 <button className={isSelected ? "active" : undefined} onClick={onSelect}>
   {children}
@@ -518,6 +528,7 @@ className is used to select class to apply here
 ## 2.7 Slot
 
 Slot can be used to group and set dynamic changed outside of the compoennt, make it more flexiable.
+
 ```javascript
 export default function Tabs({ children, buttons, ButtonsContainer = "menu" }) {
   // const ButtonsContainer = buttonsContainer;
@@ -552,12 +563,15 @@ export default function Tabs({ children, buttons, ButtonsContainer = "menu" }) {
 ```
 
 ## 2.8 Resource
+
 You should use the public/ folder for any images that should not be handled by the build process and that should be generally available. Good candidates are images used directly in the index.html file or favicons.
 
 On the other hand, images that are used inside of components should typically be stored in the src/ folder (e.g., in src/assets/).
 
 ## 2.9 Data Update
+
 ### 2.9.1 Two way binding
+
 ```javascript
 export default function Player({ initialName, symbol }) {
   const [playerName, setPlayerName] = useState(initialName);
@@ -580,44 +594,61 @@ export default function Player({ initialName, symbol }) {
 ## 3.1 Vanilla CSS
 
 Advantage:
+
 1. CSS is decoupled from JSX code
 2. You write CSS code as you may know and love it
 3. CSS may be written by another developer who need only a minimal amount of access to your JSX code
 
 Disadvantage:
+
 1. You need to know CSS
 2. CSS code ***is not scoped to components*** -> CSS rules mat clash accross components(same CSS class name used in different components for different purposes)
 
 ## 3.2 Mehtod 1: Inline Style
+
 ```javascript
-<p style={{
-  color: 'red',
-  textAlign: 'left'
-}}>Here is a Normal inline style try</p>
+import React from 'react';
 
-<label className={`label ${emailNotValid ? 'invalid' : ''}`}> // add more className initial as you want
-<p style={{
-  // CSS target is an object, so use emailNotValie rather than {emailNotValie}
-  backgroundColor: emailNotValie ? '#fwfwfw' : '#g4g4g4' // emailNotValie is a judegment value
-  className={emailNotValie ? 'invalid' : undefined} // dynamic add className to change style
-}}>Here is a Dynamic&Condition inline style try</p>
+const ExampleComponent = ({ emailNotValid }) => {
+    return (
+        <div>
+            {/* 正常内联样式示例 */}
+            <p style={{ color: 'red', textAlign: 'left' }}>
+                Here is a Normal inline style try
+            </p>
+            {/* 动态添加类名示例 */}
+            <label className={`label ${emailNotValid ? 'invalid' : ''}`}>
+                Label Text
+            </label>
+            {/* 动态条件内联样式示例 */}
+            <p
+                style={{
+                    backgroundColor: emailNotValid ? '#ff0000' : '#00ff00',
+                }}
+            >
+                Here is a Dynamic&Condition inline style try
+            </p>
+        </div>
+    );
+};
 
-<p style={{
-  
-}}>Here is a Dynamic&Condition inline style try</p>
+export default ExampleComponent;
 ```
 
 Advantage:
+
 1. Quick and eacy
 2. only effext the element
 3. **Add Dynamic and conditionally**
 
 Disadvantage:
+
 1. You need to know CSS
 2. You need to style everyOne
 3. No seperation between CSS and JSX
 
 ## 3.3 Method 2: Scope CSS Rule with CSS Module
+
 ```javascript
 // change the css name to  Header.module.css with module key word
 
@@ -625,17 +656,21 @@ import classes from './Header.module.css';
 
 <p className={classes.paragraph}>A community of artists and art-lovers.</p>
 ```
+
 Advantage:
+
 1. Decoupled
 2. You write CSS code
 3. can be writted by anotehr developer who need a small part
 4. Scoped
 
 Disadvantage:
+
 1. You need to know CSS
 2. You may end uo with many relatively small css files in your project
 
 ## 3.4 Method 3: Styled Component
+
 ```javascript
 import { styled } from 'styled-components';
 
@@ -681,12 +716,15 @@ import Input from './Input.jsx';
   onChange={(event) => handleInputChange('email', event.target.value)}
 />
 ```
+
 Advantage:
+
 1. Quick and easy
 2. Continue thinking in react
 3. Scoped
 
 Disadvantage:
+
 1. You need to know CSS
 2. No seperation between CSS and JSX
 
@@ -694,15 +732,18 @@ Disadvantage:
 
 VScode has plug-in
 Advantage:
+
 1. You do not need to know css
 2. Quick
 3. No style clash bettween components
 4. Highly configurable
 
 Disadvantage:
+
 1. long classname
 2. any style change require editing JSX
 3. end upo with many relatively small "wrapper"
+
 ```javascript
 // index.css
 @tailwind base;
@@ -733,6 +774,7 @@ export default function Input({ label, invalid, ...props }) {
 ```
 
 For config file:
+
 ```javascript
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -755,12 +797,12 @@ export default {
 
 ## 4.2 Strict Mode
 
-
 # 5. Refs & Portals
 
 ## 5.1 Refs Usage
 
 ### 5.1.1 Ref Basic usage
+
 ```javascript
 const playerName = useRef();
 
@@ -781,15 +823,18 @@ function handleClick() {
 Compare State with Ref:
 
 Ref:
+
 1. Do not cause component re-evaluation when changed
 2. Can be used to gain direct DOM element access (great for reading values or accessing certain browser APIs)
 
 State:
+
 1. Cause component re-evaluation when changed
 2. should be used for values that are directly reflected in the UI
 3. Should not be used for "behind the scenes" values that have no direct UI impact
 
 ### 5.1.2 Ref for pointer
+
 ```javascript
 const timer = useRef();
 
@@ -807,7 +852,9 @@ function handleStop() {
 ```
 
 ### 5.1.3 Forward Ref
+
 When you difined a new componet yourself to contain an system component, the origin ref such as used in the input cannot be used in your new Input components. at this time, you need forwardRef.
+
 ```javascript
 export default function TimerChallenge({ title, targetTime }) {
   const dialog = useRef(); // later will forward this ref
@@ -839,7 +886,9 @@ export default ResultModal;
 ```
 
 ## 5.2 useImperativeHandle Hook Fucntion
+
 must be used with ref
+
 ```javascript
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 
@@ -874,9 +923,11 @@ function handleStart() {
 The component function doesnot excute again, so a let variable will not work when you want to change that value;
 
 ## 6.1 state use rule
+
 To solve it, use state.
 
 Rules:
+
 1. Only call Hooks inside of Component Functions, not outsides;
 2. Only call hooks on the top level (not called in nested code statement (eg: in a if statements))
 
@@ -884,14 +935,18 @@ Rules:
 const [selectedTopic, setSelectedTopic] = useState('Please click a button');
       // currentValue  // update function           // initial state value
 ```
-## 6.2 Update State based on od state:
+
+## 6.2 Update State based on od state
+
 ```javascript
 setIdEditing(!isEditing); // DONOT DO LIKE THIS, this way will process in future like 1/2s, not instant; if you write two times, may all use old value, that will occur problem
 setIdEditing(wasEditing => !wasEditing) // DO LIKE THIS
 ```
 
 ## 6.3 immutable change of state
+
 Dont't mutate value directly of the original one, cause it it a reference
+
 ```javascript
 const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
@@ -908,7 +963,9 @@ const [gameBoard, setGameBoard] = useState(initialGameBoard);
 ```
 
 ## 6.4 Lifting State Up
+
 Lift the state up to the closet ancestor component that has access to all components that need to work with that state
+
 ```javascript
 // ancestor component
 const [activePlayer, setActivePlayer] = useState("X");
@@ -935,11 +992,14 @@ function handleSelectSquare(rowIndex, colIndex) {
   onSelectSquare();
 }
 ```
+
 ## 6.5 Advanced State: Context API
+
 create
 round(.provider)(Default to use, best way to use)
-import, use, 
-connect with sate. 
+import, use,
+connect with sate.
+
 ```javascript
 // here to trigger a button from header to change page theme light and dark
 // Context.js
@@ -1024,7 +1084,9 @@ A diff way to use context(Consumer) (not commonly used, not easy to read)
 Reexcute hte project when the context value is changed.
 
 ## 6.6 UseReducer
+
 Here is a counter example
+
 ```javascript
 import { createContext, useReducer } from 'react';
 
@@ -1126,9 +1188,10 @@ function handleAddMealToCart() {
 # 7. Side Effects - UseEffect()
 
 ## 7.1 Some basic info
+
 Side effects refer to any observable change in the state of the system that occurs as a result of executing a piece of code. This includes modifying a variable, writing to a file, updating a user interface, sending a network request, or any other action that changes the state outside of the function's scope.
 
-What caused? 
+What caused?
 May cause infinit loop: a function call inside a app, but not trigger by page, it triggered itself. if it set state in this function. state change - rerender - call function - set state - state cahnge - rerender - Infinit loop
 
 When not used: like setStorage, and get storage before main app component start. some fucnction finished instanousouly will be OK.
@@ -1136,9 +1199,11 @@ When not used: like setStorage, and get storage before main app component start.
 ***Effect dependence***: use props or state value(casue re-excute) in the useEffect function; so we cannot use  [] in the end.
 
 ## 7.2 UseEffect()
+
 useEffect should be used in root component function; it need some time to excute sometimes.
 
 Nots: under the [], if you set some fix number from outside, it may be not changed. but if you outpout a function, even the function npot change logic, bug every time it excute, it will use a new memory, so it will trigger the useEffect to run again.
+
 ```javascript
 function App() {
   const [pickedPlaces, setPickedPlaces] = useState([]);
@@ -1166,7 +1231,9 @@ function App() {
   );
 }
 ```
+
 Effect dependences:
+
 ```javascript
 function Modal({ open, children, onClose }) {
   useEffect(() => {
@@ -1180,11 +1247,13 @@ function Modal({ open, children, onClose }) {
   ...
 }
 ```
+
 ## 7.3 Clean Up Function: return () =>
 
 Should be known here: the : return () => modal.close(); is a clean up fucntion. It is is not executed immediately after the open variable is set to true.
 
 It is only executed when:
+
 1. The component re-renders, and open changes again (e.g., from true to false).
 2. The component unmounts (the entire effect is cleaned up).
 
@@ -1201,12 +1270,13 @@ useEffect(() => {
 ```
 
 ## 7.4 useCallBack()
-As we said before, when component reexcute, the function into the [] will detect change cause the memory changed. so it will trigger the useEffect run again. we we use the useCallBack to prevent and control it.
 
+As we said before, when component reexcute, the function into the [] will detect change cause the memory changed. so it will trigger the useEffect run again. we we use the useCallBack to prevent and control it.
 
 # 8. A Look behind React & optimization techniques
 
 ## 8.1 How React DOM Render
+
 1. Component Tree Construction
 Component Tree: When an application is running, React organizes these components into a tree-like structure called the component tree. Each component in the tree can have one or more child components, forming a hierarchical structure.
 
@@ -1221,6 +1291,7 @@ Initial Rendering: When a component renders for the first time, React creates a 
 Reconciliation: When a component’s state or props change, React creates a new VDOM tree. It then compares this new tree with the previous one (a process known as "reconciliation") to determine the minimum number of changes needed to update the real DOM.
 
 ## 8.2 usememo()
+
 ### 8.2.1. When to Use useMemo()
 
 a. Expensive Computations:
@@ -1229,10 +1300,9 @@ b. Avoiding Unnecessary Re-Renders:
 
 c. Dependent Derived Values:
 
-
 ### 8.2.2. How useMemo() Works
-useMemo() takes two arguments:
 
+useMemo() takes two arguments:
 
 ```javascript
 
@@ -1241,6 +1311,7 @@ const memoizedValue = useMemo(() => {
   return expensiveCalculation(a, b);
 }, [a, b]); // Dependencies
 ```
+
 First Render: On the initial render, the function inside useMemo() is executed, and the result is stored.
 
 Subsequent Renders: On subsequent renders, React checks if any of the dependencies (a or b) have changed.
@@ -1250,10 +1321,12 @@ If no dependencies have changed, the memoized value is returned without re-execu
 If any dependency has changed, the function is re-executed, and the new result is memoized.
 
 ## 8.3 Use better with Key
+
 1. Rendering Lists of Elements:
 
 Whenever you are rendering a list of elements using .map() or a similar method, you should provide a key prop to each element.
 Example:
+
 ```javascript
 
 const items = ['Apple', 'Banana', 'Cherry'];
@@ -1268,10 +1341,12 @@ function FruitList() {
   );
 }
 ```
+
 2. Dynamic Components:
 
 When rendering components that depend on dynamic data, such as items fetched from an API or user-generated content, use a key to uniquely identify each component.
 Example:
+
 ```javascript
 const users = [
   { id: 1, name: 'Alice' },
@@ -1289,6 +1364,7 @@ function UserList() {
   );
 }
 ```
+
 3. Managing Child Components in a Parent Component:
 
 If you have a parent component that conditionally renders or reorders child components, using a key ensures that each child component is correctly identified and preserved across updates.
@@ -1296,6 +1372,7 @@ If you have a parent component that conditionally renders or reorders child comp
 Also:
 If your components have local state or side effects, using key ensures that React preserves the correct state across re-renders. Without a stable key, React might reuse components inappropriately, leading to unexpected behavior or bugs.
 Example:
+
 ```javascript
 
 function App() {
@@ -1321,6 +1398,7 @@ function ChildComponent({ item }) {
 ## 9.1 Sending Fetch request via useEffect
 
 1. Fetching Data
+
 ```javascript
 useEffect(() => {
   fetch('http://localhost:3000/places')
@@ -1354,6 +1432,7 @@ useEffect(() => {
 ```
 
 2. Async fetch and catch error
+
 ```javascript
 useEffect(() => {
   async function fetchPlaces() {
@@ -1383,7 +1462,9 @@ useEffect(() => {
 ```
 
 ## 9.2 Sending Post Requests
+
 use fetch with put method
+
 ```javascript
 export async function updateUserPlaces(places) {
   const response = await fetch('http://localhost:3000/user-places', {
@@ -1418,6 +1499,7 @@ async function handleSelectPlace(selectedPlace) {
 # 10. Custom Hook
 
 ## 10.1 Rules of Hook
+
 1. Only call hooks inside of component Functions
 
 So If you outsource a range of code which use like useEffect or other system hook, it cannot be outsource as a standard function, and reuse in some component;
@@ -1475,7 +1557,9 @@ const {
 ```
 
 ## 10.3 UseHttp Hook Example
+
 A common USEHTTP HOOK
+
 ```javascript
 import { useCallback, useEffect, useState } from 'react';
 
@@ -1534,21 +1618,26 @@ export default function useHttp(url, config, initialData) {
 ```
 
 # 11. Handle Form and User Input
+
 ## 11.1 Handling form submission
 
 ### 11.1.1 submit Form
+
 1. problem: the button in the form has default behaviour which will send request to server to submit the info. so even if you add a button with a self deined function inside, the form will excute the default, and your function will not operated.
 
-Solution: 
+Solution:
+
   1) add a type="button" to that ```<button>```;
   2) remove the button you add and add onSubmit={handleSubmit} inside the ```<form>```, and use ``` event.preventDefault() ``` to prevent the default sumit action of itself
 
 ### 11.1.2 Handle form data
+
 2. Handle form values: useState, ref;
 
 3. Handling values vis FormData & Native Browser APIs
 
 using FormData to get item by 'name' property in the form;
+
 ```javascript
 function handleSubmit(event) {
   event.preventDefault();
@@ -1574,7 +1663,9 @@ function handleSubmit(event) {
 ```
 
 ### 11.1.3 Reset form
+
 1. use reset type
+
 ```javascript
 <button type="reset" className="button button-flat"> // with <form> inside, can direct use
   Reset
@@ -1597,6 +1688,7 @@ const emailIsInvalid = enteredValues.email !== '' && !enteredValues.email.includ
 ```
 
 ### 11.2.1 Via lost focus(Blur)
+
 ```javascript
 const [didEdit, setDidEdit] = useState({ // recvord the state, blur or not.
   email: false,
@@ -1633,17 +1725,18 @@ function handleInputBlur(identifier) {
 />
 ```
 
-
 ### 11.2.1 Via Form Submission
+
 ```javascript
 <form onSubmit={handleSubmit}>
 ```
 
-
 ### 11.2.1 Via Build-in Validation Props
+
 1. required - not allowed here to be empty
 2. type - like email, will judge which is not email;
 3. minLength - define a min length for this input
+
 ```javascript
 <input
   id="password"
@@ -1654,6 +1747,7 @@ function handleInputBlur(identifier) {
 />
 </div>
 ```
+
 # 12. Redux
 
 like state, is a cross component state management function.
@@ -1662,7 +1756,8 @@ It not just used fo  react, all JS can use redux to config state;
 
 ## 12.1 Some state basic concept
 
-### 12.1.1 State Range:
+### 12.1.1 State Range
+
 1. Local State - via useState(), useReducer()
 2. Cross-component State - Requires "prop drilling", Eg, open/close state of a modal overlay
 3. App-wide State - Requires "prop drilling", Eg, user authentication statuis or chosen theme
@@ -1684,6 +1779,7 @@ Reducer Function (Mutates (=changes) data in Store)--> Central Data(State) Store
 npm install redux;
 
 Some basic usage without react
+
 ```javascript
 // Import Redux
 const { createStore } = require('redux');
@@ -1739,6 +1835,7 @@ store.dispatch(decrement()); // State updated: { count: 1 }
 npm install react-redux;
 
 ### 12.4.1. Crate store
+
 ```javascript
 import { createStore } from 'redux';
 
@@ -1822,6 +1919,7 @@ const Counter = () => {
 ```
 
 ### 12.4.4 use redux in class component
+
 ```javascript
 class Counter extends Component {
   incrementHandler() {
@@ -1864,6 +1962,7 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 ```
+
 ### 12.4.5 Some tips when using
 
 1. Do not to change the state object itself directly. return a new object to update the state value;
@@ -1872,8 +1971,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(Counter);
 
 Problem when using redux: when there are more state in one redux need to manage, every time we return, we need return everyone, so it would be quiet a lot when we add more and more state.[toolkit can solve the changes problem, so you can directly use state.xxx to change]
 
-*** npm install react-redux ***
-*** npm install @reduxjs/toolkit ***
+***npm install react-redux***
+***npm install @reduxjs/toolkit***
 
 ### 12.5.1 creat Redux toolkit
 
@@ -1958,6 +2057,7 @@ root.render(
 ### 12.5.3 using Redux toolkit
 
 A component
+
 ```javascript
 // A component
 import { useSelector, useDispatch } from 'react-redux';
@@ -1996,6 +2096,7 @@ export default Counter;
 ```
 
 B component
+
 ```javascript
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/auth';
@@ -2038,10 +2139,13 @@ Reducers must be pure, side-effect free, synchronous functions;
 Where should side-eeffects & async tasks to be excuted? : Inside the components(vis useEffect), and Inside the action creators
 
 ### 12.6.1 Inside the components (Via UseEffect)
+
 Problen:
+
 1. We need to extract method form reducer to outside component, and every component we need copy one to release te function. cause the content must be processed outside, we cannot direct change the state content.
 
 Solution: UseEffect in App component:
+
 ```javascript
 function App() {
   const dispatch = useDispatch();
@@ -2113,11 +2217,13 @@ function App() {
 }
 
 ```
+
 ### 12.6.2 Inside the Action
 
 Thunk: A function that delays an action until later
 
 In App.js
+
 ```javascript
 import { useSelector, useDispatch } from 'react-redux';
 import { sendCartData } from './store/cart-slice';
@@ -2148,6 +2254,7 @@ function App() {
 ```
 
 In action.js
+
 ```javascript
 import { uiActions } from './ui-slice';
 import { cartActions } from './cart-slice';
@@ -2239,18 +2346,14 @@ export const sendCartData = (cart) => {
 
 ```
 
-
-
 ## 12.7 Redux DevTools
 
 Redux DevTools --- serch and insert browser extension.
-https://chromewebstore.google.com/detail/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=zh-CN&utm_source=ext_sidebar
-
+<https://chromewebstore.google.com/detail/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=zh-CN&utm_source=ext_sidebar>
 
 # 13. React Router
 
 ## 13.1 Page in single Page basic
-
 
 ## 13.2 Using router
 
@@ -2259,6 +2362,7 @@ https://chromewebstore.google.com/detail/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=zh-
 With '/' is absolute path, if we directly use '', thats relative path; When we programming and using is the same, depend on we use relative or absolute path.
 
 1. Commonly used Routes
+
 ```javascript
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from './pages/Home';
@@ -2283,6 +2387,7 @@ function App() {
 ```
 
 2. Index Routes
+
 ```javascript
 children: [
   { index: true, element: <HomePage /> },
@@ -2293,9 +2398,11 @@ children: [
 ```
 
 ### 13.2.2. nevigate
+
 Will not refresh page and reload resources
 
 Here we use Navlink
+
 ```javascript
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
@@ -2365,6 +2472,7 @@ children: [
 ```
 
 ### 13.2.4 Error Page
+
 ```javascript
 import MainNavigation from '../components/MainNavigation';
 
@@ -2386,6 +2494,7 @@ export default ErrorPage;
 ### 13.2.5. nevigate programmaly
 
 1. Basic navigate to some link programming
+
 ```javascript
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -2407,6 +2516,7 @@ function HomePage() {
 ```
 
 2. Dynamic Routes
+
 ```javascript
 // Detail Page
 import { useParams } from 'react-router-dom';
@@ -2433,6 +2543,7 @@ const params = useParams();
 Before component render, loader can trigger to do something.
 
 1. Fetch data from router with loder
+
 ```javascript
 import EventsPage, { loader as eventsLoader } from './pages/Events';
 
@@ -2455,6 +2566,7 @@ children: [
 We can use in event page, Or directly use it in the eventsList components; the same usage wat;
 
 We can use that data in same/lower level of that route, but not use in upper;
+
 ```javascript
 import { useLoaderData } from 'react-router-dom';
 
@@ -2491,6 +2603,7 @@ export async function loader() { // export the loader data to app.js router conf
   }
 }
 ```
+
 ***Important***: loader()s must return null or any other value
 
 When we deal error from reponse: in Error.js
@@ -2508,8 +2621,8 @@ message = JSON.parse(error.data).message;
 message = error.data.message;
 ```
 
-
 ### 13.3.2 action() function
+
 Using action() function to fetch post data provided by router
 
 ```javascript
@@ -2549,7 +2662,9 @@ export async function action({ request, params }) {
   return redirect('/events');
 }
 ```
+
 At the app.js
+
 ```javascript
 { path: 'new', element: <NewEventPage />, action: newEventAction },
 ```
@@ -2635,9 +2750,9 @@ function NewsletterSignup() {
 ```
 
 In this example:
+
 - `fetcher.Form` is a special form component that behaves like a regular HTML form but is managed by `useFetcher`.
 - The `handleSubmit` function handles the form submission, where `fetcher.submit()` is used to programmatically submit the form data to the specified action URL (`/subscribe`).
-
 
 ### 13.3.4 defer()
 
@@ -2698,11 +2813,10 @@ function UserProfile() {
   
 2. **`loader()`**: This function uses `defer()` to wrap the `fetchUser()` call. It returns an object where the key (`user`) holds the promise returned by `fetchUser()`.
 
-3. **`UserProfile` Component**: 
+3. **`UserProfile` Component**:
    - Inside this component, `useLoaderData()` is used to access the deferred data.
    - `React.Suspense` is used to handle the loading state while the user data is being fetched.
    - `Await` is a component that waits for the promise to resolve before rendering the content. It also handles the resolved data (`userData`) and renders it.
-
 
 # 14. Adding Authentication To React
 
@@ -2714,6 +2828,7 @@ Authentication is needed if c ontent should be protected;
 Client and server can\t just exchange a "Yes"
 
 **Two methods:**
+
 1. Server -side Sessions (backend always store info)
 
 Store unique indentifier on server, send same identifier to client;
@@ -2816,6 +2931,7 @@ export function tokenLoader() {
 ```
 
 page Detail:
+
 ```jsx
 export async function action({ params, request }) {
   const eventId = params.eventId;
@@ -2888,7 +3004,6 @@ export function action() {
 }
 ```
 
-
 ### 14.2.2 Using token valiable status to control component and content showing
 
 ```jsx
@@ -2897,10 +3012,10 @@ import { NavLink, useRouteLoaderData } from 'react-router-dom';
 const token = useRouteLoaderData('root'); // use this token to hide or show content
 ```
 
-
 ### 14.2.3 Adding Rute protection
 
 protection Action:
+
 ```jsx
 export function checkAuthLoader() {
   const token = getAuthToken();
@@ -2912,6 +3027,7 @@ export function checkAuthLoader() {
 ```
 
 Protected to router
+
 ```jsx
 {
   path: 'edit',
@@ -2921,10 +3037,10 @@ Protected to router
 },
 ```
 
-
 ### 14.2.4 Automatic Logout
 
 Utils:
+
 ```jsx
 export function getTokenDuration() {
   const storedExpirationDate = localStorage.getItem('expiration');
@@ -2936,6 +3052,7 @@ export function getTokenDuration() {
 ```
 
 Root:
+
 ```jsx
 function RootLayout() {
   const token = useLoaderData();
@@ -2979,6 +3096,7 @@ Configure Server: Ensure app is served securely & as intended
 Load code only when they are needed
 
 inthe router app.js file
+
 ```jsx
 import { lazy, Suspense } from 'react';
 
@@ -2996,7 +3114,6 @@ const BlogPage = lazy(() => import('./pages/Blog'));
 }
 ```
 
-
 ## 15.3 Building code for production
 
 `npm run build`
@@ -3007,6 +3124,7 @@ Once finished, there is a build folder; the static - js folder, contain all file
 A React SPA is a "static Website", it only HTML, CSS & Javascript, content no code run on server - A static site host is needed
 
 ### 15.4.1 Provides: Firebase Hosting
+
 Build - hosting - get Started - Copy command and excute on our command - firebae login with website provided
 
 Option: use an exiting project
@@ -3023,7 +3141,6 @@ Then it gives us a url we can use
 Extra:
 run `firbase hosting disable` : will take your site offline
 
-
 # 16. React Query/Tanstack Quert: Handling HTTP with ease
 
 ## 16.1 Introduction
@@ -3039,6 +3156,7 @@ images are feched and (potentially) cached by the browser - React & React Query 
 `npm install @tanstack/react-query`
 
 In the event page:
+
 ```js
 import { useQuery } from '@tanstack/react-query';
 import { fetchEvents } from '../../util/http.js';
@@ -3053,6 +3171,7 @@ const { data, isPending, isError, error } = useQuery({ // more data can be found
 ```
 
 Set up a utils/http.js file
+
 ```js
 export async function fetchEvents() {
   const response = await fetch('http://localhost:3000/events');
@@ -3071,6 +3190,7 @@ export async function fetchEvents() {
 ```
 
 For App router file:
+
 ```js
 const queryClient = new QueryClient();
 
@@ -3092,6 +3212,7 @@ By constructing a query key dynamically, React Query can cache (and reuse) diffe
 Two param to object: signal and searchTerm. the signam can be used internally to stop this request if they receive that signal
 
 For the events:
+
 ```js
 const [searchTerm, setSearchTerm] = useState();
 
@@ -3109,6 +3230,7 @@ function handleSubmit(event) {
 ```
 
 For the utils, using the dynamic key:
+
 ```js
 export async function fetchEvents({ signal, searchTerm }) {
 
@@ -3129,6 +3251,7 @@ export async function fetchEvents({ signal, searchTerm }) {
 For the mutation, we should add event to excute after the event;
 
 For the event apge:
+
 ```js
 import { useMutation } from '@tanstack/react-query';
 import { createNewEvent } from '../../util/http.js';
@@ -3150,6 +3273,7 @@ function handleSubmit(formData) {
 ```
 
 For the utils:
+
 ```js
 export const queryClient = new QueryClient();
 
@@ -3206,7 +3330,9 @@ const { mutate } = useMutation({
 ## 17.1 Just CSS might be enough
 
 ### 17.1.1 Using transition
+
 FOr the jsx Files:
+
 ```js
 // For a drop button up or down
 <div className={`challenge-item-details ${isExpanded ? 'expanded' : ''}`}>
@@ -3224,6 +3350,7 @@ FOr the jsx Files:
 ```
 
 For the css file:
+
 ```css
 .challenge-item-details-icon {
   display: inline-block;
@@ -3239,8 +3366,8 @@ For the css file:
 
 ### 17.1.2 Using CSS animation
 
-
 FOr the jsx Files:
+
 ```js
 
 ```
@@ -3248,6 +3375,7 @@ FOr the jsx Files:
 It can using `keyframes` Even your component is not shown before it click out. like modal;
 
 For the css file:
+
 ```css
 .modal {
   top: 10%;
@@ -3272,7 +3400,6 @@ For the css file:
 }
 ```
 
-
 ## 17.2 Build Complex Animation with Framer Motion
 
 With complex animation, or like modal to cancel out, we can not use just CSS;
@@ -3285,6 +3412,7 @@ replace `div` with `motion/div`, also other html content is the same; and also a
 
 Using **animate** when we have some flag or value control start or disapear
 For the button icon:
+
 ```js
 <motion.span // using motion.span to replace span
   animate={{ rotate: isExpanded ? 180 : 0 }} // add animate here
@@ -3299,6 +3427,7 @@ Using **initial** and **exit** to show the start and end state
 **variants**:it can be used to nested to reuse;
 
 For the modal:
+
 ```js
 <motion.dialog
   initial={{ opacity: 0, y: 30 }}
@@ -3320,6 +3449,7 @@ For the modal:
 ```
 
 For a button:
+
 ```js
 <motion.button
   whileHover={{ scale: 1.1 }} // when hober
@@ -3332,6 +3462,7 @@ For a button:
 ```
 
 For ul and li:
+
 ```js
 <motion.ul 
   id="new-challenge-images" 
@@ -3359,6 +3490,7 @@ For ul and li:
 ### 17.2.2 Imperative Animation
 
 Here adding a shake effect for input when invalid submit
+
 ```js
 import { motion, useAnimate, stagger } from 'framer-motion';
 
@@ -3376,6 +3508,7 @@ if (!challenge.title.trim() || !challenge.description.trim()) {
 ### 17.2.2 Animate Layout
 
 Like li in verticle, if we add **layout**, when we move first one, the second one will move to top in animation
+
 ```js
 // for the child component
 <motion.li layout>
@@ -3386,6 +3519,7 @@ Like li in verticle, if we add **layout**, when we move first one, the second on
 Using **AnimatePresence** to package the child; Used to automatically clean up animation elements that are no longer needed at the end of the animation
 
 For the parent compoent;
+
 ```js
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -3400,14 +3534,15 @@ import { AnimatePresence, motion } from 'framer-motion';
 For the underLine, using **layoutid** to identify
 
 Cause here is a union id, so when change tab, this id not change, it will move smoothly with animate
+
 ```js
 {isSelected && <motion.div layoutId="tab-indicator" className="active-tab-indicator" />}
 ```
 
-
 ## 17.3 Scroll-based Animations
 
 For the header:
+
 ```js
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -3450,10 +3585,8 @@ const scaleText = useTransform(scrollY, [0, 300], [1, 1.5]);
 </header>
 ```
 
-
-
-
 # 101 Some tips
+
 1. When fetch img src from backend
 
 Sometime backend just give back a path rather than whole src, so you should add a url to the img src + that path
@@ -3465,16 +3598,15 @@ Sometime backend just give back a path rather than whole src, so you should add 
 2. Formatting data
 
 one u can use is Intl.NumberFormat
+
 ```javascript
 export const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 });
 ```
+
 3. Nested JSX is that it must return a single element
 4. Comments: `{/* */}` to wrap around the comment text.
 
-
 # 102 MUI Usage
-
-
