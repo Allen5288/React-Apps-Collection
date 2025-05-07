@@ -6,54 +6,54 @@ import {
   CardActions,
   Button,
   Typography,
+  Divider,
+  Container,
+  Box,
 } from "@mui/material";
 
 function ReactIntro() {
-  // 按钮数据数组
-  const pages = [
-    { path: "/home", label: "Go to Home Page" },
-    { path: "/reactEssentials", label: "Go to reactEssentials Page" },
-    { path: "/ticTacToe", label: "Go to ticTacToe Page" },
-    { path: "/investmentCalculator", label: "Go to investmentCalculator Page" },
-    { path: "/styleAuthInput", label: "Go to styleAuthInput Page" },
-    { path: "/refPortalPlayers", label: "Go to refPortalPlayers Page" },
+  // Projects organized by category
+  const projectCategories = [
     {
-      path: "/tailWindProjectManagement",
-      label: "Go to tailWindProjectManagement Page",
+      name: "Home",
+      projects: [{ path: "/home", label: "Home Page" }],
     },
     {
-      path: "/contextShoppingCart",
-      label: "Go to contextShoppingCart Page",
+      name: "Small Projects",
+      projects: [
+        { path: "/reactEssentials", label: "React Essentials" },
+        { path: "/ticTacToe", label: "Tic Tac Toe Game" },
+        { path: "/investmentCalculator", label: "Investment Calculator" },
+        { path: "/styleAuthInput", label: "Styled Auth Input" },
+        { path: "/compareCode", label: "Code Comparator" },
+        { path: "/salaryCalculator", label: "Salary Calculator" },
+        { path: "/currencyExchange", label: "Currency Exchange" },
+      ],
     },
     {
-      path: "/sideEffectChooseDestination",
-      label: "Go to sideEffectChooseDestination Page",
+      name: "Middle Projects",
+      projects: [
+        { path: "/refPortalPlayers", label: "Ref Portal Players" },
+        { path: "/contextShoppingCart", label: "Context Shopping Cart" },
+        { path: "/sideEffectChooseDestination", label: "Destination Chooser" },
+        { path: "/quizApp", label: "Quiz Application" },
+        {
+          path: "/tailWindProjectManagement",
+          label: "Project Management (Tailwind)",
+        },
+      ],
     },
     {
-      path: "/quizApp",
-      label: "Go to quizApp Page",
+      name: "Large Projects",
+      projects: [],
     },
     {
-      path: "/compareCode",
-      label: "Go to CodeCompare Page",
+      name: "Practice Exercises",
+      projects: [
+        { path: "/jiangRenPractice", label: "JiangRen Practice" },
+        { path: "/ReactLiveCoding", label: "React Live Coding" },
+      ],
     },
-    {
-      path: "/salaryCalculator",
-      label: "Go to SalaryCalculator Page",
-    },
-    {
-      path: "/currencyExchange",
-      label: "Go to Currency Exchange Page",
-    },
-    {
-      path: "/jiangRenPractice",
-      label: "Go to JiangRen Practice Page",
-    },
-    {
-      path: "/ReactLiveCoding",
-      label: "Go to ReactLiveCoding Page",
-    },
-    // 将来可以在这里添加更多页面
   ];
 
   return (
@@ -63,48 +63,47 @@ function ReactIntro() {
         <h2>A Collection of React Learning Examples</h2>
       </div>
 
-      <div
-        style={{
-          width: "90%", // Reduce width to prevent overflow
-          margin: "0 auto", // Center the grid
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", // Changed to auto-fit and increased minimum width
-          rowGap: "30px", // Reduced row gap
-          columnGap: "30px", // Reduced column gap
-          padding: "20px",
-        }}
-      >
-        {pages.map((page) => (
-          <Card
-            key={page.path}
-            sx={{
-              width: "100%", // Make cards fill their grid cells
-              transition: "0.3s",
-              "&:hover": {
-                transform: "translateY(-5px)",
-                boxShadow: 3,
-              },
-            }}
-          >
-            <CardContent>
-              <Typography variant="h5" component="div" gutterBottom>
-                {page.label.replace("Go to ", "").replace(" Page", "")}
-              </Typography>
-              <CardActions>
-                <Button
-                  component={Link}
-                  to={page.path}
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
-                  View Project
-                </Button>
-              </CardActions>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <Container className="categories-container">
+        {projectCategories.map(
+          (category, index) =>
+            category.projects.length > 0 && (
+              <div key={index} className="category-section">
+                <div className="category-header">
+                  <h2>{category.name}</h2>
+                  <Divider className="category-divider" />
+                </div>
+
+                <Box className="project-grid">
+                  {category.projects.map((project) => (
+                    <Card key={project.path} className="project-card">
+                      <CardContent>
+                        <Typography
+                          variant="h5"
+                          component="div"
+                          className="project-title"
+                        >
+                          {project.label}
+                        </Typography>
+                        <CardActions>
+                          <Button
+                            component={Link}
+                            to={project.path}
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            className="view-button"
+                          >
+                            View Project
+                          </Button>
+                        </CardActions>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </Box>
+              </div>
+            )
+        )}
+      </Container>
     </div>
   );
 }

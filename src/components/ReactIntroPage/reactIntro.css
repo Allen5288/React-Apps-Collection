@@ -12,59 +12,153 @@
   .App {
     text-align: center;
     background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    margin-bottom: 20px;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-bottom: 30px;
     width: 90%;
-    max-width: 500px;
+    max-width: 800px;
   }
 
   .App h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #00796b;
+    margin-bottom: 10px;
+    font-weight: 700;
   }
 
   .App h2 {
-    font-size: 1.5rem;
-    color: #888;
+    font-size: 1.6rem;
+    color: #757575;
     margin-top: 10px;
+    font-weight: 400;
   }
 
-  /* 按钮容器样式 */
-  .button-container {
+  /* Categories container */
+  .categories-container {
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+  }
+
+  /* Category Section */
+  .category-section {
+    margin-bottom: 40px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .category-section:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Category Header */
+  .category-header {
+    margin-bottom: 20px;
+  }
+
+  .category-header h2 {
+    font-size: 2rem;
+    color: #00695c;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .category-divider {
+    background-color: #80cbc4;
+    height: 3px;
+    margin-bottom: 20px;
+  }
+
+  /* Project Grid */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  /* Project Card */
+  .project-card {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    border-color: #80cbc4;
+  }
+
+  /* Project Title */
+  .project-title {
+    color: #00796b;
+    font-size: 1.3rem !important;
+    margin-bottom: 15px !important;
+    font-weight: 500 !important;
+    height: 60px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 15px;
-    max-width: 500px; /* 限制按钮容器的宽度，使其更集中 */
-    margin: 0 auto; /* 居中 */
   }
 
-  /* 按钮样式 */
-  button {
-    background-color: #80cbc4; /* 舒缓的浅青色 */
-    color: #ffffff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
+  /* View Button */
+  .view-button {
+    background-color: #00897b !important;
+    color: white !important;
+    border-radius: 6px !important;
+    padding: 10px 16px !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    font-size: 1rem !important;
+    transition: background-color 0.3s ease !important;
   }
 
-  button:hover {
-    background-color: #4db6ac;
+  .view-button:hover {
+    background-color: #00695c !important;
   }
 
-  /* 链接样式，去除默认的下划线和颜色 */
-  button a {
-    text-decoration: none;
-    color: #ffffff;
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .App h1 {
+      font-size: 2.2rem;
+    }
+
+    .App h2 {
+      font-size: 1.3rem;
+    }
+
+    .category-header h2 {
+      font-size: 1.8rem;
+    }
+
+    .project-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
   }
 
-  button a:hover {
-    color: #ffffff;
+  @media (max-width: 480px) {
+    .App h1 {
+      font-size: 1.8rem;
+    }
+
+    .App h2 {
+      font-size: 1.1rem;
+    }
+
+    .category-header h2 {
+      font-size: 1.5rem;
+    }
+
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }
