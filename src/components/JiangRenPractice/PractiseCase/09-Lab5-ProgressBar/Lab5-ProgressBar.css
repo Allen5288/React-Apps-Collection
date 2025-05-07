@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+#Lab5ProgressBar {
+  font-family: "Roboto", sans-serif;
+  margin-top: 2rem;
+}
+#Lab5ProgressBar .progress-container {
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+  max-width: 100%;
+  margin: 0 auto 30px;
+  position: relative;
+}
+#Lab5ProgressBar .progress-container::before {
+  content: "";
+  background-color: #e0e0e0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform: translateY(-50%);
+  transition: 0.4s ease;
+  z-index: 0;
+}
+#Lab5ProgressBar .progress {
+  background-color: #3498db;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  transition: 0.4s ease;
+  z-index: 1;
+}
+#Lab5ProgressBar .circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #999;
+  background-color: #fff;
+  border: 3px solid #e0e0e0;
+  transition: 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+#Lab5ProgressBar .circle.active {
+  border-color: #3498db;
+}
+#Lab5ProgressBar .btn:active {
+  transform: scale(0.95);
+}
+#Lab5ProgressBar .btn.Mui-disabled {
+  background-color: #e0e0e0;
+  color: #999;
+}/*# sourceMappingURL=Lab5-ProgressBar.css.map */
