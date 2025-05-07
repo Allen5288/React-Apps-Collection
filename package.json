@@ -2,6 +2,7 @@
   "name": "react",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://Allen5288.github.io/React-Apps-Collection",
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
