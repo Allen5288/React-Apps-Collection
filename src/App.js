@@ -20,8 +20,12 @@ import ReactLiveCoding from "./components/ReactLiveCoding/ReactLiveCoding";
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
+  // Get the base URL from the environment or default to "/React-Apps-Collection"
+  // This ensures the app works both locally and on GitHub Pages
+  const basename = process.env.PUBLIC_URL || "/React-Apps-Collection";
+  
   return (
-    <Router>
+    <Router basename={basename}>
       <AppHeader />
       <Routes>
         <Route path="/" element={<ReactIntro />} />

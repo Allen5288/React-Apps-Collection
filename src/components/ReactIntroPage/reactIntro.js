@@ -60,7 +60,7 @@ function ReactIntro() {
     <div id="introPage">
       <div className="App">
         <h1>React Practice Projects</h1>
-        <h2>A Collection of React Learning Examples</h2>
+        <h2>A Collection of React Personal Learning Examples</h2>
       </div>
 
       <Container className="categories-container">
