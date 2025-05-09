@@ -1,8 +1,11 @@
-# 1. Baisc
+<!-- markdownlint-disable MD025 -->
+
+# 1. Basic Knowledge
 
 ## 1.2 Request
 
 Work with request and send response;
+
 ```js
 const server = http.createServer((req, res) => {
   console.log(req.url, rq.method, req.headers);
@@ -14,8 +17,7 @@ const server = http.createServer((req, res) => {
 })
 ```
 
-The following article provides a great overview of [available headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) and their role: 
-
+The following article provides a great overview of [available headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) and their role:
 
 # 2. Next JS
 
@@ -28,6 +30,7 @@ NextJS Works with React Server Components, Rendered only on the server, Never on
 ### 2.1.1 Adding new page
 
 In nextJs, add new path by adding new folder. NextJS relies on reserved, special filenames, but the filenames only matter inside the "app" folder.
+
 - **page.js** => Define page content; Create a new page (e.g., app/about/page.js creates a `<your-domain>`/about page)
 - layout.js => Define wrapper around pages; should be used with page. there must be one layout on the top; layout is used to wrap page.
 - not-found.js => Define "Not found" fallback page
@@ -41,7 +44,7 @@ In nextJs, add new path by adding new folder. NextJS relies on reserved, special
 1. For common route: just create folder with page.js
 
 2. For dynamic route:
-Create [xxxcontent] under the folder, and create a page under [xxx];
+Create [xxx content] under the folder, and create a page under [xxx];
 
 ### 2.1.3 use client
 
@@ -58,7 +61,6 @@ if (!meal) {
     notFound();
 }
 ```
-
 
 ## 2.2 Data Processing
 
@@ -97,7 +99,7 @@ const dummyMeals = [
 
 db.prepare(`
    CREATE TABLE IF NOT EXISTS meals (
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       id INTEGER PRIMARY KEY AUTO-INCREMENT,
        slug TEXT NOT NULL UNIQUE,
        title TEXT NOT NULL,
        image TEXT NOT NULL,
@@ -134,6 +136,7 @@ initData();
 ### 2.2.2 Fetch data
 
 1. Getting data directly from lite db:
+
 ```js
 // lib side:
 import sql from 'better-sqlite3';
@@ -159,15 +162,15 @@ import { Suspense } from 'react';
 </Suspense>
 ```
 
-### 2.2.4 triger cache - revalidatePath
+### 2.2.4 trigger cache - revalidatePath
 
 ## 2.3 Store Resources in Production
 
 ### 2.3.1 Storing Uploaded Images In The Cloud (AWS S3)
-https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/41737286#overview
+
+<https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/41737286#overview>
 
 ### 2.3.2 Adding dynamic metadata - generateMetadata()
-
 
 ## 2.4 Page router ? App Router(introduce above)
 
@@ -218,6 +221,7 @@ export async function getStaticProps() {
 ### 2.5.2 Server Side generation (SSR)
 
 This will run on server, never on client;
+
 ```js
 export async function getServerSideProps(context) {
   const req = context.req;
@@ -235,7 +239,7 @@ export async function getServerSideProps(context) {
 
 ## 2.6 API Route
 
-API routes will only run on server; 
+API routes will only run on server;
 
 ```js
 import { MongoClient } from 'mongodb';
@@ -270,8 +274,6 @@ async function handler(req, res) {
 Vercel - the same team who develop nextJS
 
 Log with github and deploy by github repository
-
-
 
 # 3 mongoDB
 

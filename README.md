@@ -68,43 +68,43 @@ The project is organized into different categories based on complexity:
 
 1. Clone the repository:
 
-   ```
+   ```bash
    git clone https://github.com/Allen5288/React-Apps-Collection.git
    ```
 
 2. Navigate to the project directory:
 
-   ```
+   ```bash
    cd React-Apps-Collection
    ```
 
 3. Install dependencies:
 
-   ```
+   ```bash
    npm install
    ```
 
    or
 
-   ```
+   ```bash
    yarn install
    ```
 
 4. Start the development server:
 
-   ```
+   ```bash
    npm start
    ```
 
    or
 
-   ```
+   ```bash
    yarn start
    ```
 
 5. Open your browser and visit:
 
-   ```
+   ```text
    http://localhost:3000
    ```
 
