@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Depreciation Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tax Depreciation Calculator</h1>
+            <p>Calculate asset depreciation for tax purposes using common depreciation methods.</p>
+        </header>
+        
+        <main>
+            <section class="calculator-form">
+                <h2>Asset Information</h2>
+                <form id="depreciation-form">
+                    <div class="form-group">
+                        <label for="asset-cost">Asset Cost ($):</label>
+                        <input type="number" id="asset-cost" min="0.01" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="salvage-value">Salvage Value ($):</label>
+                        <input type="number" id="salvage-value" min="0" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="useful-life">Useful Life (years):</label>
+                        <input type="number" id="useful-life" min="1" step="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="depreciation-method">Depreciation Method:</label>
+                        <select id="depreciation-method" required>
+                            <option value="straight-line">Straight-Line</option>
+                            <option value="diminishing-value">Diminishing Value (200%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" id="calculate-btn">Calculate Depreciation</button>
+                        <button type="reset" id="reset-btn">Reset</button>
+                    </div>
+                </form>
+            </section>
+            
+            <section class="results-section">
+                <h2>Depreciation Schedule</h2>
+                <div id="error-message" class="error"></div>
+                <div id="calculation-summary" class="summary"></div>
+                <div class="table-container">
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Beginning Book Value</th>
+                                <th>Annual Depreciation</th>
+                                <th>Accumulated Depreciation</th>
+                                <th>Ending Book Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body">
+                            <!-- Results will be populated here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Tax Depreciation Calculator | For educational purposes only</p>
+        </footer>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

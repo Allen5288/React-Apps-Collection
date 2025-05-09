@@ -1,0 +1,42 @@
+.tax-calculator-container {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.tax-calculator-header {
+  margin-bottom: 2.5rem;
+}
+
+.calculator-form {
+  padding: 2rem;
+  height: 100%;
+}
+
+.results-section {
+  padding: 2rem;
+  height: 100%;
+}
+
+.calculation-summary {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .calculator-form, .results-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tax-calculator-container {
+    padding-top: 1rem;
+  }
+  
+  .calculator-form, .results-section {
+    padding: 1.25rem;
+  }
+}
