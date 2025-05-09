@@ -1,0 +1,10 @@
+{
+  "MD025": false,
+  "single-title": false,
+  "single-h1": false,
+  "MD013": {
+    "line_length": 150,
+    "code_blocks": true,
+    "tables": true
+  }
+}

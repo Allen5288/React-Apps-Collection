@@ -11,12 +11,14 @@ import {
 } from "@mui/material";
 import CounterApp from "./PracticeCase/01-CounterApp/CounterApp";
 import TaskTracker from "./PracticeCase/02-TaskTracker/TaskTracker";
+import TaxDepreciationCalculator from "./PracticeCase/03-tax-depreciation-calculator/TaxDepreciationCalculator";
 
 function ReactLiveCodingHome() {
   // Array of practice links - updated paths to match the route structure
   const practicePages = [
     { path: "CounterApp", label: "Counter Application" },
     { path: "TaskTracker", label: "Task Tracker" },
+    { path: "TaxDepreciationCalculator", label: "Tax Depreciation Calculator" },
     // Add more practice pages as needed
   ];
 
@@ -84,6 +86,7 @@ function ReactLiveCoding() {
       <Route path="/" element={<ReactLiveCodingHome />} />
       <Route path="/CounterApp" element={<CounterApp />} />
       <Route path="/TaskTracker" element={<TaskTracker />} />
+      <Route path="/TaxDepreciationCalculator" element={<TaxDepreciationCalculator />} />
       {/* Add more routes for other practice components here */}
     </Routes>
   );
