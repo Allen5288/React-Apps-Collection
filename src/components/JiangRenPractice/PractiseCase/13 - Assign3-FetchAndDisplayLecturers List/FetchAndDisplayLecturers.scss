@@ -1,0 +1,132 @@
+#fetch-and-display-lecturers {
+  font-family: "Roboto", "Helvetica", sans-serif;
+  padding: 2rem 1rem;
+  background-color: #f9f9f9;
+
+  .container {
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      position: relative;
+
+      &:after {
+        content: "";
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #3498db, #9b59b6);
+        margin: 0.8rem auto;
+        border-radius: 2px;
+      }
+    }
+
+    .lecturers-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 0 auto;
+      max-width: 1200px;
+
+      .lecture-card {
+        background-color: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-top: 4px solid #3498db;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+          color: #2c3e50;
+          margin-bottom: 0.5rem;
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+
+        h3 {
+          color: #3498db;
+          font-size: 1.1rem;
+          font-weight: 500;
+          margin-bottom: 1rem;
+          padding-bottom: 0.75rem;
+          border-bottom: 1px solid #ecf0f1;
+        }
+
+        p {
+          color: #7f8c8d;
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+          font-size: 0.95rem;
+        }
+
+        h4 {
+          color: #2c3e50;
+          font-size: 1.1rem;
+          margin-bottom: 0.75rem;
+          font-weight: 600;
+        }
+
+        ul {
+          list-style: none;
+          padding-left: 0;
+          margin-bottom: 1.5rem;
+
+          li {
+            position: relative;
+            padding: 0.5rem 0 0.5rem 2rem;
+            border-bottom: 1px solid #ecf0f1;
+            color: #34495e;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            &:before {
+              content: "•";
+              color: #3498db;
+              position: absolute;
+              left: 0.5rem;
+              font-size: 1.5rem;
+              line-height: 1;
+            }
+          }
+        }
+
+        p:last-child {
+          margin-top: auto;
+          padding-top: 1rem;
+          border-top: 1px solid #ecf0f1;
+          font-weight: 500;
+          color: #2c3e50;
+          display: flex;
+          align-items: center;
+
+          &:before {
+            content: "🎓";
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      .lecturers-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
