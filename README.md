@@ -1,10 +1,12 @@
 # React Apps Collection
 
-A comprehensive collection of React applications ranging from small components to medium-sized projects, showcasing various React concepts, hooks, patterns, and libraries.
+A comprehensive collection of React applications ranging from small
+components to medium-sized projects, showcasing various React concepts, hooks, patterns, and libraries.
 
 ## 🚀 Project Overview
 
-This repository serves as a portfolio and learning resource for React development. It contains multiple React applications organized by complexity level, from small UI components to more advanced feature-rich applications.
+This repository serves as a portfolio and learning resource for React development.
+It contains multiple React applications organized by complexity level, from small UI components to more advanced feature-rich applications.
 
 ## 📂 Project Structure
 
