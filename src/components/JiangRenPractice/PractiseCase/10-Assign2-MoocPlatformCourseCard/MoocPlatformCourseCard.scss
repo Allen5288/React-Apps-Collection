@@ -31,7 +31,7 @@
     width: 100%;
     max-width: 320px;
     height: auto;
-    min-height: 350px;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -52,7 +52,8 @@
 
     @media (min-width: 992px) {
       width: 320px;
-      height: 400px;
+      height: auto;
+      min-height: 550px;
     }
 
     &:hover {
@@ -92,6 +93,7 @@
       flex-direction: column;
       gap: 0.5rem;
       flex: 1;
+      overflow-y: auto;
 
       @media (min-width: 576px) {
         padding: 1.25rem;
@@ -165,6 +167,36 @@
     .course-duration,
     .course-location {
       color: #555;
+    }
+
+    .course-action-button {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-section {
+      margin-top: 0.5rem;
+    }
+
+    // Styling for review form and submit button
+    .review-form {
+      margin-top: 0.5rem;
+
+      .review-input {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .review-status {
+      color: #4caf50;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .enrollment-count {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 0.5rem;
     }
   }
 
