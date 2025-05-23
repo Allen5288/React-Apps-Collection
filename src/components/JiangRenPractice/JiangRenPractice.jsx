@@ -18,7 +18,6 @@ import WeatherApp from "./PractiseCase/08-Lab4-WeatherApplication/WeatherApp"; /
 import Lab5ProgressBar from "./PractiseCase/09-Lab5-ProgressBar/Lab5-ProgressBar"; // Import the new ProgressBar component
 import MoocPlatformCourseCard from "./PractiseCase/10-Assign-MoocPlatformCourseCard/MoocPlatformCourseCard";
 import HookWithPagination from "./PractiseCase/11-Lab6-HookWithPagination/HookWithPagination"; // Import the new HookWithPagination component
-import NoteKeeper from "./PractiseCase/12-Proj-NoteKeeper/NoteKeeper"; // Import the new NoteKeeper component
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
@@ -35,7 +34,6 @@ function JiangRenPracticeHome() {
     { path: "ProgressBar", label: "Progress Bar" },
     { path: "MoocPlatformCourseCard", label: "Mooc Platform Course Card" },
     { path: "HookWithPagination", label: "Hook with Pagination" },
-    { path: "NoteKeeper", label: "Note Keeper" },
 
     // Add more practice pages as needed
   ];
@@ -117,7 +115,6 @@ function JiangRenPractice() {
         element={<MoocPlatformCourseCard />}
       />
       <Route path="/HookWithPagination" element={<HookWithPagination />} />
-      <Route path="/NoteKeeper" element={<NoteKeeper />} />
       {/* Add more routes for other practice components here */}
     </Routes>
   );
