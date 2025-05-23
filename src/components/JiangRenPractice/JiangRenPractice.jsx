@@ -16,9 +16,10 @@ import Lab2GridCard from "./PractiseCase/05-Lab2-Grid-Flexcbox-Card/Lab2-gridCar
 import PriceGuideWithSASS from "./PractiseCase/07-Lab3-ResponsivePriceCard/lab3-PriceGuideWithSASS";
 import WeatherApp from "./PractiseCase/08-Lab4-WeatherApplication/WeatherApp"; // Import the WeatherApp component
 import Lab5ProgressBar from "./PractiseCase/09-Lab5-ProgressBar/Lab5-ProgressBar"; // Import the new ProgressBar component
-import MoocPlatformCourseCard from "./PractiseCase/10-Assign-MoocPlatformCourseCard/MoocPlatformCourseCard";
+import MoocPlatformCourseCard from "./PractiseCase/10-Assign2-MoocPlatformCourseCard/MoocPlatformCourseCard";
 import HookWithPagination from "./PractiseCase/11-Lab6-HookWithPagination/HookWithPagination"; // Import the new HookWithPagination component
 import FetchAndDisplayLecturers from "./PractiseCase/13 - Assign3-FetchAndDisplayLecturers List/FetchAndDisplayLecturers";
+import NoteCardWithLocalStorage from "./PractiseCase/14 - Lab7-NoteCardWithLocalStorage/NoteCardWithLocalStorage"; // Import the new NoteCardWithLocalStorage component
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
@@ -36,6 +37,7 @@ function JiangRenPracticeHome() {
     { path: "MoocPlatformCourseCard", label: "Mooc Platform Course Card" },
     { path: "HookWithPagination", label: "Hook with Pagination" },
     { path: "FetchAndDisplayLecturers", label: "Fetch and Display Lecturers" },
+    { path: "NoteCardWithLocalStorage", label: "Note Card with Local Storage" },
 
     // Add more practice pages as needed
   ];
@@ -118,6 +120,7 @@ function JiangRenPractice() {
       />
       <Route path="/HookWithPagination" element={<HookWithPagination />} />
       <Route path="/FetchAndDisplayLecturers" element={<FetchAndDisplayLecturers />} />
+      <Route path="/NoteCardWithLocalStorage" element={<NoteCardWithLocalStorage />} />
       {/* Add more routes for other practice components here */}
     </Routes>
   );
