@@ -45,7 +45,9 @@ function ReactIntro() {
     },
     {
       name: "Large Projects",
-      projects: [],
+      projects: [
+        { path: "/weatherApp", label: "Weather App" }
+      ],
     },
     {
       name: "Practice Exercises",

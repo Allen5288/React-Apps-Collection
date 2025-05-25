@@ -17,6 +17,7 @@ import SalaryCalculator from "./components/00-SmallProject/SalaryCalculateApp/Sa
 import CurrencyExchange from "./components/00-SmallProject/CurrencyExchange/CurrencyExchange";
 import JiangRenPractice from "./components/JiangRenPractice/JiangRenPractice";
 import ReactLiveCoding from "./components/ReactLiveCoding/ReactLiveCoding";
+import WeatherApp from "./components/02-LargeProject/00-WeatherApp/WeatherApp";
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
@@ -51,6 +52,7 @@ export default function App() {
         <Route path="/compareCode" element={<CodeComparatorPage />} />
         <Route path="/salaryCalculator" element={<SalaryCalculator />} />
         <Route path="/currencyExchange" element={<CurrencyExchange />} />
+        <Route path="/weatherApp" element={<WeatherApp />} />
 
         {/* JiangRen Practice route with nested routes handled within the component */}
         <Route path="/jiangRenPractice/*" element={<JiangRenPractice />} />
