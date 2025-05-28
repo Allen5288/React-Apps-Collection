@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+:root {
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#income-and-expenditure-management {
+  background-color: #f7f7f7;
+  min-height: 100vh;
+  padding: 20px;
+
+  .container {
+    margin: 30px auto;
+    width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+  }
+
+  h1 {
+    letter-spacing: 1px;
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  h3 {
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 10px;
+    margin: 40px 0 10px;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+    font-weight: 400;
+    letter-spacing: 1px;
+    
+    text-transform: uppercase;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2ecc71;
+    font-weight: 300;
+  }
+
+  .inc-exp-container {
+    background-color: #fff;
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    border-radius: 5px;
+
+    > div {
+      flex: 1;
+      text-align: center;
+
+      &:first-of-type {
+        border-right: 1px solid #dedede;
+      }
+
+      h4 {
+        margin: 0;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .money {
+        font-size: 20px;
+        letter-spacing: 1px;
+        margin: 5px 0;
+        font-weight: 500;
+
+        &.plus {
+          color: #2ecc71;
+        }
+
+        &.minus {
+          color: #c0392b;
+        }
+      }
+    }
+  }
+
+  label {
+    display: inline-block;
+    margin: 10px 0;
+    font-weight: 500;
+  }
+
+  input[type='text'],
+  input[type='number'] {
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #2ecc71;
+    }
+  }
+
+  .btn {
+    cursor: pointer;
+    background-color: #9c88ff;
+    box-shadow: var(--box-shadow);
+    color: #fff;
+    border: 0;
+    display: block;
+    font-size: 16px;
+    margin: 10px 0 30px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #8a75ff;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+
+    li {
+      background-color: #fff;
+      box-shadow: var(--box-shadow);
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      padding: 5px;
+      margin: 5px 0;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      &.plus {
+        border-right: 5px solid #2ecc71;
+      }
+
+      &.minus {
+        border-right: 5px solid #c0392b;
+      }
+
+      .delete-btn {
+        cursor: pointer;
+        background-color: #e74c3c;
+        border: 0;
+        color: #fff;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 2px 5px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-100%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 3px;
+      }
+
+      &:hover .delete-btn {
+        opacity: 1;
+      }
+    }
+  }
+
+  .form-container {
+    margin-top: 40px;
+
+    h3 {
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #555;
+      }
+    }
+  }
+
+  #balance {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin: 20px 0;
+    font-weight: 300;
+  }
+
+  // Responsive design
+  @media (max-width: 400px) {
+    .container {
+      width: 100%;
+      margin: 10px;
+      padding: 15px;
+    }
+
+    .inc-exp-container {
+      flex-direction: column;
+      gap: 10px;
+
+      > div:first-of-type {
+        border-right: none;
+        border-bottom: 1px solid #dedede;
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  // Animation for new transactions
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .list li {
+    animation: slideIn 0.3s ease-in-out;
+  }
+}
