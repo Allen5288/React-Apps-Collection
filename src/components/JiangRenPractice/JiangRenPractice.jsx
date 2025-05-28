@@ -20,6 +20,7 @@ import MoocPlatformCourseCard from "./PractiseCase/10-Assign2-MoocPlatformCourse
 import HookWithPagination from "./PractiseCase/11-Lab6-HookWithPagination/HookWithPagination"; // Import the new HookWithPagination component
 import FetchAndDisplayLecturers from "./PractiseCase/13 - Assign3-FetchAndDisplayLecturers List/FetchAndDisplayLecturers";
 import NoteCardWithLocalStorage from "./PractiseCase/14 - Lab7-NoteCardWithLocalStorage/NoteCardWithLocalStorage"; // Import the new NoteCardWithLocalStorage component
+import IncomeAndExpenditureManagement from "./PractiseCase/15-Lab8-Reducer-IncomeAndExpenditureManagement/IncomeAndExpenditureManagement"; // Import the new IncomeAndExpenditureManagement component
 
 function JiangRenPracticeHome() {
   // Array of practice links - updated paths to match the route structure
@@ -38,6 +39,7 @@ function JiangRenPracticeHome() {
     { path: "HookWithPagination", label: "Hook with Pagination" },
     { path: "FetchAndDisplayLecturers", label: "Fetch and Display Lecturers" },
     { path: "NoteCardWithLocalStorage", label: "Note Card with Local Storage" },
+    { path: "IncomeAndExpenditureManagement", label: "Reducer - Income and Expenditure Management" },
 
     // Add more practice pages as needed
   ];
@@ -121,6 +123,7 @@ function JiangRenPractice() {
       <Route path="/HookWithPagination" element={<HookWithPagination />} />
       <Route path="/FetchAndDisplayLecturers" element={<FetchAndDisplayLecturers />} />
       <Route path="/NoteCardWithLocalStorage" element={<NoteCardWithLocalStorage />} />
+      <Route path="/IncomeAndExpenditureManagement" element={<IncomeAndExpenditureManagement />} />
       {/* Add more routes for other practice components here */}
     </Routes>
   );
