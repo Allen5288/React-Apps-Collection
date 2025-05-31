@@ -19,6 +19,7 @@ import JiangRenPractice from "./components/JiangRenPractice/JiangRenPractice";
 import ReactLiveCoding from "./components/ReactLiveCoding/ReactLiveCoding";
 import WeatherApp from "./components/02-LargeProject/00-WeatherApp/WeatherApp";
 import MyToyRobot from "./components/02-LargeProject/01-MyToyRobot/MyToyRobot";
+import ReduxBookLibrary from "./components/01-MiddleProject/06-ReduxBookLibrary/ReduxBookLibrary";
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
@@ -44,7 +45,12 @@ export default function App() {
           path="/tailWindProjectManagement"
           element={<TailWindProjectManagement />}
         />
-        <Route path="/contextShoppingCart" element={<ContextShoppingCart />} />
+
+        // Middle Projects
+        <Route
+          path="/contextShoppingCart"
+          element={<ContextShoppingCart />}
+        />
         <Route
           path="/sideEffectChooseDestination"
           element={<SideEffectChooseDestination />}
@@ -53,6 +59,9 @@ export default function App() {
         <Route path="/compareCode" element={<CodeComparatorPage />} />
         <Route path="/salaryCalculator" element={<SalaryCalculator />} />
         <Route path="/currencyExchange" element={<CurrencyExchange />} />
+        <Route path="/reduxBookLibrary" element={<ReduxBookLibrary />} />
+
+        {/* Large Projects */}
         <Route path="/weatherApp" element={<WeatherApp />} />
         <Route path="/myToyRobot" element={<MyToyRobot />} />
 

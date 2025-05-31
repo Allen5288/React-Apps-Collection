@@ -41,6 +41,7 @@ function ReactIntro() {
           path: "/tailWindProjectManagement",
           label: "Project Management (Tailwind)",
         },
+        { path: "/reduxBookLibrary", label: "Redux Book Library" },
       ],
     },
     {
