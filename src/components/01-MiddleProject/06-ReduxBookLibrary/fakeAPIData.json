@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "1984",
+    "Description": "A dystopian novel set in a totalitarian society ruled by Big Brother.",
+    "author": "George Orwell",
+    "genre": "Dystopian",
+    "published": 1949
+  },
+  {
+    "id": 2,
+    "title": "To Kill a Mockingbird",
+    "Description": "A novel about the serious issues of rape and racial inequality.",
+    "author": "Harper Lee",
+    "genre": "Fiction",
+    "published": 1960
+  },
+  {
+    "id": 3,
+    "title": "The Great Gatsby",
+    "Description": "A novel about the American dream and the disillusionment that comes with it.",
+    "author": "F. Scott Fitzgerald",
+    "genre": "Fiction",
+    "published": 1925
+  }
+]
