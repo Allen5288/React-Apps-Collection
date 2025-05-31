@@ -1,4 +1,4 @@
-import "./reactIntro.css";
+import "./reactIntro.scss";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -46,7 +46,8 @@ function ReactIntro() {
     {
       name: "Large Projects",
       projects: [
-        { path: "/weatherApp", label: "Weather App" }
+        { path: "/weatherApp", label: "Weather App" },
+        { path: "/myToyRobot", label: "My Toy Robot" },
       ],
     },
     {

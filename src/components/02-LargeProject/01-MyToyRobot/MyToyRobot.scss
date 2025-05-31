@@ -1,0 +1,14 @@
+#my-toy-robot {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 32px 0;
+}
