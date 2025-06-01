@@ -7,9 +7,12 @@ const MyToyRobot = () => {
   return (
     <div id="my-toy-robot">
       <div className="container">
-        App
         <Header />
-        <Game />
+        <main>
+          <div>
+            <Game />
+          </div>
+        </main>
       </div>
     </div>
   );

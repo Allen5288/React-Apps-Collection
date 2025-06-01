@@ -1,8 +1,11 @@
 import React from 'react'
+import styles from './Logo.module.css'
 
 const Logo = () => {
   return (
-    <div>Logo</div>
+    <h1 className={styles.container}>
+      Toy <span className={styles.highlight}>Robot</span>
+    </h1>
   )
 }
 

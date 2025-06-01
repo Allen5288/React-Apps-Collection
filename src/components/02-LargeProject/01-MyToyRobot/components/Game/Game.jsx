@@ -1,16 +1,20 @@
-import React from 'react'
-import Board from './components/Board/Board'
-import Robot from './components/Robot/Robot'
-import Commands from './components/Commands/Commands'
+import React from "react";
+import Board from "./components/Board/Board";
+import Robot from "./components/Robot/Robot";
+import Commands from "./components/Commands/Commands";
 
 const Game = () => {
   return (
-    <div>
-      <Board />
-      <Robot />
+    <main className="p-12 flex justify-between">
+      <div className="relative">
+        <div className="absolute">
+          <Robot />
+        </div>
+        <Board />
+      </div>
       <Commands />
-    </div>
-  )
-}
+    </main>
+  );
+};
 
-export default Game
+export default Game;
