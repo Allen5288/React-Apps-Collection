@@ -3,7 +3,11 @@ import Cell from './Cell'
 
 const Row = () => {
   return (
-    <div>Row
+    <div className='flex'>
+        <Cell />
+        <Cell />
+        <Cell />
+        <Cell />
         <Cell />
     </div>
   )

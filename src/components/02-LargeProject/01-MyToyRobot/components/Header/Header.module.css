@@ -1,0 +1,10 @@
+.container {
+    border-bottom: 2px solid black;
+    padding: 0 0 16px 0;
+}
+
+.layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

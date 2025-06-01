@@ -1,8 +1,11 @@
 import React from 'react'
+import styles from './Actions.module.css'
 
 const Actions = () => {
   return (
-    <div>Actions</div>
+    <div>
+      <button className={styles.button}>Start</button>
+    </div>
   )
 }
 

@@ -14,10 +14,10 @@ import {
 function ReactIntro() {
   // Projects organized by category
   const projectCategories = [
-    {
-      name: "HomePage",
-      projects: [{ path: "/home", label: "Home Page" }],
-    },
+    // {
+    //   name: "HomePage",
+    //   projects: [{ path: "/home", label: "Home Page" }],
+    // },
     {
       name: "Small Projects",
       projects: [
@@ -49,6 +49,13 @@ function ReactIntro() {
       projects: [
         { path: "/weatherApp", label: "Weather App" },
         { path: "/myToyRobot", label: "My Toy Robot" },
+      ],
+    },
+    {
+      name: "Required Start Backend Projects",
+      projects: [
+        { path: "/userManagement", label: "User Management" },
+        { path: "/productCatalog", label: "Product Catalog" },
       ],
     },
     {
