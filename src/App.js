@@ -20,13 +20,15 @@ import ReactLiveCoding from "./components/ReactLiveCoding/ReactLiveCoding";
 import WeatherApp from "./components/02-LargeProject/00-WeatherApp/WeatherApp";
 import MyToyRobot from "./components/02-LargeProject/01-MyToyRobot/MyToyRobot";
 import ReduxBookLibrary from "./components/01-MiddleProject/06-ReduxBookLibrary/ReduxBookLibrary";
+import { lazy } from "react";
+import CMS from "./components/03-BackendRequiredProject/01-CMS-FE/CMS";
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
   // Get the base URL from the environment or default to "/React-Apps-Collection"
   // This ensures the app works both locally and on GitHub Pages
   const basename = process.env.PUBLIC_URL || "/React-Apps-Collection";
-  
+
   return (
     <Router basename={basename}>
       <AppHeader />
@@ -45,12 +47,8 @@ export default function App() {
           path="/tailWindProjectManagement"
           element={<TailWindProjectManagement />}
         />
-
-        // Middle Projects
-        <Route
-          path="/contextShoppingCart"
-          element={<ContextShoppingCart />}
-        />
+        {/* Middle Projects */}
+        <Route path="/contextShoppingCart" element={<ContextShoppingCart />} />
         <Route
           path="/sideEffectChooseDestination"
           element={<SideEffectChooseDestination />}
@@ -60,14 +58,14 @@ export default function App() {
         <Route path="/salaryCalculator" element={<SalaryCalculator />} />
         <Route path="/currencyExchange" element={<CurrencyExchange />} />
         <Route path="/reduxBookLibrary" element={<ReduxBookLibrary />} />
-
         {/* Large Projects */}
         <Route path="/weatherApp" element={<WeatherApp />} />
         <Route path="/myToyRobot" element={<MyToyRobot />} />
-
+        {/* Backend Required Projects */}
+        <Route path="/cms" element={<CMS />} />
+        {/* Practice Exercises */}
         {/* JiangRen Practice route with nested routes handled within the component */}
         <Route path="/jiangRenPractice/*" element={<JiangRenPractice />} />
-
         {/* React Live Coding practice route with nested routes handled within the component */}
         <Route path="/reactLiveCoding/*" element={<ReactLiveCoding />} />
       </Routes>
