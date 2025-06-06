@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $primary-color: rgb(255, 87, 87);
 $secondary-color: #f5f5f5;
 $dark-text: #333;
@@ -59,10 +61,8 @@ body {
     padding: 0 20px;
     border-radius: 0 6px 6px 0;
     cursor: pointer;
-    transition: background-color 0.3s;
-    
-    &:hover {
-      background-color: darken($primary-color, 10%);
+    transition: background-color 0.3s;    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
     }
   }
 }

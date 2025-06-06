@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Variables
 $primary-color: #4a90e2;
 $secondary-color: #e74c3c;
@@ -46,7 +48,7 @@ body {
     color: white;
     
     &:hover {
-      background-color: darken($primary-color, 10%);
+      background-color: color.adjust($primary-color, $lightness: -10%);
     }
   }
   
@@ -55,7 +57,7 @@ body {
     color: white;
     
     &:hover {
-      background-color: darken($secondary-color, 10%);
+      background-color: color.adjust($secondary-color, $lightness: -10%);
     }
   }
 }
@@ -72,10 +74,9 @@ body {
     background-color: $primary-color;
     color: white;
     padding: $base-spacing;
-    
-    h2 {
-      @include responsive-text(24px);
+      h2 {
       margin: 0;
+      @include responsive-text(24px);
     }
   }
   

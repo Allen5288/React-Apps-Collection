@@ -54,8 +54,8 @@ function ReactIntro() {
     {
       name: "Required Start Backend Projects",
       projects: [
-        { path: "/userManagement", label: "User Management" },
-        { path: "/productCatalog", label: "Product Catalog" },
+        { path: "/cms", label: "cms system" },
+        { path: "/imageUpload", label: "Image Upload" },
       ],
     },
     {
