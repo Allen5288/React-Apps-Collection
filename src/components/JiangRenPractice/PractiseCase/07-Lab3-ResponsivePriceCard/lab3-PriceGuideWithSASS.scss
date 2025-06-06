@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Variables
 $primary-color: #4f89e0;
 $secondary-color: #f5f5f5;
@@ -74,10 +76,8 @@ $transition-speed: 0.3s;
     
     .btn-select {
       background-color: $accent-color;
-      color: white;
-      
-      &:hover {
-        background-color: darken($accent-color, 10%);
+      color: white;      &:hover {
+        background-color: color.adjust($accent-color, $lightness: -10%);
       }
     }
     

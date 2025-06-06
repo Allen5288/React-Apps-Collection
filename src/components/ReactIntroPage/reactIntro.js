@@ -55,6 +55,7 @@ function ReactIntro() {
       name: "Required Start Backend Projects",
       projects: [
         { path: "/cms", label: "cms system" },
+        { path: "/imageUpload", label: "Image Upload" },
       ],
     },
     {
