@@ -15,24 +15,39 @@ export const CreateArticlePage = () => {
     await createArticle(articleData);
     // navigate("/cms");
   };
-
   return (
-    <form>
-      <input
-        type="text"
-        value={articleData.title}
-        name="title"
-        onChange={onChangeData}
-      />
-      <input
-        type="text"
-        value={articleData.content}
-        name="content"
-        onChange={onChangeData}
-      />
-      <button onClick={onClick} type="button">
-        Submit
-      </button>
+    <form className="create-form">
+      <div className="form-group">
+        <label htmlFor="title">Article Title</label>
+        <input
+          id="title"
+          type="text"
+          value={articleData.title || ''}
+          name="title"
+          placeholder="Enter article title..."
+          onChange={onChangeData}
+        />
+      </div>
+      
+      <div className="form-group">
+        <label htmlFor="content">Article Content</label>
+        <textarea
+          id="content"
+          value={articleData.content || ''}
+          name="content"
+          placeholder="Write your article content..."
+          onChange={onChangeData}
+        />
+      </div>
+      
+      <div className="form-actions">
+        <button onClick={onClick} type="button" className="btn-primary">
+          Publish Article
+        </button>
+        <button type="button" className="btn-secondary">
+          Save Draft
+        </button>
+      </div>
     </form>
   );
 };
