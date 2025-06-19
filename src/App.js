@@ -23,6 +23,7 @@ import ReduxBookLibrary from "./components/01-MiddleProject/06-ReduxBookLibrary/
 import { lazy } from "react";
 import CMS from "./components/03-BackendRequiredProject/01-CMS-FE/CMS.jsx";
 import ImageUpload from "./components/03-BackendRequiredProject/02-ImageUploadApp/ImageUpload.jsx";
+import ReduxLoginApp from "./components/01-MiddleProject/07-ReduxLoginApp/ReduxLoginApp.jsx";
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
@@ -58,6 +59,7 @@ export default function App() {
         <Route path="/salaryCalculator" element={<SalaryCalculator />} />
         <Route path="/currencyExchange" element={<CurrencyExchange />} />
         <Route path="/reduxBookLibrary" element={<ReduxBookLibrary />} />
+        <Route path="/reduxLoginApp" element={<ReduxLoginApp />} />
         {/* Large Projects */}
         <Route path="/weatherApp" element={<WeatherApp />} />
         <Route path="/myToyRobot" element={<MyToyRobot />} />

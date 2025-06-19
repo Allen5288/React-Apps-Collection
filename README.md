@@ -14,50 +14,76 @@ The project is organized into different categories based on complexity:
 
 ### Small Projects (`00-SmallProject`)
 
-- **ReactEssentials**: Fundamental React concepts and patterns
-- **TicTacToe**: Classic Tic-Tac-Toe game implementation
-- **InvestmentCalculator**: Tool for calculating investment returns
-- **StyleAuthInput**: Styled authentication input components
 - **CodeCompare**: Code comparison utility
+- **CurrencyExchange**: Currency conversion application  
+- **InvestmentCalculator**: Tool for calculating investment returns
+- **ReactEssentials**: Fundamental React concepts and patterns
 - **SalaryCalculateApp**: Salary calculation utility
-- **CurrencyExchange**: Currency conversion application
+- **StyleAuthInput**: Styled authentication input components
+- **TicTacToe**: Classic Tic-Tac-Toe game implementation
 
 ### Medium Projects (`01-MiddleProject`)
 
+- **06-ReduxBookLibrary**: Book library management using Redux
+- **07-ReduxLoginApp**: Login application with Redux state management
 - **ContextShoppingCart**: Shopping cart implementation using React Context
 - **QuizApp**: Interactive quiz application
 - **RefPortalPlayers**: Demonstrates use of Refs and Portals
 - **SideEffectChooseDestination**: Application showcasing React side effects
 - **TailWindProjectManagement**: Project management UI with TailwindCSS
 
+### Large Projects (`02-LargeProject`)
+
+- **00-WeatherApp**: Comprehensive weather application
+- **01-MyToyRobot**: Interactive toy robot simulation
+
+### Backend Required Projects (`03-BackendRequiredProject`)
+
+- **01-CMS-FE**: Content Management System Frontend
+- **02-ImageUploadApp**: Image upload and management application
+
 ### Additional Resources
 
+- **AppHeader**: Reusable header component
+- **HomePage**: Main landing page component
 - **ReactIntroPage**: Introduction to React concepts
-- **JiangRenPractice**: Practice exercises and components including:
-  - Signup Form
-  - Responsive List
-  - Card UI Design
-  - HTML/CSS Tutorials
-  - Grid/Flexbox Cards
-  - JavaScript Shopping List
-  - Responsive Price Card
-  - Weather Application
-  - Progress Bar
-  - MOOC Platform Course Card
-  - Hook for Pagination
+- **JiangRenPractice**: Comprehensive practice exercises including:
+  - 01-HTML&CSS-Assignment1-SignUpForm: User registration form
+  - 02-HTMLCSS-Lab1-ResponsiveList: Responsive list components
+  - 03-HTMLCSS-Assign2-CardUIDesign: Card UI design patterns
+  - 04-HTMLCSS-Tutorial: HTML/CSS learning materials
+  - 05-Lab2-Grid-Flexbox-Card: Grid and Flexbox card layouts
+  - 06-Assign1-JS-ShoppingList: JavaScript shopping list application
+  - 07-Lab3-ResponsivePriceCard: Responsive pricing card components
+  - 08-Lab4-WeatherApplication: Weather application implementation
+  - 09-Lab5-ProgressBar: Progress bar components
+  - 10-Assign-MoocPlatformCourseCard: MOOC platform course cards
+  - 10-Assign2-MoocPlatformCourseCard: Advanced MOOC course cards
+  - 11-Lab6-HookWithPagination: Pagination using React hooks
+  - 12-Proj-NoteKeeper: Note-taking application
+  - 13-Assign3-FetchAndDisplayLecturersList: Lecturers list with API integration
+  - 14-Lab7-NoteCardWithLocalStorage: Note cards with local storage
+  - 15-Lab8-Reducer-IncomeAndExpenditureManagement: Income/expense management with useReducer
 - **ReactLiveCoding**: Live coding practice examples including:
-  - Counter Application
-  - Task Tracker
+  - 01-CounterApp: Basic counter application
+  - 02-TaskTracker: Task management application
+  - 03-Tax-Depreciation-Calculator: Tax depreciation calculation tool
 
 ## 🛠️ Technologies Used
 
 - **React**: UI library for building component-based interfaces
 - **React Router**: For navigation between different applications
+- **Redux**: State management library for complex applications
+- **React Context API**: Built-in state management solution
+- **React Hooks**: useState, useEffect, useReducer, custom hooks
 - **TailwindCSS**: Utility-first CSS framework
 - **Material-UI**: React components library
 - **Styled Components**: CSS-in-JS styling solution
-- **SASS**: CSS preprocessor for advanced styling
+- **SASS/SCSS**: CSS preprocessor for advanced styling
 - **Recharts**: Charting library for data visualization
+- **Local Storage**: Browser storage for data persistence
+- **API Integration**: Fetch and display data from external APIs
+- **Responsive Design**: Mobile-first approach with CSS Grid and Flexbox
 
 ## 🚀 Getting Started
 
@@ -118,12 +144,20 @@ The project is organized into different categories based on complexity:
 
 ## 🌟 Features
 
-- **Responsive Design**: All applications are mobile-friendly
+- **Responsive Design**: All applications are mobile-friendly and follow mobile-first approach
 - **Component Reusability**: Demonstrates how to create reusable React components
-- **State Management**: Various approaches to state management (useState, useReducer, Context API)
-- **Side Effects**: Proper handling of side effects with useEffect
+- **State Management**: Various approaches including useState, useReducer, Context API, and Redux
+- **Side Effects**: Proper handling of side effects with useEffect hook
 - **Performance Optimization**: Demonstrates React performance optimization techniques
 - **Routing**: Navigation between applications using React Router
+- **Data Persistence**: Local storage integration for saving user data
+- **API Integration**: Fetching and displaying data from external APIs
+- **Form Handling**: Various form implementations with validation
+- **UI/UX Design**: Modern and intuitive user interfaces
+- **Progressive Complexity**: Projects organized from basic to advanced levels
+- **Interactive Games**: Engaging game implementations like Tic-Tac-Toe
+- **Utility Applications**: Practical tools like calculators and converters
+- **Backend Integration**: Projects designed to work with backend services
 
 ## 🔄 Continuous Updates
 
