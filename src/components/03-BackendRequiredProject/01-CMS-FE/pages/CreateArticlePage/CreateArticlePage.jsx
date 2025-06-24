@@ -13,6 +13,7 @@ export const CreateArticlePage = () => {
 
   const onClick = async () => {
     await createArticle(articleData);
+    setArticleData({}); // Reset the form data after submission
     // navigate("/cms");
   };
   return (

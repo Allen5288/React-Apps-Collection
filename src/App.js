@@ -62,10 +62,9 @@ export default function App() {
         <Route path="/reduxLoginApp" element={<ReduxLoginApp />} />
         {/* Large Projects */}
         <Route path="/weatherApp" element={<WeatherApp />} />
-        <Route path="/myToyRobot" element={<MyToyRobot />} />
-        {/* Backend Required Projects */}
+        <Route path="/myToyRobot" element={<MyToyRobot />} />        {/* Backend Required Projects */}
         {/* Backend Required RUN CMS PROJECT IN THE NODEJS PROJECT COLLECTIONS */}
-        <Route path="/cms" element={<CMS />} />
+        <Route path="/cms/*" element={<CMS />} />
         <Route path="/imageUpload" element={<ImageUpload />} />
         {/* Practice Exercises */}
         {/* JiangRen Practice route with nested routes handled within the component */}
