@@ -5,9 +5,9 @@ const Article = (props) => {
   const { title, content, comments, status, author, likedBy } = props.data;
 
   return (
-    <div className="article-component">
-      <h1 className="article-title">{title}</h1>
-      <p className="article-content">{content}</p>
+    <div className="cms-article-component">
+      <h1 className="cms-article-title">{title}</h1>
+      <p className="cms-article-content">{content}</p>
     </div>
   );
 };

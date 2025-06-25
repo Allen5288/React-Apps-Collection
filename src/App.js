@@ -27,7 +27,7 @@ import ReduxLoginApp from "./components/01-MiddleProject/07-ReduxLoginApp/ReduxL
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
-  // Always use basename for both development and production
+  // Always use /React-Apps-Collection as basename for both development and production
   const basename = "/React-Apps-Collection";
 
   return (

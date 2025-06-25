@@ -9,25 +9,26 @@ export default defineConfig({
   esbuild: {
     loader: "jsx",
     include: /src\/.*\.[jt]sx?$/,
-    exclude: []
+    exclude: [],
   },
   optimizeDeps: {
     esbuildOptions: {
       loader: {
         ".js": "jsx",
-        ".ts": "tsx"
-      }
-    }
+        ".ts": "tsx",
+      },
+    },
   },
   build: {
     outDir: "dist",
     rollupOptions: {
       input: {
-        main: "./index.html"
-      }
-    }
-  },  server: {
+        main: "./index.html",
+      },
+    },
+  },
+  server: {
     port: 3000,
-    open: '/React-Apps-Collection'
-  }
+    open: "/React-Apps-Collection",
+  },
 });
