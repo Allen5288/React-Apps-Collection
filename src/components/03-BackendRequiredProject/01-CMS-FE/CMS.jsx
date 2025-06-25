@@ -1,48 +1,31 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import './CMS.scss'
-import { Article, Create, Dashboard } from '@mui/icons-material'
+import App from './App'
 import ArticlesPage from './pages/ArticlesPage/ArticlesPage'
 import { CreateArticlePage } from './pages/CreateArticlePage/CreateArticlePage'
-
+import { ArticlePage } from './pages/ArticlePage/ArticlePage'
+import { AuthProvider } from './context/AuthProvider'
+import { Menu } from './components/Menu/Menu'
+import { LoginPage } from './pages/LoginPage/LoginPage'
+import { UserMePage } from './pages/UserMePage/UserMePage'
+import { RegisterPage } from './pages/RegisterPage/RegisterPage'
+// https://bitbucket.org/010001/jr/src/main/24/Tutorial08-CMS-FE/src/
 const CMS = () => {
   return (
-    <div id="cms-id">
-      <div className="cms-header">
-        <h1 className="cms-title">
-          <Dashboard className="cms-icon" />
-          Content Management System
-        </h1>
-        <div className="cms-nav">
-          <button className="nav-button active">
-            <Create style={{ marginRight: '0.5rem', fontSize: '1rem' }} />
-            Dashboard
-          </button>
-        </div>
+    <AuthProvider>
+      <div className="cms-app-container">
+        <Menu />
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/user-me" element={<UserMePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/articles" element={<ArticlesPage />} />
+          <Route path="/create-articles" element={<CreateArticlePage />} />
+          <Route path="/articles/:id" element={<ArticlePage />} />
+        </Routes>
       </div>
-      
-      <div className="cms-content">
-        <div className="create-article-section">
-          <div className="section-header">
-            <h2>
-              <Create className="section-icon" />
-              Create New Article
-            </h2>
-          </div>
-          <CreateArticlePage />
-        </div>
-        
-        <div className="articles-section">
-          <div className="section-header">
-            <h2>
-              <Article className="section-icon" />
-              Recent Articles
-            </h2>
-            <span className="articles-count">Latest Posts</span>
-          </div>
-          <ArticlesPage />
-        </div>
-      </div>
-    </div>
+    </AuthProvider>
   )
 }
 

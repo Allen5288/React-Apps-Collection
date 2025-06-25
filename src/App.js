@@ -27,7 +27,7 @@ import ReduxLoginApp from "./components/01-MiddleProject/07-ReduxLoginApp/ReduxL
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
-  // Always use basename for both development and production
+  // Always use /React-Apps-Collection as basename for both development and production
   const basename = "/React-Apps-Collection";
 
   return (
@@ -62,10 +62,9 @@ export default function App() {
         <Route path="/reduxLoginApp" element={<ReduxLoginApp />} />
         {/* Large Projects */}
         <Route path="/weatherApp" element={<WeatherApp />} />
-        <Route path="/myToyRobot" element={<MyToyRobot />} />
-        {/* Backend Required Projects */}
+        <Route path="/myToyRobot" element={<MyToyRobot />} />        {/* Backend Required Projects */}
         {/* Backend Required RUN CMS PROJECT IN THE NODEJS PROJECT COLLECTIONS */}
-        <Route path="/cms" element={<CMS />} />
+        <Route path="/cms/*" element={<CMS />} />
         <Route path="/imageUpload" element={<ImageUpload />} />
         {/* Practice Exercises */}
         {/* JiangRen Practice route with nested routes handled within the component */}

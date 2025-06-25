@@ -12,7 +12,7 @@ $shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 $border-radius: 8px;
 $transition: all 0.2s ease-in-out;
 
-.article-component {
+.cms-article-component {
   background: $white;
   border-radius: $border-radius;
   box-shadow: $shadow-sm;
@@ -25,7 +25,7 @@ $transition: all 0.2s ease-in-out;
     border-color: $primary-color;
   }
   
-  .article-title {
+  .cms-article-title {
     font-size: 1.25rem;
     font-weight: 600;
     color: $gray-900;
@@ -38,7 +38,7 @@ $transition: all 0.2s ease-in-out;
     }
   }
   
-  .article-content {
+  .cms-article-content {
     color: $gray-700;
     line-height: 1.6;
     margin: 0;
@@ -53,11 +53,11 @@ $transition: all 0.2s ease-in-out;
   @media (max-width: 768px) {
     padding: 1rem;
     
-    .article-title {
+    .cms-article-title {
       font-size: 1.125rem;
     }
     
-    .article-content {
+    .cms-article-content {
       font-size: 0.8rem;
     }
   }
@@ -67,7 +67,7 @@ $transition: all 0.2s ease-in-out;
     background: #374151;
     border-color: #4b5563;
     
-    .article-title {
+    .cms-article-title {
       color: $white;
       
       &:hover {
@@ -75,7 +75,7 @@ $transition: all 0.2s ease-in-out;
       }
     }
     
-    .article-content {
+    .cms-article-content {
       color: #d1d5db;
     }
   }
