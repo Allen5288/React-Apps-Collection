@@ -1,9 +1,10 @@
 import React from 'react'
 import Row from './Row'
+import Block from './Block'
 
 const ROW_COUNT = 5
 
-const Board = () => {
+const Board = ({ blocks = [] }) => {
   return (
     <div className="bg-white">
       {/* Y-axis labels */}
@@ -27,9 +28,14 @@ const Board = () => {
         </div>
         
         {/* Game board */}
-        <div className='border-2 border-black bg-gray-50'>
+        <div className='border-2 border-black bg-gray-50 relative' style={{ zIndex: 1 }}>
           {Array.from({ length: ROW_COUNT }).map((_, index) => (
             <Row key={index} />
+          ))}
+          
+          {/* Render blocks */}
+          {blocks.map((block, index) => (
+            <Block key={index} position={block} />
           ))}
         </div>
       </div>

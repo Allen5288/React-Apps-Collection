@@ -31,6 +31,9 @@ const Instructions = () => {
           <div>
             <strong>📍 Report:</strong> Shows the robot's current position and direction.
           </div>
+          <div>
+            <strong>🧱 Blocks:</strong> Add random obstacles that the robot cannot move through.
+          </div>
           
           <div className="bg-green-100 p-3 rounded mt-3 border border-green-200">
             <strong>⌨️ Keyboard Controls:</strong>
@@ -44,7 +47,7 @@ const Instructions = () => {
           
           <div className="bg-blue-100 p-2 rounded mt-3">
             <strong>⚠️ Rules:</strong> The robot cannot move outside the 5×5 grid (coordinates 0-4).
-            Commands are ignored if they would cause the robot to fall off the board.
+            Commands are ignored if they would cause the robot to fall off the board or hit a block (🧱).
           </div>
         </div>
       )}

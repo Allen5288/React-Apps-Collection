@@ -14,7 +14,7 @@ const PlaceRobot = ({ onPlaceRobot, onReset }) => {
 
   return (
     <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-      <h3 className="text-lg font-semibold mb-4 text-gray-800">Place Robot</h3>
+      <h3 className="text-base font-semibold mb-3 text-gray-800">Place Robot</h3>
       
       <div className="space-y-3">
         <div className="flex gap-4">

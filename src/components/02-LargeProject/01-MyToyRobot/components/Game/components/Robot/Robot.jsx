@@ -24,16 +24,31 @@ const Robot = ({ position }) => {
     }
   };
 
+  const getArrowPosition = (face) => {
+    switch (face) {
+      case "North":
+        return "absolute -top-6 left-1/2 transform -translate-x-1/2";
+      case "South":
+        return "absolute top-7 left-1/2 transform -translate-x-1/2";
+      case "East":
+        return "absolute top-1/3 left-7 transform -translate-y-1/2";
+      case "West":
+        return "absolute top-1/2 -left-5 transform -translate-y-1/2";
+      default:
+        return "absolute -top-6 left-1/2 transform -translate-x-1/2";
+    }
+  };
+
   const getRotation = (face) => {
     switch (face) {
       case "North":
         return "rotate-0";
-      case "East":
-        return "rotate-90";
       case "South":
         return "rotate-180";
+      case "East":
+        return "rotate-90";
       case "West":
-        return "rotate-270";
+        return "-rotate-90";
       default:
         return "rotate-0";
     }
@@ -42,26 +57,27 @@ const Robot = ({ position }) => {
   return (
     <div
       style={{
-        left: `${position.x * 60}px`,
-        top: `${position.y * 60}px`,
+        left: `${position.x * 60 + 45}px`, // 32px for axis labels + 12px to center in cell
+        top: `${position.y * 60 + 45}px`,  // 32px for axis labels + 12px to center in cell
+        zIndex: 20,
       }}
       className={`
         absolute
-        text-2xl h-[60px] w-[60px] border border-transparent
+        text-2xl w-[36px] h-[36px] border border-transparent
         flex items-center justify-center
         transition-all duration-300 ease-in-out
         ${isAnimating ? 'scale-110' : 'scale-100'}
       `}
     >
       <div className="relative">
-        <span className={`w-[40px] h-[40px] bg-blue-500 rounded-full border-2 border-blue-700 flex items-center justify-center text-white font-bold shadow-lg transition-all duration-300 ${isAnimating ? 'bg-blue-600 scale-105' : ''}`}>
-          <span className={`transform transition-transform duration-300 ${getRotation(position.face)}`}>
+        <span className={`w-[32px] h-[32px] bg-blue-500 rounded-full border-2 border-blue-700 flex items-center justify-center text-white font-bold shadow-lg transition-all duration-300 ${isAnimating ? 'bg-blue-600 scale-105' : ''}`}>
+          <span className={`transform transition-transform duration-300 text-sm ${getRotation(position.face)}`}>
             🤖
           </span>
         </span>
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-          <span className="text-2xl">{getDirectionArrow(position.face)}</span>
-        </div>
+        {/* <div className={getArrowPosition(position.face)}>
+          <span className="text-lg font-bold text-blue-600">{getDirectionArrow(position.face)}</span>
+        </div> */}
       </div>
     </div>
   );

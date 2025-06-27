@@ -4,6 +4,7 @@ import Robot from "./components/Robot/Robot";
 import Commands from "./components/Commands/Commands";
 import PlaceRobot from "./components/PlaceRobot/PlaceRobot";
 import Instructions from "./components/Instructions/Instructions";
+import BlockControls from "./components/BlockControls/BlockControls";
 
 const MOVE = {
   North: { x: 0, y: -1 },
@@ -29,13 +30,14 @@ const getNewDirection = (currentDirection, turn) => {
 
 const Game = () => {
   const [robotPositionOnBoard, setRobotPositionOnBoard] = useState({
-    x: 1,
-    y: 2,
+    x: 0,
+    y: 0,
     face: "North",
   });
   const [reportMessage, setReportMessage] = useState("");
   const [isPlaced, setIsPlaced] = useState(true);
   const [keyPressed, setKeyPressed] = useState(null);
+  const [blocks, setBlocks] = useState([]);
 
   // Keyboard controls
   useEffect(() => {
@@ -88,6 +90,10 @@ const Game = () => {
   const isValidPosition = (x, y) => {
     return x >= 0 && x < 5 && y >= 0 && y < 5;
   };
+
+  const isBlockedPosition = (x, y) => {
+    return blocks.some(block => block.x === x && block.y === y);
+  };
   const handleCommand = (command) => {
     setReportMessage(""); // Clear previous report
     
@@ -123,15 +129,21 @@ const Game = () => {
     const newX = robotPositionOnBoard.x + movement.x;
     const newY = robotPositionOnBoard.y + movement.y;
 
-    if (isValidPosition(newX, newY)) {
-      setRobotPositionOnBoard((prev) => ({
-        ...prev,
-        x: newX,
-        y: newY,
-      }));
-    } else {
+    if (!isValidPosition(newX, newY)) {
       setReportMessage("Cannot move - robot would fall off the board!");
+      return;
     }
+
+    if (isBlockedPosition(newX, newY)) {
+      setReportMessage("Cannot move - there's a block in the way!");
+      return;
+    }
+
+    setRobotPositionOnBoard((prev) => ({
+      ...prev,
+      x: newX,
+      y: newY,
+    }));
   };
 
   const handleTurn = (direction) => {
@@ -153,30 +165,70 @@ const Game = () => {
   };
 
   const handlePlaceRobot = (x, y, face) => {
-    if (isValidPosition(x, y)) {
-      setRobotPositionOnBoard({ x, y, face });
-      setIsPlaced(true);
-      setReportMessage(`Robot placed at position (${x}, ${y}) facing ${face}`);
-    } else {
+    if (!isValidPosition(x, y)) {
       setReportMessage("Invalid position! Please choose coordinates between 0-4.");
+      return;
     }
+    
+    if (isBlockedPosition(x, y)) {
+      setReportMessage("Cannot place robot - there's a block at that position!");
+      return;
+    }
+    
+    setRobotPositionOnBoard({ x, y, face });
+    setIsPlaced(true);
+    setReportMessage(`Robot placed at position (${x}, ${y}) facing ${face}`);
+  };
+
+  const handleAddBlock = () => {
+    // Find all available positions (not occupied by robot or existing blocks)
+    const availablePositions = [];
+    
+    for (let x = 0; x < 5; x++) {
+      for (let y = 0; y < 5; y++) {
+        const isRobotPosition = isPlaced && robotPositionOnBoard.x === x && robotPositionOnBoard.y === y;
+        const isBlockPosition = isBlockedPosition(x, y);
+        
+        if (!isRobotPosition && !isBlockPosition) {
+          availablePositions.push({ x, y });
+        }
+      }
+    }
+    
+    if (availablePositions.length === 0) {
+      setReportMessage("Cannot add block - no available positions!");
+      return;
+    }
+    
+    // Randomly select a position
+    const randomIndex = Math.floor(Math.random() * availablePositions.length);
+    const newBlock = availablePositions[randomIndex];
+    
+    setBlocks(prev => [...prev, newBlock]);
+    setReportMessage(`Block added at position (${newBlock.x}, ${newBlock.y})`);
+  };
+
+  const handleClearBlocks = () => {
+    setBlocks([]);
+    setReportMessage("All blocks cleared from the board!");
   };
 
   const handleReset = () => {
     setRobotPositionOnBoard({ x: 0, y: 0, face: "North" });
     setIsPlaced(false);
-    setReportMessage("Robot removed from board. Please place the robot first.");
+    setBlocks([]);
+    setReportMessage("Robot removed from board and all blocks cleared. Please place the robot first.");
   };
 
   return (
     <main className="p-12 flex justify-between gap-8">
       <div className="relative">
+        <Board blocks={blocks} />
         {isPlaced && <Robot position={robotPositionOnBoard} />}
-        <Board />
         
         {/* Keyboard Status Indicator */}
         {keyPressed && (
-          <div className="absolute top-0 right-0 bg-yellow-200 border border-yellow-400 px-3 py-1 rounded-lg shadow-lg">
+          <div className="absolute top-0 right-0 bg-yellow-200 border border-yellow-400 px-3 py-1 rounded-lg shadow-lg" style={{ zIndex: 30 }}>
             <span className="text-yellow-800 text-sm font-medium">
               Key: {keyPressed.replace('Arrow', '').replace('Key', '')}
             </span>
@@ -197,6 +249,11 @@ const Game = () => {
         
         <Instructions />
         <PlaceRobot onPlaceRobot={handlePlaceRobot} onReset={handleReset} />
+        <BlockControls 
+          onAddBlock={handleAddBlock} 
+          onClearBlocks={handleClearBlocks} 
+          blockCount={blocks.length}
+        />
         <Commands onCommandClick={handleCommand} isPlaced={isPlaced} />
         {reportMessage && (
           <div className="p-4 bg-green-100 border border-green-300 rounded-lg">
