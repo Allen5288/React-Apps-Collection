@@ -8,13 +8,24 @@ const COMMANDS = [
   { id: 4, label: "Report" },
 ];
 
-const Commands = () => {
+const Commands = ({ onCommandClick, isPlaced }) => {
   return (
-    <div>
-      <ul className="space-y-4">
+    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+      <h3 className="text-lg font-semibold mb-4 text-gray-800">Robot Commands</h3>
+      {!isPlaced && (
+        <p className="text-orange-600 text-sm mb-4 p-2 bg-orange-50 border border-orange-200 rounded">
+          ⚠️ Please place the robot on the board first!
+        </p>
+      )}
+      <ul className="space-y-3">
         {COMMANDS.map((command) => (
           <li key={command.id}>
-            <Button>{command.label}</Button>
+            <Button
+              onClick={() => onCommandClick(command.label)}
+              disabled={!isPlaced && command.label !== "Report"}
+            >
+              {command.label}
+            </Button>
           </li>
         ))}
       </ul>
