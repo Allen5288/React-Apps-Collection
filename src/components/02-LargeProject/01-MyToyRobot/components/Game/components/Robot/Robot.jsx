@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Placement from '../Placement/Placement';
 
 const Robot = ({ position }) => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -55,20 +56,7 @@ const Robot = ({ position }) => {
   };
 
   return (
-    <div
-      style={{
-        left: `${position.x * 60 + 45}px`, // 32px for axis labels + 12px to center in cell
-        top: `${position.y * 60 + 45}px`,  // 32px for axis labels + 12px to center in cell
-        zIndex: 20,
-      }}
-      className={`
-        absolute
-        text-2xl w-[36px] h-[36px] border border-transparent
-        flex items-center justify-center
-        transition-all duration-300 ease-in-out
-        ${isAnimating ? 'scale-110' : 'scale-100'}
-      `}
-    >
+    <Placement x={position.x} y={position.y} type="robot" style={{zIndex: 20}}>
       <div className="relative">
         <span className={`w-[32px] h-[32px] bg-blue-500 rounded-full border-2 border-blue-700 flex items-center justify-center text-white font-bold shadow-lg transition-all duration-300 ${isAnimating ? 'bg-blue-600 scale-105' : ''}`}>
           <span className={`transform transition-transform duration-300 text-sm ${getRotation(position.face)}`}>
@@ -79,7 +67,7 @@ const Robot = ({ position }) => {
           <span className="text-lg font-bold text-blue-600">{getDirectionArrow(position.face)}</span>
         </div> */}
       </div>
-    </div>
+    </Placement>
   );
 };
 
