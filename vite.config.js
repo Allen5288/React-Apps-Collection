@@ -30,6 +30,6 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: "/React-Apps-Collection",
+    open: "/React-Apps-Collection/",
   },
 });

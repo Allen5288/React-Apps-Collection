@@ -17,6 +17,8 @@ const Placement = ({ x, y, type = '', children, style = {}, className = "", axis
   const top = y * 60 + (axisOffset ? 32 : 0) + 15;
   return (
     <div
+      role='gridcell'
+      aria-label={`${type} at (${x}, ${y})`}
       style={{
         left: `${left}px`,
         top: `${top}px`,

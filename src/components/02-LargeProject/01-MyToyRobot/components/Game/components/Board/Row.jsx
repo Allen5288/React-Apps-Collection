@@ -1,14 +1,14 @@
 import React from 'react'
 import Cell from './Cell'
 
-const Row = () => {
+const Row = ({y}) => {
   return (
-    <div className='flex'>
-        <Cell />
-        <Cell />
-        <Cell />
-        <Cell />
-        <Cell />
+    <div role='row' aria-label={`${y}`} className='flex'>
+        <Cell x={0} y={y} />
+        <Cell x={1} y={y} />
+        <Cell x={2} y={y} />
+        <Cell x={3} y={y} />
+        <Cell x={4} y={y} />
     </div>
   )
 }
