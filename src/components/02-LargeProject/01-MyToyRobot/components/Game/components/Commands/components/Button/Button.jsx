@@ -3,6 +3,7 @@ import React from "react";
 const Button = ({ children, onClick, disabled = false }) => {
   return (
     <button
+      role="button"
       onClick={onClick}
       disabled={disabled}
       className={`min-w-[120px] border border-gray-800 px-3

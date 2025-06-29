@@ -28,9 +28,9 @@ const Board = ({ blocks = [] }) => {
         </div>
         
         {/* Game board */}
-        <div className='border-2 border-black bg-gray-50 relative' style={{ zIndex: 1 }}>
+        <div role='grid' aria-label='Game Board' className='border-2 border-black bg-gray-50 relative' style={{ zIndex: 1 }}>
           {Array.from({ length: ROW_COUNT }).map((_, index) => (
-            <Row key={index} />
+            <Row key={index} y={index} />
           ))}
           
           {/* Render blocks */}

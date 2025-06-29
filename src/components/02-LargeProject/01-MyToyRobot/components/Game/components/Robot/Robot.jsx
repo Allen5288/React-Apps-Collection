@@ -57,7 +57,7 @@ const Robot = ({ position }) => {
 
   return (
     <Placement x={position.x} y={position.y} type="robot" style={{zIndex: 20}}>
-      <div className="relative">
+      <div aria-label="Robot" data-testid="robot" className="relative">
         <span className={`w-[32px] h-[32px] bg-blue-500 rounded-full border-2 border-blue-700 flex items-center justify-center text-white font-bold shadow-lg transition-all duration-300 ${isAnimating ? 'bg-blue-600 scale-105' : ''}`}>
           <span className={`transform transition-transform duration-300 text-sm ${getRotation(position.face)}`}>
             🤖

@@ -19,8 +19,9 @@ const PlaceRobot = ({ onPlaceRobot, onReset }) => {
       <div className="space-y-3">
         <div className="flex gap-4">
           <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-600 mb-1">X:</label>
+            <label htmlFor="place-x" className="text-sm font-medium text-gray-600 mb-1">X</label>
             <select 
+              id="place-x"
               value={x} 
               onChange={(e) => setX(parseInt(e.target.value))}
               className="w-16 p-2 border border-gray-300 rounded text-center"
@@ -32,8 +33,9 @@ const PlaceRobot = ({ onPlaceRobot, onReset }) => {
           </div>
           
           <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-600 mb-1">Y:</label>
+            <label htmlFor="place-y" className="text-sm font-medium text-gray-600 mb-1">Y</label>
             <select 
+              id="place-y"
               value={y} 
               onChange={(e) => setY(parseInt(e.target.value))}
               className="w-16 p-2 border border-gray-300 rounded text-center"
@@ -45,8 +47,9 @@ const PlaceRobot = ({ onPlaceRobot, onReset }) => {
           </div>
           
           <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-600 mb-1">Face:</label>
+            <label htmlFor="place-face" className="text-sm font-medium text-gray-600 mb-1">Facing</label>
             <select 
+              id="place-face"
               value={face} 
               onChange={(e) => setFace(e.target.value)}
               className="w-20 p-2 border border-gray-300 rounded text-center"
