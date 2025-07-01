@@ -10,11 +10,19 @@ import React from "react";
  * @param {Object} [props.style] - 额外样式
  * @param {string} [props.className] - 额外class
  * @param {boolean} [props.axisOffset] - 是否包含轴标签偏移（默认true）
+ * @param {boolean} [props.alignToGrid] - 是否对齐格线交点（默认true）
  */
-const Placement = ({ x, y, type = '', children, style = {}, className = "", axisOffset = true }) => {
-  // 32px 轴标签偏移 + 12px 居中，或仅 12px 居中
-  const left = x * 60 + (axisOffset ? 32 : 0) + 15;
-  const top = y * 60 + (axisOffset ? 32 : 0) + 15;
+const Placement = ({ x, y, type = '', children, style = {}, className = "", axisOffset = true, alignToGrid = true }) => {
+  // alignToGrid: true 表示居中在格子内，false表示对齐格线交点
+  let left, top;
+  if (alignToGrid) {
+    left = x * 60 + (axisOffset ? 32 : 0) + 15;
+    top = y * 60 + (axisOffset ? 32 : 0) + 15;
+  } else {
+    // 让元素中心对齐交点（即加上半个元素宽高的偏移）
+    left = x * 60 + (axisOffset ? 32 : 0) - 16;
+    top = y * 60 + (axisOffset ? 32 : 0) - 16;
+  }
   return (
     <div
       role='gridcell'

@@ -1,10 +1,12 @@
 import React from 'react'
 import Row from './Row'
 import Block from './Block'
+import Monster from '../Monster/Monster'
+import Goal from '../Goal/Goal'
 
 const ROW_COUNT = 5
 
-const Board = ({ blocks = [] }) => {
+const Board = ({ blocks = [], monster, goal }) => {
   return (
     <div className="bg-white">
       {/* Y-axis labels */}
@@ -37,6 +39,10 @@ const Board = ({ blocks = [] }) => {
           {blocks.map((block, index) => (
             <Block key={index} position={block} />
           ))}
+          
+          {/* Render monster and goal if props传递 */}
+          {monster && <Monster position={monster} />}
+          {goal && <Goal position={goal} />}
         </div>
       </div>
     </div>

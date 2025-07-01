@@ -5,6 +5,8 @@ import Commands from "./components/Commands/Commands";
 import PlaceRobot from "./components/PlaceRobot/PlaceRobot";
 import Instructions from "./components/Instructions/Instructions";
 import BlockControls from "./components/BlockControls/BlockControls";
+import Monster from "./components/Monster/Monster";
+import Goal from "./components/Goal/Goal";
 
 const MOVE = {
   North: { x: 0, y: -1 },
@@ -28,16 +30,24 @@ const getNewDirection = (currentDirection, turn) => {
   return DIRECTIONS[newIndex];
 };
 
+const ROW_COUNT = 5; // Assuming a 5x5 board
+
+const getRandomPosition = (exclude = []) => {
+  let pos;
+  do {
+    pos = { x: Math.floor(Math.random() * ROW_COUNT), y: Math.floor(Math.random() * ROW_COUNT) };
+  } while (exclude.some(e => e.x === pos.x && e.y === pos.y));
+  return pos;
+};
+
 const Game = () => {
-  const [robotPositionOnBoard, setRobotPositionOnBoard] = useState({
-    x: 0,
-    y: 0,
-    face: "North",
-  });
+  const [robotPositionOnBoard, setRobotPositionOnBoard] = useState(() => getRandomPosition());
   const [reportMessage, setReportMessage] = useState("");
   const [isPlaced, setIsPlaced] = useState(true);
   const [keyPressed, setKeyPressed] = useState(null);
   const [blocks, setBlocks] = useState([]);
+  const [monsterPosition, setMonsterPosition] = useState(() => getRandomPosition([robotPositionOnBoard]));
+  const [goalPosition, setGoalPosition] = useState(() => getRandomPosition([robotPositionOnBoard, monsterPosition]));
 
   // Keyboard controls
   useEffect(() => {
@@ -144,6 +154,8 @@ const Game = () => {
       x: newX,
       y: newY,
     }));
+
+    setTimeout(moveMonster, 200); // 机器人动后怪物动
   };
 
   const handleTurn = (direction) => {
@@ -152,6 +164,8 @@ const Game = () => {
       ...prev,
       face: newFace,
     }));
+
+    setTimeout(moveMonster, 200);
   };
 
   const handleReport = () => {
@@ -175,9 +189,14 @@ const Game = () => {
       return;
     }
     
-    setRobotPositionOnBoard({ x, y, face });
+    const newRobot = getRandomPosition();
+    const newMonster = getRandomPosition([newRobot]);
+    const newGoal = getRandomPosition([newRobot, newMonster]);
+    setRobotPositionOnBoard({ ...newRobot, face });
+    setMonsterPosition(newMonster);
     setIsPlaced(true);
-    setReportMessage(`Robot placed at position (${x}, ${y}) facing ${face}`);
+    setGoalPosition(newGoal);
+    setReportMessage(`Robot placed at position (${newRobot.x}, ${newRobot.y}) facing ${face}`);
   };
 
   const handleAddBlock = () => {
@@ -220,11 +239,56 @@ const Game = () => {
     setReportMessage("Robot removed from board and all blocks cleared. Please place the robot first.");
   };
 
+  // Monster自动移动（每次robot移动后，monster朝robot靠近一格）
+  const moveMonster = () => {
+    setMonsterPosition((prev) => {
+      let dx = robotPositionOnBoard.x - prev.x;
+      let dy = robotPositionOnBoard.y - prev.y;
+      let newX = prev.x;
+      let newY = prev.y;
+      if (Math.abs(dx) > Math.abs(dy)) {
+        newX += dx > 0 ? 1 : dx < 0 ? -1 : 0;
+      } else if (dy !== 0) {
+        newY += dy > 0 ? 1 : -1;
+      }
+      // 不走出边界
+      newX = Math.max(0, Math.min(4, newX));
+      newY = Math.max(0, Math.min(4, newY));
+      // 不走到block上
+      if (isBlockedPosition(newX, newY)) return prev;
+      // 不走到终点
+      if (goalPosition.x === newX && goalPosition.y === newY) return prev;
+      return { x: newX, y: newY };
+    });
+  };
+
+  // 检查robot与monster/goal碰撞
+  useEffect(() => {
+    if (!isPlaced) return;
+    if (robotPositionOnBoard.x === monsterPosition.x && robotPositionOnBoard.y === monsterPosition.y) {
+      setReportMessage("Game Over! Robot was caught by the monster! 点击确认重新开始");
+      setTimeout(() => {
+        if (window.confirm("你被怪物抓住了，游戏结束！是否重新开始？")) {
+          handleReset();
+        }
+      }, 100);
+    } else if (robotPositionOnBoard.x === goalPosition.x && robotPositionOnBoard.y === goalPosition.y) {
+      setReportMessage("Congratulations! Robot reached the goal! 点击确认胜利");
+      setTimeout(() => {
+        if (window.confirm("你已到达终点，胜利！是否重新开始？")) {
+          handleReset();
+        }
+      }, 100);
+    }
+  }, [robotPositionOnBoard, monsterPosition, goalPosition, isPlaced]);
+
   return (
     <main className="p-12 flex justify-between gap-8">
       <div className="relative">
-        <Board blocks={blocks} />
+        <Board blocks={blocks} monster={monsterPosition} goal={goalPosition} />
         {isPlaced && <Robot position={robotPositionOnBoard} />}
+        {/* <Monster position={monsterPosition} />
+        <Goal position={goalPosition} /> */}
         
         {/* Keyboard Status Indicator */}
         {keyPressed && (
