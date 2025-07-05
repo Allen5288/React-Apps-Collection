@@ -1,0 +1,82 @@
+@use "sass:color";
+
+// Variables (matching the main CMS styling)
+$primary-color: #2563eb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-500: #6b7280;
+$gray-700: #374151;
+$gray-900: #111827;
+$white: #ffffff;
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$border-radius: 8px;
+$transition: all 0.2s ease-in-out;
+
+.cms-article-component {
+  background: $white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  padding: 1.5rem;
+  transition: $transition;
+  border: 1px solid $gray-200;
+  
+  &:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    border-color: $primary-color;
+  }
+  
+  .cms-article-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $gray-900;
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+    
+    &:hover {
+      color: $primary-color;
+      cursor: pointer;
+    }
+  }
+  
+  .cms-article-content {
+    color: $gray-700;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.875rem;
+    
+    // Handle long content gracefully
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    padding: 1rem;
+    
+    .cms-article-title {
+      font-size: 1.125rem;
+    }
+    
+    .cms-article-content {
+      font-size: 0.8rem;
+    }
+  }
+  
+  // Dark mode support
+  @media (prefers-color-scheme: dark) {
+    background: #374151;
+    border-color: #4b5563;
+    
+    .cms-article-title {
+      color: $white;
+      
+      &:hover {
+        color: #60a5fa;
+      }
+    }
+    
+    .cms-article-content {
+      color: #d1d5db;
+    }
+  }
+}

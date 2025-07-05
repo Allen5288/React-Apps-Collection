@@ -1,0 +1,25 @@
+#my-toy-robot {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  
+  .container {
+    width: 1000px;
+    min-height: 700px;
+    border: 2px solid #333;
+    border-radius: 12px;
+    margin: 32px 0;
+    padding: 36px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    main {
+      margin-top: 20px;
+    }
+  }
+}

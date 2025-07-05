@@ -1,0 +1,116 @@
+/* ArticlePage Styles - CMS Project Specific */
+.cms-single-article-page-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .cms-article-detail-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+
+    .cms-article-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .cms-article-meta {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e5e7eb;
+
+      .cms-meta-item {
+        font-size: 14px;
+        color: #6b7280;
+
+        span {
+          font-weight: 600;
+          color: #374151;
+        }
+      }
+    }
+
+    .cms-article-content {
+      color: #374151;
+      line-height: 1.8;
+      font-size: 18px;
+
+      p {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .cms-loading-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+    font-size: 18px;
+  }
+
+  .cms-no-data-state {
+    text-align: center;
+    padding: 60px 20px;
+
+    h3 {
+      color: #ef4444;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #6b7280;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .cms-retry-container {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .cms-btn-primary {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: #2563eb;
+    }
+
+    &:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+  }
+
+  .cms-back-button {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 20px;
+
+    &:hover {
+      background: #e5e7eb;
+    }
+  }
+}
