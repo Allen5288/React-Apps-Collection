@@ -1,0 +1,211 @@
+// 为 ProductManagementApp 定义独立的主题样式
+#product-management-app {
+  // 基础样式
+  min-height: 100vh;
+  transition: all 0.3s ease;
+
+  // Forest 主题
+  &[data-theme="forest"] {
+    --color-primary: #6BAA75;
+    --color-secondary: #2B4C3F;
+    --color-accent: #A67C58;
+    --color-neutral: #171212;
+    --color-base-100: #171212;
+    --color-base-200: #1f1917;
+    --color-base-300: #2d2a27;
+    --color-base-content: #e5e7eb;
+  }
+
+  // Pastel 主题
+  &[data-theme="pastel"] {
+    --color-primary: #d8b4fe;
+    --color-secondary: #b7e4c7;
+    --color-accent: #ffd8d8;
+    --color-neutral: #1f2937;
+    --color-base-100: #ffffff;
+    --color-base-200: #f8fafc;
+    --color-base-300: #e2e8f0;
+    --color-base-content: #1f2937;
+  }
+
+  // Retro 主题
+  &[data-theme="retro"] {
+    --color-primary: #ef9995;
+    --color-secondary: #a4cbb4;
+    --color-accent: #e2d5bc;
+    --color-neutral: #2a1810;
+    --color-base-100: #ece3ca;
+    --color-base-200: #e4d5b7;
+    --color-base-300: #d1c7a3;
+    --color-base-content: #2a1810;
+  }
+
+  // Coffee 主题
+  &[data-theme="coffee"] {
+    --color-primary: #A67C58;
+    --color-secondary: #807666;
+    --color-accent: #D4A574;
+    --color-neutral: #20161F;
+    --color-base-100: #20161F;
+    --color-base-200: #2a1f24;
+    --color-base-300: #3d2f35;
+    --color-base-content: #e5e7eb;
+  }
+
+  // Cyberpunk 主题
+  &[data-theme="cyberpunk"] {
+    --color-primary: #FF00FF;
+    --color-secondary: #00FFFF;
+    --color-accent: #FF7598;
+    --color-neutral: #1a103d;
+    --color-base-100: #1a103d;
+    --color-base-200: #2a1859;
+    --color-base-300: #3a1c6e;
+    --color-base-content: #f8fafc;
+  }
+
+  // Synthwave 主题
+  &[data-theme="synthwave"] {
+    --color-primary: #FF1E9E;
+    --color-secondary: #1EDBFF;
+    --color-accent: #2D1B69;
+    --color-neutral: #2D1B69;
+    --color-base-100: #2D1B69;
+    --color-base-200: #3a247e;
+    --color-base-300: #4a2e9e;
+    --color-base-content: #f8fafc;
+  }
+
+  // Luxury 主题
+  &[data-theme="luxury"] {
+    --color-primary: #B6862D;
+    --color-secondary: #E2C697;
+    --color-accent: #171618;
+    --color-neutral: #171618;
+    --color-base-100: #171618;
+    --color-base-200: #22201e;
+    --color-base-300: #2d2926;
+    --color-base-content: #e5e7eb;
+  }
+
+  // Autumn 主题
+  &[data-theme="autumn"] {
+    --color-primary: #D27548;
+    --color-secondary: #BA4A00;
+    --color-accent: #D8B4A0;
+    --color-neutral: #6B3F1D;
+    --color-base-100: #D8B4A0;
+    --color-base-200: #e6cfc2;
+    --color-base-300: #f3e3d7;
+    --color-base-content: #3d2f1d;
+  }
+
+  // Valentine 主题
+  &[data-theme="valentine"] {
+    --color-primary: #E96D7B;
+    --color-secondary: #FF8FAB;
+    --color-accent: #FFB3C6;
+    --color-neutral: #7A304D;
+    --color-base-100: #FFF0F6;
+    --color-base-200: #FFD6E0;
+    --color-base-300: #FFB3C6;
+    --color-base-content: #7A304D;
+  }
+
+  // Aqua 主题
+  &[data-theme="aqua"] {
+    --color-primary: #2DD4BF;
+    --color-secondary: #06B6D4;
+    --color-accent: #0EA5E9;
+    --color-neutral: #134E4A;
+    --color-base-100: #ECFEFF;
+    --color-base-200: #CFFAFE;
+    --color-base-300: #A5F3FC;
+    --color-base-content: #134E4A;
+  }
+
+  // Business 主题
+  &[data-theme="business"] {
+    --color-primary: #1C4E80;
+    --color-secondary: #0091D5;
+    --color-accent: #7DB9DE;
+    --color-neutral: #1C4E80;
+    --color-base-100: #F3F6F9;
+    --color-base-200: #E5EAF1;
+    --color-base-300: #D1D9E6;
+    --color-base-content: #1C4E80;
+  }
+
+  // Night 主题
+  &[data-theme="night"] {
+    --color-primary: #334155;
+    --color-secondary: #64748B;
+    --color-accent: #0F172A;
+    --color-neutral: #0F172A;
+    --color-base-100: #0F172A;
+    --color-base-200: #1e293b;
+    --color-base-300: #334155;
+    --color-base-content: #f8fafc;
+  }
+
+  // Dracula 主题
+  &[data-theme="dracula"] {
+    --color-primary: #BD93F9;
+    --color-secondary: #FF79C6;
+    --color-accent: #282A36;
+    --color-neutral: #282A36;
+    --color-base-100: #282A36;
+    --color-base-200: #44475a;
+    --color-base-300: #6272a4;
+    --color-base-content: #f8f8f2;
+  }
+
+  // 应用主题颜色到组件
+  background-color: var(--color-base-200);
+  color: var(--color-base-content);
+
+  // 通用类样式
+  .bg-primary { background-color: var(--color-primary) !important; }
+  .bg-secondary { background-color: var(--color-secondary) !important; }
+  .bg-accent { background-color: var(--color-accent) !important; }
+  .bg-base-100 { background-color: var(--color-base-100) !important; }
+  .bg-base-200 { background-color: var(--color-base-200) !important; }
+  .bg-base-300 { background-color: var(--color-base-300) !important; }
+
+  .text-primary { color: var(--color-primary) !important; }
+  .text-secondary { color: var(--color-secondary) !important; }
+  .text-accent { color: var(--color-accent) !important; }
+  .text-base-content { color: var(--color-base-content) !important; }
+  .text-base-100 { color: var(--color-base-100) !important; }
+
+  .border-primary { border-color: var(--color-primary) !important; }
+  .border-secondary { border-color: var(--color-secondary) !important; }
+  .border-accent { border-color: var(--color-accent) !important; }
+  .border-base-100 { border-color: var(--color-base-100) !important; }
+  .border-base-200 { border-color: var(--color-base-200) !important; }
+  .border-base-300 { border-color: var(--color-base-300) !important; }
+  .border-base-content { border-color: var(--color-base-content) !important; }
+
+  // Hover 状态
+  .hover\:bg-primary\/10:hover { background-color: color-mix(in srgb, var(--color-primary) 10%, transparent) !important; }
+  .hover\:bg-secondary\/10:hover { background-color: color-mix(in srgb, var(--color-secondary) 10%, transparent) !important; }
+  .hover\:bg-base-200:hover { background-color: var(--color-base-200) !important; }
+
+  // Focus 状态
+  .focus\:border-primary:focus { border-color: var(--color-primary) !important; }
+  .focus\:ring-primary\/20:focus { 
+    --tw-ring-color: color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
+  }
+
+  // 渐变背景
+  .bg-gradient-to-r.from-primary.to-secondary {
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  }
+
+  // 透明度变体
+  .bg-secondary\/20 { background-color: color-mix(in srgb, var(--color-secondary) 20%, transparent) !important; }
+  .border-secondary\/30 { border-color: color-mix(in srgb, var(--color-secondary) 30%, transparent) !important; }
+  .bg-base-100\/80 { background-color: color-mix(in srgb, var(--color-base-100) 80%, transparent) !important; }
+  .border-base-content\/10 { border-color: color-mix(in srgb, var(--color-base-content) 10%, transparent) !important; }
+
+}

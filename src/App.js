@@ -24,11 +24,12 @@ import { lazy } from "react";
 import CMS from "./projects/03-BackendRequiredProject/01-CMS-FE/CMS.jsx";
 import ImageUpload from "./projects/03-BackendRequiredProject/02-ImageUploadApp/ImageUpload.jsx";
 import ReduxLoginApp from "./projects/01-MiddleProject/07-ReduxLoginApp/ReduxLoginApp.jsx";
+import ProductManagementApp from "./projects/03-BackendRequiredProject/03-ProductManagementApp/ProductManagementApp.jsx";
 
 // sk-3f34203aba5c49c98ed87834e63f48ea
 export default function App() {
   // Always use /React-Apps-Collection as basename for both development and production
-  const basename = "/React-Apps-Collection";
+  const basename = "/React-Apps-Collection/";
 
   return (
     <Router basename={basename}>
@@ -66,6 +67,7 @@ export default function App() {
         {/* Backend Required RUN CMS PROJECT IN THE NODEJS PROJECT COLLECTIONS */}
         <Route path="/cms/*" element={<CMS />} />
         <Route path="/imageUpload" element={<ImageUpload />} />
+        <Route path="/productManagement/*" element={<ProductManagementApp />} />
         {/* Practice Exercises */}
         {/* JiangRen Practice route with nested routes handled within the component */}
         <Route path="/jiangRenPractice/*" element={<JiangRenPractice />} />

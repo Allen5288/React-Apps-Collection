@@ -23,6 +23,7 @@ function ReactIntro() {
       projects: [
         { path: "/cms", label: "cms system" },
         { path: "/imageUpload", label: "Image Upload" },
+        { path: "/productManagement", label: "Product Management" },
       ],
     },
     {
