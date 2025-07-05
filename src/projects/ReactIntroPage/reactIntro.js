@@ -19,6 +19,20 @@ function ReactIntro() {
     //   projects: [{ path: "/home", label: "Home Page" }],
     // },
     {
+      name: "Required Start Backend Projects",
+      projects: [
+        { path: "/cms", label: "cms system" },
+        { path: "/imageUpload", label: "Image Upload" },
+      ],
+    },
+    {
+      name: "Practice Exercises",
+      projects: [
+        { path: "/jiangRenPractice", label: "JR Practice collections" },
+        { path: "/ReactLiveCoding", label: "React Live Coding" },
+      ],
+    },
+    {
       name: "Small Projects",
       projects: [
         { path: "/reactEssentials", label: "React Essentials" },
@@ -43,29 +57,14 @@ function ReactIntro() {
         },
         { path: "/reduxBookLibrary", label: "Redux Book Library" },
         { path: "/reduxLoginApp", label: "Redux Login App" },
+        { path: "/weatherApp", label: "Weather App" },
       ],
     },
     {
       name: "Large Projects",
-      projects: [
-        { path: "/weatherApp", label: "Weather App" },
-        { path: "/myToyRobot", label: "My Toy Robot" },
-      ],
+      projects: [{ path: "/myToyRobot", label: "My Toy Robot" }],
     },
-    {
-      name: "Required Start Backend Projects",
-      projects: [
-        { path: "/cms", label: "cms system" },
-        { path: "/imageUpload", label: "Image Upload" },
-      ],
-    },
-    {
-      name: "Practice Exercises",
-      projects: [
-        { path: "/jiangRenPractice", label: "JiangRen Practice" },
-        { path: "/ReactLiveCoding", label: "React Live Coding" },
-      ],
-    },
+    
   ];
 
   return (
