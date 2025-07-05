@@ -20,6 +20,7 @@ const ProductManagementApp = () => {
   }, [theme]);
 
   return (
+
     <div
       id="product-management-app"
       className="min-h-screen bg-base-200 transition-colors duration-300"

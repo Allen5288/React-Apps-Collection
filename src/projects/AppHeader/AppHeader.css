@@ -1,7 +1,7 @@
 .app-header {
   background-color: #5cc7ba; /* 深青色，符合现有的颜色方案 */
   color: #ffffff;
-  padding: 5px 10px;
+  padding: 8px 10px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -18,7 +18,7 @@
   left: 10px;
   background-color: #4db6ac; /* 与按钮一致的浅青色 */
   color: #ffffff;
-  padding: 3px 10px;
+  padding: 2px 10px;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.3s ease;
