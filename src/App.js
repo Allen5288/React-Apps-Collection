@@ -20,7 +20,6 @@ import ReactLiveCoding from "./projects/ReactLiveCoding/ReactLiveCoding.jsx";
 import WeatherApp from "./projects/01-MiddleProject/00-WeatherApp/WeatherApp.jsx";
 import MyToyRobot from "./projects/02-LargeProject/01-MyToyRobot/MyToyRobot.jsx";
 import ReduxBookLibrary from "./projects/01-MiddleProject/06-ReduxBookLibrary/ReduxBookLibrary.jsx";
-import { lazy } from "react";
 import CMS from "./projects/03-BackendRequiredProject/01-CMS-FE/CMS.jsx";
 import ImageUpload from "./projects/03-BackendRequiredProject/02-ImageUploadApp/ImageUpload.jsx";
 import ReduxLoginApp from "./projects/01-MiddleProject/07-ReduxLoginApp/ReduxLoginApp.jsx";
