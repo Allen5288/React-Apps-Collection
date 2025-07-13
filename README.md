@@ -89,7 +89,7 @@ The project is organized into different categories based on complexity:
 
 ### Prerequisites
 
-- Node.js (v14.0.0 or later)
+- Node.js (v18.0.0 or later)
 - npm or yarn
 
 ### Installation
@@ -146,7 +146,7 @@ The project is organized into different categories based on complexity:
 
 - **Responsive Design**: All applications are mobile-friendly and follow mobile-first approach
 - **Component Reusability**: Demonstrates how to create reusable React components
-- **State Management**: Various approaches including useState, useReducer, Context API, and Redux
+- **State Management**: Various approaches including useState, useReducer, Context API, and Redux.
 - **Side Effects**: Proper handling of side effects with useEffect hook
 - **Performance Optimization**: Demonstrates React performance optimization techniques
 - **Routing**: Navigation between applications using React Router
