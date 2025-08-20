@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call Debug Client</title>
+    <script src="https://sdk.twilio.com/js/video/releases/2.27.0/twilio-video.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+            min-height: 100vh;
+        }
+
+        .main-panel {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .header .subtitle {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .control-panel {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .control-group input, .control-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .control-group input:focus, .control-group select:focus {
+            outline: none;
+            border-color: #4facfe;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .video-container {
+            padding: 20px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .video-box {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            border: 3px solid #e1e5e9;
+        }
+
+        .video-box.active {
+            border-color: #4facfe;
+        }
+
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .status-panel {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .status-value {
+            font-family: monospace;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 8px;
+        }
+
+        .status-indicator.connected {
+            background: #28a745;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+        }
+
+        .status-indicator.disconnected {
+            background: #dc3545;
+        }
+
+        .status-indicator.connecting {
+            background: #ffc107;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .participants-panel {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .participant-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #4facfe;
+        }
+
+        .participant-info {
+            flex: 1;
+        }
+
+        .participant-id {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .participant-status {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .logs-panel {
+            padding: 20px;
+        }
+
+        .logs-container {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            margin: 2px 0;
+            padding: 2px 0;
+        }
+
+        .log-entry.info {
+            color: #4facfe;
+        }
+
+        .log-entry.success {
+            color: #28a745;
+        }
+
+        .log-entry.error {
+            color: #ff416c;
+        }
+
+        .log-entry.warning {
+            color: #ffc107;
+        }
+
+        .remote-participants {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .token-input {
+            font-family: monospace;
+            font-size: 11px;
+            height: 80px;
+            width: 100%;
+            resize: vertical;
+        }
+
+        .clear-logs-btn {
+            background: #6c757d;
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-panel">
+            <div class="header">
+                <h1>🎥 Video Call Debug Client</h1>
+                <div class="subtitle">Real-time Twilio Video Testing & Debugging</div>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-grid">
+                    <div class="video-box" id="local-video-container">
+                        <div class="video-label">Local Video</div>
+                        <div class="video-placeholder" id="local-placeholder">
+                            Camera not started
+                        </div>
+                    </div>
+                    <div class="video-box" id="remote-video-container">
+                        <div class="video-label">Remote Video</div>
+                        <div class="video-placeholder" id="remote-placeholder">
+                            Waiting for participants...
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="remote-participants" id="remote-participants"></div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="header">
+                <h2>🛠️ Control Panel</h2>
+            </div>
+            
+            <div class="control-panel">
+                <div class="control-group">
+                    <label for="access-token">Access Token:</label>
+                    <textarea id="access-token" class="token-input" placeholder="Paste your JWT access token here..."></textarea>
+                </div>
+                
+                <div class="control-group">
+                    <label for="room-name">Room Name:</label>
+                    <input type="text" id="room-name" value="room_" placeholder="Enter room name">
+                </div>
+                
+                <div class="control-group">
+                    <label for="participant-name">Your Identity:</label>
+                    <input type="text" id="participant-name" value="" placeholder="Enter your participant ID">
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn btn-primary" id="connect-btn">🚀 Connect to Room</button>
+                    <button class="btn btn-danger" id="disconnect-btn" disabled>❌ Disconnect</button>
+                </div>
+            </div>
+
+            <div class="status-panel">
+                <h3 style="margin-bottom: 15px;">📊 Connection Status</h3>
+                <div class="status-item">
+                    <span class="status-label">Room State:</span>
+                    <div style="display: flex; align-items: center;">
+                        <span class="status-value" id="room-state">Disconnected</span>
+                        <div class="status-indicator disconnected" id="room-indicator"></div>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Local Audio:</span>
+                    <div style="display: flex; align-items: center;">
+                        <span class="status-value" id="audio-state">Off</span>
+                        <div class="status-indicator disconnected" id="audio-indicator"></div>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Local Video:</span>
+                    <div style="display: flex; align-items: center;">
+                        <span class="status-value" id="video-state">Off</span>
+                        <div class="status-indicator disconnected" id="video-indicator"></div>
+                    </div>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Room Name:</span>
+                    <span class="status-value" id="current-room">None</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Participants:</span>
+                    <span class="status-value" id="participant-count">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Connection Time:</span>
+                    <span class="status-value" id="connection-time">--</span>
+                </div>
+            </div>
+
+            <div class="participants-panel">
+                <h3 style="margin-bottom: 15px;">👥 Participants</h3>
+                <div id="participants-list">
+                    <div style="color: #999; font-style: italic; text-align: center;">No participants yet</div>
+                </div>
+            </div>
+
+            <div class="logs-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3>📝 Event Logs</h3>
+                    <button class="btn clear-logs-btn" id="clear-logs">Clear</button>
+                </div>
+                <div class="logs-container" id="logs-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class VideoCallDebugger {
+            constructor() {
+                this.room = null;
+                this.localTracks = [];
+                this.participants = new Map();
+                this.connectionStartTime = null;
+                this.connectionTimer = null;
+                
+                this.initializeEventListeners();
+                this.log('Video Call Debug Client initialized', 'info');
+            }
+
+            initializeEventListeners() {
+                document.getElementById('connect-btn').addEventListener('click', () => this.connect());
+                document.getElementById('disconnect-btn').addEventListener('click', () => this.disconnect());
+                document.getElementById('clear-logs').addEventListener('click', () => this.clearLogs());
+                
+                // Auto-extract room name from token
+                document.getElementById('access-token').addEventListener('input', (e) => {
+                    this.extractRoomFromToken(e.target.value);
+                });
+            }
+
+            extractRoomFromToken(token) {
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    if (payload.grants && payload.grants.video && payload.grants.video.room) {
+                        document.getElementById('room-name').value = payload.grants.video.room;
+                        this.log(`Extracted room name: ${payload.grants.video.room}`, 'info');
+                    }
+                    if (payload.grants && payload.grants.identity) {
+                        document.getElementById('participant-name').value = payload.grants.identity;
+                        this.log(`Extracted identity: ${payload.grants.identity}`, 'info');
+                    }
+                } catch (error) {
+                    this.log('Could not extract room info from token', 'warning');
+                }
+            }
+
+            async connect() {
+                const accessToken = document.getElementById('access-token').value.trim();
+                const roomName = document.getElementById('room-name').value.trim();
+                
+                if (!accessToken || !roomName) {
+                    this.log('Please provide both access token and room name', 'error');
+                    return;
+                }
+
+                try {
+                    this.updateConnectionState('connecting');
+                    this.log(`Connecting to room: ${roomName}`, 'info');
+                    
+                    const { connect } = Twilio.Video;
+                    this.room = await connect(accessToken, {
+                        name: roomName,
+                        audio: true,
+                        video: { width: 640, height: 480 }
+                    });
+
+                    this.connectionStartTime = Date.now();
+                    this.startConnectionTimer();
+                    this.setupRoomEventHandlers();
+                    this.handleLocalParticipant();
+                    this.handleExistingParticipants();
+                    
+                    this.updateConnectionState('connected');
+                    this.log(`Successfully connected to room: ${this.room.name}`, 'success');
+                    
+                } catch (error) {
+                    this.updateConnectionState('disconnected');
+                    this.log(`Connection failed: ${error.message}`, 'error');
+                }
+            }
+
+            setupRoomEventHandlers() {
+                this.room.on('participantConnected', (participant) => {
+                    this.log(`Participant connected: ${participant.identity}`, 'success');
+                    this.handleParticipant(participant);
+                    this.updateParticipantsList();
+                });
+
+                this.room.on('participantDisconnected', (participant) => {
+                    this.log(`Participant disconnected: ${participant.identity}`, 'warning');
+                    this.removeParticipant(participant);
+                    this.updateParticipantsList();
+                });
+
+                this.room.on('disconnected', () => {
+                    this.log('Disconnected from room', 'warning');
+                    this.updateConnectionState('disconnected');
+                    this.clearParticipants();
+                });
+
+                this.room.on('reconnecting', () => {
+                    this.log('Reconnecting to room...', 'warning');
+                    this.updateConnectionState('connecting');
+                });
+
+                this.room.on('reconnected', () => {
+                    this.log('Reconnected to room', 'success');
+                    this.updateConnectionState('connected');
+                });
+            }
+
+            handleLocalParticipant() {
+                const localParticipant = this.room.localParticipant;
+                this.log(`Local participant: ${localParticipant.identity}`, 'info');
+
+                // Handle local video tracks
+                localParticipant.videoTracks.forEach(publication => {
+                    if (publication.track) {
+                        this.attachLocalVideo(publication.track);
+                    }
+                });
+
+                // Handle local audio tracks
+                localParticipant.audioTracks.forEach(publication => {
+                    if (publication.track) {
+                        this.updateAudioState(true);
+                    }
+                });
+
+                // Listen for track events
+                localParticipant.on('trackPublished', (publication) => {
+                    this.log(`Local track published: ${publication.kind}`, 'info');
+                    if (publication.track) {
+                        if (publication.kind === 'video') {
+                            this.attachLocalVideo(publication.track);
+                        } else if (publication.kind === 'audio') {
+                            this.updateAudioState(true);
+                        }
+                    }
+                });
+            }
+
+            handleExistingParticipants() {
+                this.room.participants.forEach(participant => {
+                    this.log(`Found existing participant: ${participant.identity}`, 'info');
+                    this.handleParticipant(participant);
+                });
+                this.updateParticipantsList();
+            }
+
+            handleParticipant(participant) {
+                this.participants.set(participant.sid, {
+                    identity: participant.identity,
+                    sid: participant.sid,
+                    tracks: new Map()
+                });
+
+                // Handle existing tracks
+                participant.tracks.forEach(publication => {
+                    if (publication.track) {
+                        this.handleTrack(participant, publication);
+                    }
+                });
+
+                // Listen for new tracks
+                participant.on('trackSubscribed', (track, publication) => {
+                    this.log(`Subscribed to ${track.kind} track from ${participant.identity}`, 'success');
+                    this.handleTrack(participant, publication);
+                });
+
+                participant.on('trackUnsubscribed', (track, publication) => {
+                    this.log(`Unsubscribed from ${track.kind} track from ${participant.identity}`, 'warning');
+                    this.removeTrack(participant, publication);
+                });
+            }
+
+            handleTrack(participant, publication) {
+                const track = publication.track;
+                const participantInfo = this.participants.get(participant.sid);
+                
+                if (participantInfo) {
+                    participantInfo.tracks.set(track.sid, track);
+                }
+
+                if (track.kind === 'video') {
+                    this.attachRemoteVideo(track, participant);
+                } else if (track.kind === 'audio') {
+                    // Audio tracks don't need visual attachment but can be monitored
+                    this.log(`Audio track from ${participant.identity} is active`, 'info');
+                }
+            }
+
+            attachLocalVideo(track) {
+                const container = document.getElementById('local-video-container');
+                const placeholder = document.getElementById('local-placeholder');
+                
+                if (placeholder) {
+                    placeholder.style.display = 'none';
+                }
+                
+                const videoElement = track.attach();
+                videoElement.style.width = '100%';
+                videoElement.style.height = '100%';
+                videoElement.style.objectFit = 'cover';
+                container.appendChild(videoElement);
+                container.classList.add('active');
+                
+                this.updateVideoState(true);
+                this.log('Local video track attached', 'success');
+            }
+
+            attachRemoteVideo(track, participant) {
+                const remoteContainer = document.getElementById('remote-participants');
+                
+                let participantDiv = document.getElementById(`participant-${participant.sid}`);
+                if (!participantDiv) {
+                    participantDiv = document.createElement('div');
+                    participantDiv.id = `participant-${participant.sid}`;
+                    participantDiv.className = 'video-box active';
+                    participantDiv.innerHTML = `
+                        <div class="video-label">${participant.identity}</div>
+                    `;
+                    remoteContainer.appendChild(participantDiv);
+                }
+
+                const videoElement = track.attach();
+                videoElement.style.width = '100%';
+                videoElement.style.height = '100%';
+                videoElement.style.objectFit = 'cover';
+                participantDiv.appendChild(videoElement);
+                
+                // Update the remote placeholder if this is the first video
+                const remotePlaceholder = document.getElementById('remote-placeholder');
+                if (remotePlaceholder && remoteContainer.children.length > 0) {
+                    remotePlaceholder.style.display = 'none';
+                }
+                
+                this.log(`Remote video from ${participant.identity} attached`, 'success');
+            }
+
+            removeParticipant(participant) {
+                this.participants.delete(participant.sid);
+                const participantDiv = document.getElementById(`participant-${participant.sid}`);
+                if (participantDiv) {
+                    participantDiv.remove();
+                }
+                
+                // Show placeholder if no more participants
+                const remoteContainer = document.getElementById('remote-participants');
+                const remotePlaceholder = document.getElementById('remote-placeholder');
+                if (remoteContainer.children.length === 0 && remotePlaceholder) {
+                    remotePlaceholder.style.display = 'flex';
+                }
+            }
+
+            removeTrack(participant, publication) {
+                const participantInfo = this.participants.get(participant.sid);
+                if (participantInfo) {
+                    participantInfo.tracks.delete(publication.track.sid);
+                }
+            }
+
+            disconnect() {
+                if (this.room) {
+                    this.room.disconnect();
+                    this.room = null;
+                }
+                this.clearLocalMedia();
+                this.clearParticipants();
+                this.stopConnectionTimer();
+                this.updateConnectionState('disconnected');
+                this.log('Disconnected from room', 'info');
+            }
+
+            clearLocalMedia() {
+                const container = document.getElementById('local-video-container');
+                const videos = container.querySelectorAll('video');
+                videos.forEach(video => video.remove());
+                
+                const placeholder = document.getElementById('local-placeholder');
+                if (placeholder) {
+                    placeholder.style.display = 'flex';
+                }
+                
+                container.classList.remove('active');
+                this.updateVideoState(false);
+                this.updateAudioState(false);
+            }
+
+            clearParticipants() {
+                const remoteContainer = document.getElementById('remote-participants');
+                remoteContainer.innerHTML = '';
+                
+                const remotePlaceholder = document.getElementById('remote-placeholder');
+                if (remotePlaceholder) {
+                    remotePlaceholder.style.display = 'flex';
+                }
+                
+                this.participants.clear();
+                this.updateParticipantsList();
+            }
+
+            updateConnectionState(state) {
+                const stateElement = document.getElementById('room-state');
+                const indicator = document.getElementById('room-indicator');
+                const connectBtn = document.getElementById('connect-btn');
+                const disconnectBtn = document.getElementById('disconnect-btn');
+                const currentRoom = document.getElementById('current-room');
+
+                stateElement.textContent = state.charAt(0).toUpperCase() + state.slice(1);
+                
+                indicator.className = `status-indicator ${state}`;
+                
+                if (state === 'connected') {
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    currentRoom.textContent = this.room ? this.room.name : 'Unknown';
+                } else if (state === 'connecting') {
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = true;
+                } else {
+                    connectBtn.disabled = false;
+                    disconnectBtn.disabled = true;
+                    currentRoom.textContent = 'None';
+                }
+            }
+
+            updateVideoState(enabled) {
+                const stateElement = document.getElementById('video-state');
+                const indicator = document.getElementById('video-indicator');
+                
+                stateElement.textContent = enabled ? 'On' : 'Off';
+                indicator.className = `status-indicator ${enabled ? 'connected' : 'disconnected'}`;
+            }
+
+            updateAudioState(enabled) {
+                const stateElement = document.getElementById('audio-state');
+                const indicator = document.getElementById('audio-indicator');
+                
+                stateElement.textContent = enabled ? 'On' : 'Off';
+                indicator.className = `status-indicator ${enabled ? 'connected' : 'disconnected'}`;
+            }
+
+            updateParticipantsList() {
+                const listContainer = document.getElementById('participants-list');
+                const countElement = document.getElementById('participant-count');
+                
+                if (this.participants.size === 0) {
+                    listContainer.innerHTML = '<div style="color: #999; font-style: italic; text-align: center;">No participants yet</div>';
+                    countElement.textContent = '0';
+                    return;
+                }
+                
+                countElement.textContent = this.participants.size.toString();
+                
+                listContainer.innerHTML = '';
+                this.participants.forEach((participant, sid) => {
+                    const participantDiv = document.createElement('div');
+                    participantDiv.className = 'participant-item';
+                    participantDiv.innerHTML = `
+                        <div class="participant-info">
+                            <div class="participant-id">${participant.identity}</div>
+                            <div class="participant-status">Tracks: ${participant.tracks.size}</div>
+                        </div>
+                        <div class="status-indicator connected"></div>
+                    `;
+                    listContainer.appendChild(participantDiv);
+                });
+            }
+
+            startConnectionTimer() {
+                this.connectionTimer = setInterval(() => {
+                    if (this.connectionStartTime) {
+                        const elapsed = Date.now() - this.connectionStartTime;
+                        const seconds = Math.floor(elapsed / 1000);
+                        const minutes = Math.floor(seconds / 60);
+                        const displaySeconds = seconds % 60;
+                        
+                        document.getElementById('connection-time').textContent = 
+                            `${minutes}:${displaySeconds.toString().padStart(2, '0')}`;
+                    }
+                }, 1000);
+            }
+
+            stopConnectionTimer() {
+                if (this.connectionTimer) {
+                    clearInterval(this.connectionTimer);
+                    this.connectionTimer = null;
+                }
+                document.getElementById('connection-time').textContent = '--';
+                this.connectionStartTime = null;
+            }
+
+            log(message, type = 'info') {
+                const container = document.getElementById('logs-container');
+                const entry = document.createElement('div');
+                entry.className = `log-entry ${type}`;
+                
+                const timestamp = new Date().toLocaleTimeString();
+                entry.textContent = `[${timestamp}] ${message}`;
+                
+                container.appendChild(entry);
+                container.scrollTop = container.scrollHeight;
+                
+                // Keep only last 100 log entries
+                while (container.children.length > 100) {
+                    container.removeChild(container.firstChild);
+                }
+            }
+
+            clearLogs() {
+                document.getElementById('logs-container').innerHTML = '';
+            }
+        }
+
+        // Initialize the debugger when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            window.videoDebugger = new VideoCallDebugger();
+        });
+    </script>
+</body>
+</html>
