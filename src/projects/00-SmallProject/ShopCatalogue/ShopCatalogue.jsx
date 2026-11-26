@@ -1,19 +1,36 @@
 import { useMemo, useState } from "react";
 import { CATEGORIES, PRODUCTS } from "./products";
+import {
+  addToCart,
+  cartCount,
+  cartItems,
+  cartTotal,
+  createCart,
+  removeFromCart,
+  setQuantity,
+} from "./cart";
 
 // ShopCatalogue — searchable, filterable product catalogue for a
-// small homewares shop. Commit 1 of 5: search + category filter +
-// price cap + sorting, all derived from one filter state.
+// small homewares shop. Commit 2 of 5: a cart.
 //
-// The list is derived, never stored: `filtered` is recomputed with
-// useMemo whenever a filter changes, so the displayed list can
-// never disagree with the filters. That is the rule for the whole
-// case — state holds the filters, the list is a function of them.
+// The one rule from commit 1, applied again: state holds the
+// choices, everything else is derived. The cart itself is state
+// ({ productId: quantity }); the cart lines and the total are
+// derived from the cart with useMemo, so the total can never
+// disagree with what the customer added. The list is still derived
+// from the filters, exactly as before.
+//
+// Scope, stated honestly: this is a reservation list, not a
+// checkout. The customer builds the cart and the shop calls them
+// back to confirm pickup — there is no payment here, and the
+// component does not pretend otherwise. A real checkout (payment,
+// stock decrement, order record) is commit 4 or 5, not this one.
 export default function ShopCatalogue() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [maxPrice, setMaxPrice] = useState(200);
   const [sort, setSort] = useState("name");
+  const [cart, setCart] = useState(createCart);
 
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -30,6 +47,15 @@ export default function ShopCatalogue() {
     };
     return [...list].sort(by[sort]);
   }, [query, category, maxPrice, sort]);
+
+  // Derived, never stored: the lines to render and the total.
+  const items = useMemo(() => cartItems(cart, PRODUCTS), [cart]);
+  const total = useMemo(() => cartTotal(items), [items]);
+  const count = cartCount(cart);
+
+  const handleAdd = (product) => {
+    setCart((prev) => addToCart(prev, product).cart);
+  };
 
   return (
     <div>
@@ -84,15 +110,84 @@ export default function ShopCatalogue() {
         <p>No products match — try a wider price range or a different search.</p>
       ) : (
         <ul>
-          {filtered.map((p) => (
-            <li key={p.id}>
-              <strong>{p.name}</strong> — ${p.priceAud} · {p.category} ·{" "}
-              {p.stock > 0 ? `${p.stock} in stock` : "out of stock"}
-              <br />
-              {p.description}
-            </li>
-          ))}
+          {filtered.map((p) => {
+            const inCart = cart[p.id] || 0;
+            const atCap = inCart >= p.stock;
+            return (
+              <li key={p.id}>
+                <strong>{p.name}</strong> — ${p.priceAud} · {p.category} ·{" "}
+                {p.stock > 0 ? `${p.stock} in stock` : "out of stock"}
+                <br />
+                {p.description}
+                <br />
+                <button
+                  type="button"
+                  onClick={() => handleAdd(p)}
+                  disabled={p.stock === 0 || atCap}
+                >
+                  {p.stock === 0
+                    ? "Out of stock"
+                    : atCap
+                      ? `In cart (${inCart} — all ${p.stock} in stock)`
+                      : inCart > 0
+                        ? `Add another (${inCart} in cart)`
+                        : "Add to cart"}
+                </button>
+              </li>
+            );
+          })}
         </ul>
+      )}
+
+      <h3>Your cart ({count} {count === 1 ? "item" : "items"})</h3>
+      {items.length === 0 ? (
+        <p>Your cart is empty — add something from the catalogue above.</p>
+      ) : (
+        <>
+          <ul>
+            {items.map(({ product, quantity }) => (
+              <li key={product.id}>
+                <strong>{product.name}</strong> — ${product.priceAud} each
+                <br />
+                <button
+                  type="button"
+                  aria-label={`Decrease quantity of ${product.name}`}
+                  onClick={() =>
+                    setCart((prev) => setQuantity(prev, product, quantity - 1).cart)
+                  }
+                >
+                  −
+                </button>{" "}
+                {quantity}{" "}
+                <button
+                  type="button"
+                  aria-label={`Increase quantity of ${product.name}`}
+                  disabled={quantity >= product.stock}
+                  onClick={() =>
+                    setCart((prev) => setQuantity(prev, product, quantity + 1).cart)
+                  }
+                >
+                  +
+                </button>{" "}
+                = ${product.priceAud * quantity}
+                <br />
+                <button
+                  type="button"
+                  onClick={() => setCart((prev) => removeFromCart(prev, product.id).cart)}
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p>
+            <strong>Total: ${total}</strong>
+          </p>
+          <p>
+            Reserve for pickup — the shop will call you to confirm.
+            No payment is taken here.
+          </p>
+        </>
       )}
     </div>
   );
