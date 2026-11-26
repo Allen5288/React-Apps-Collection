@@ -21,6 +21,7 @@ second copy of the list to go stale.
   export by keeping the same fields.
 - `ShopCatalogue.jsx` — the component: search box, category
   select, max-price slider, sort select, and the derived list.
+- `cart.js` — pure cart functions (add, remove, set quantity, total) + test sketch; the component keeps only state and rendering.
 
 ## Run it
 
@@ -40,9 +41,62 @@ export default function App() {
 - Search "xyz": the empty state explains what to try next, instead
   of a blank page.
 
+## The cart (commit 2 of 5)
+
+The catalogue from commit 1 could only be browsed. Today it can
+be shopped — a cart, built on the same one rule: **state holds the
+choices, everything else is derived.**
+
+### State vs derived, again
+
+| State (chosen) | Derived (computed) |
+|---|---|
+| The filters (`query`, `category`, `maxPrice`, `sort`) | The visible list (`useMemo`) |
+| The cart (`{ productId: quantity }`) | The cart lines and the total (`useMemo`) |
+
+The total is never stored. It is `price × quantity`, summed, every
+render — so it can never disagree with the cart the way a stored
+total can after a remove or a quantity change. The cart logic
+itself lives in `cart.js` as pure functions (`addToCart`,
+`setQuantity`, `removeFromCart`, `cartTotal`), so the rules can be
+tested without rendering anything — see the test sketch at the
+bottom of `cart.js`.
+
+### Stock is the cap
+
+A customer cannot add more than the shop has: `addToCart` caps the
+quantity at `product.stock`, and the button disables at the cap
+with a message saying so ("In cart (2 — all 2 in stock)"). The
+arch mirror has a stock of 2, so it is the honest test case: add
+it five times and the cart holds 2. Out-of-stock products cannot
+be added at all.
+
+### Scope, stated honestly
+
+This is a **reservation list, not a checkout**. The customer builds
+the cart and the shop calls them to confirm pickup — no payment is
+taken here, and the component does not pretend otherwise. A real
+checkout (payment, stock decrement, order record) is a later
+commit, not this one.
+
+### Files
+
+- `cart.js` — pure cart functions + test sketch (run `node --test`
+  with the sketch saved as `cart.test.js`).
+- `ShopCatalogue.jsx` — the component: catalogue as before, plus
+  add-to-cart buttons and the cart panel (quantity +/−, remove,
+  derived total).
+
+### Try it
+
+- Add the stoneware mug twice: cart shows 2 × $24, total $48.
+- Add the arch mirror three times: the cart holds 2 (all the stock
+  there is) and the button says so.
+- Drop a quantity to 0 with −: the line disappears — setting a
+  quantity to 0 removes it, by design.
+
 ## What to learn next
 
-- A cart: which state it needs, and why the cart is state but the
-  cart total is derived (same rule, applied again).
 - Saving the filters in the URL, so a filtered view can be shared
   as a link.
+- A real checkout: payment, stock decrement, and an order record.
