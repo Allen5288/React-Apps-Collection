@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CATEGORIES, PRODUCTS } from "./products";
 import {
   addToCart,
@@ -9,9 +9,10 @@ import {
   removeFromCart,
   setQuantity,
 } from "./cart";
+import { buildSearch, DEFAULT_FILTERS, parseFilters } from "./filters";
 
 // ShopCatalogue — searchable, filterable product catalogue for a
-// small homewares shop. Commit 2 of 5: a cart.
+// small homewares shop. Commit 3 of 5: URL filters.
 //
 // The one rule from commit 1, applied again: state holds the
 // choices, everything else is derived. The cart itself is state
@@ -20,17 +21,78 @@ import {
 // disagree with what the customer added. The list is still derived
 // from the filters, exactly as before.
 //
+// New in this commit: the filters also live in the URL. The four
+// filter states are still the source of truth — the URL is a mirror
+// of them, not a second copy. Changing a filter writes the URL
+// (debounced, one history entry per pause, so typing "lamp" is one
+// back-button step, not four); the back and forward buttons read
+// the URL back into state. A filtered view can be shared as a link,
+// and a link with a bad value still shows products — the parsing in
+// filters.js falls back to defaults instead of rendering nothing.
+//
+// Deliberately no react-router here: this component is also used
+// standalone (see the README), outside a Router, where
+// useSearchParams would throw. Plain window.history + URLSearchParams
+// does the same job wherever the component is mounted.
+//
 // Scope, stated honestly: this is a reservation list, not a
 // checkout. The customer builds the cart and the shop calls them
 // back to confirm pickup — there is no payment here, and the
 // component does not pretend otherwise. A real checkout (payment,
 // stock decrement, order record) is commit 4 or 5, not this one.
 export default function ShopCatalogue() {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
-  const [maxPrice, setMaxPrice] = useState(200);
-  const [sort, setSort] = useState("name");
+  // Initial filters come from the URL, so a shared link opens on
+  // the view the sender saw. The window guard keeps this safe
+  // outside a browser (tests, server rendering). Parsed once —
+  // the four states below all read from this one object.
+  const [initialFilters] = useState(() =>
+    typeof window === "undefined"
+      ? DEFAULT_FILTERS
+      : parseFilters(window.location.search, CATEGORIES),
+  );
+  const [query, setQuery] = useState(initialFilters.query);
+  const [category, setCategory] = useState(initialFilters.category);
+  const [maxPrice, setMaxPrice] = useState(initialFilters.maxPrice);
+  const [sort, setSort] = useState(initialFilters.sort);
   const [cart, setCart] = useState(createCart);
+  const [copied, setCopied] = useState(false);
+
+  // Write the filters to the URL, debounced: a history entry is
+  // pushed once the user pauses (400 ms), not once per keystroke or
+  // slider tick. Parameters at their defaults are left out, so the
+  // plain catalogue URL stays clean. The write is skipped when the
+  // URL already matches, which is what stops the effect looping
+  // with the popstate handler below.
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const search = buildSearch({ query, category, maxPrice, sort });
+    if (search === window.location.search) return undefined;
+    const timer = setTimeout(() => {
+      if (buildSearch({ query, category, maxPrice, sort }) === window.location.search) {
+        return; // something else already wrote this URL (e.g. back button)
+      }
+      window.history.pushState(
+        null,
+        "",
+        search ? `${window.location.pathname}${search}` : window.location.pathname,
+      );
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [query, category, maxPrice, sort]);
+
+  // Back / forward: read the URL back into state.
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const onPopState = () => {
+      const next = parseFilters(window.location.search, CATEGORIES);
+      setQuery(next.query);
+      setCategory(next.category);
+      setMaxPrice(next.maxPrice);
+      setSort(next.sort);
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
@@ -56,6 +118,30 @@ export default function ShopCatalogue() {
   const handleAdd = (product) => {
     setCart((prev) => addToCart(prev, product).cart);
   };
+
+  const handleReset = () => {
+    setQuery(DEFAULT_FILTERS.query);
+    setCategory(DEFAULT_FILTERS.category);
+    setMaxPrice(DEFAULT_FILTERS.maxPrice);
+    setSort(DEFAULT_FILTERS.sort);
+  };
+
+  const handleCopyLink = async () => {
+    if (typeof window === "undefined" || !navigator.clipboard) {
+      setCopied("copy-unavailable");
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied("copy-unavailable");
+    }
+  };
+
+  const isDefaultView =
+    query === "" && category === "All" && maxPrice === 200 && sort === "name";
 
   return (
     <div>
@@ -101,6 +187,17 @@ export default function ShopCatalogue() {
           <option value="price-desc">Price: high to low</option>
         </select>
       </label>
+
+      <button type="button" onClick={handleReset} disabled={isDefaultView}>
+        Clear filters
+      </button>{" "}
+      <button type="button" onClick={handleCopyLink}>
+        Copy link to this view
+      </button>
+      {copied === true ? <span> Link copied.</span> : null}
+      {copied === "copy-unavailable" ? (
+        <span> Copy did not work — copy the address bar URL instead.</span>
+      ) : null}
 
       <p>
         {filtered.length} of {PRODUCTS.length} products
